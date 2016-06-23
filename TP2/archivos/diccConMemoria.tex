@@ -1,0 +1,380 @@
+\section{M\'odulo Diccionario con memoria}
+
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Diccionario Con Memoria}}
+
+Extiende al TAD Diccionario de la Catedra. \\
+		
+	Donde las siguientes operaciones son renombres de:	
+
+
+		\begin{tabular}[c]{|c|c|c|}
+		\hline
+		DiccionarioConMemoria & DiccionarioDeLaCatedra\\
+		\hline
+		vacioDM() & Vacio()\\
+		\hline
+		obtenerDM(d, t) & obtener(t,d) \\
+		\hline
+		definido?DM(t,d) & definido?(t,d) \\
+		\hline
+		titulosDM(d) & claves(d) \\
+		\hline
+		agregarTituloDM(d, t, n) & definir(d, nombre(t), nuevoInfoTitulo(t, $\emptyset$, $crear(n)$, \#maxAcciones(t))) \\
+		\hline
+		\end{tabular}\\\\
+
+
+\generos{dMemory}
+\exporta{generadores, observadores, otras operaciones}
+\usa{\nombretad{Diccionario, Bool, Nat}}
+
+
+
+\otrasops
+
+
+\func{agregarPromesaDM}{dMemory/d, promesa/pr, cliente/c, nat/n}{dMemory}{$\lbrace$
+titulo(pr) $\in$ titulosDM(d) \yluego ((tipo(pr)==compra $\wedge$ pr $\notin$ compras(obtener(d, titulo(pr)))) $\vee$ (tipo(pr)==venta $\wedge$ pr $\notin$ ventas(obtener(d, titulo(pr)))))$\rbrace$}
+\func{promesasDeDM}{dMemory/d, cliente/c}{conj(promesa)}{}
+\func{unir}{cliente/c, conj(nombre)/ts, dMemory/d}{conj(promesa)}{}
+\func{filtrar}{cliente/c, conj(infProm)/iPs}{conj(promesa)}{}
+
+
+
+\axiomas{\paratodo{dMemory}{d}, \paratodo{titulo}{t}, \paratodo{promesa}{pr}, \paratodo{cliente}{c}, \paratodo{nat}{n}, \paratodo{conj(nombre)}{ts}, \paratodo{conj(infProm)}{iPs}}
+\alinearaxiomas{}{}
+
+
+\axioma{agregarPromesaDM(d, pr, c, n)}{
+\textbf{if} tipo(pr) = Compra
+\textbf{then} \\
+definir(d, titulo(pr), nuevoInfoTitulo(\\
+	titulo(obtenerDM(d, titulo(pr))),
+	ventas(obtenerDM(d, titulo(pr))),\\
+	insertar(nuevoInfoProm(c, pr, n), compras(obtenerDM(d, titulo(pr)))),\\
+	disponibles(obtenerDM(d, titulo(pr)))))\\
+\textbf{else} \\
+definir(d, titulo(pr), nuevoInfoTitulo(\\
+	titulo(obtenerDM(d, titulo(pr))),
+	ventas(obtenerDM(d, titulo(pr))) U $\lbrace$nuevoInfoProm(c, pr, n)$\rbrace$,\\
+	compras(obtenerDM(d, titulo(pr))),
+	disponibles(obtenerDM(d, titulo(pr)))))\\
+\textbf{fi}}
+
+\axioma{promesasDeDM(d, c)}{unir(c, titulosDM, d)}
+\axioma{unir(c, $\emptyset$, d)}{$\emptyset$}
+\axioma{unir(c, ts, d)}{filtrar(c, sinUno(ts), d)$\cup$
+filtrar(c, ventas(obtenerDM(d, dameUno(ts))))$\cup$
+filtrar(c, compras(obtenerDM(d, dameUno(ts)))}
+\axioma{filtrar(c, $\emptyset$)}{$\emptyset$}
+\axioma{filtrar(c, iPs)}{\textbf{if}
+cliente(dameUno(iPs))\igobs c
+\textbf{then} 
+promesa(dameUno(iPs))
+\textbf{else} 
+$\emptyset$
+\textbf{fi}
+$\cup$ filtrar(c, sinUno(iPs))}
+
+\end{tad}
+
+
+
+\subsection{Servicios Exportados}
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		vacioDM & No &  O(1)\\
+		\hline
+		agregarTituloDM & No &  O(num + |nT|)\\
+		\hline
+		definido?DM & No &  O(|nT|)\\
+		\hline
+		obtenerDM & Si &  O(|nT|)\\
+		\hline
+		titulosDM & Si &  O(\#claves)\\
+		\hline
+		agregarPromesaDM & No &  O(|nT|)\\
+		\hline
+		promesasDeDM & Si &  O(T * C * |max\_nt|)\\
+		\hline
+\end{tabular}\\\\
+
+	
+\subsection{Interfaz}
+	Interfaz \nombretad{Diccionario Memoria}\\
+	Se explica con TAD Diccionario con Memoria\\
+	G'{e}neros: dMemory\\
+	Operaciones:\\
+	
+	\begin{interfaz}{VacioDM}{}{dMemory}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{resultado \igobs vacioDM()}
+	\end{interfaz}
+	
+	\begin{interfaz}{agregarTituloDM}{\param{inout}{dicc}{dMemory}, \param{in}{t}{titulo}, \param{in}{n}{nat}}{}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge titulo \notin claves(dicc_0)}
+	\textbf{Post} $\equiv$ \post{dicc = agregarTituloDM(dicc_0, t, n)}
+	\end{interfaz}
+	
+	\begin{interfaz}{definido?DM}{\param{in}{dicc}{dMemory}, \param{in}{nt}{nombre}}{bool}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post}$\equiv$ \post{resultado \igobs definido?DM(nt, dicc)}
+	\end{interfaz}
+		
+	\begin{interfaz}{obtenerDM}{\param{in}{dicc}{dMemory}, \param{in}{nt}{nombre}}{infoTitulo}{}
+	\textbf{Pre} $\equiv$ \pre{definido?DM(nt,dicc)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs obtenerDM(dicc, nt)}
+	\end{interfaz}	
+		
+	\begin{interfaz}{titulosDM}{\param{in}{dicc}{dMemory}}{conj(nombre)}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{ resultado \igobs titulosDM(dicc)}
+	\end{interfaz}	
+
+	\begin{interfaz}{agregarPromesaDM}{\param{inout}{dicc}{dMemory}, \param{in}{pr}{promesa}, \param{in}{cl}{cliente}, \param{in}{pN}{punteroANat}}{}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge titulo(pr) \in titulosDM(dicc_0)}
+	\textbf{Post} $\equiv$ \post{
+	TitulosDM(dicc_0) \igobs TitulosDM(dicc) \yluego \\
+	((\forall nT) (nT \in TitulosDM(dicc) \wedge nT\neq titulo(pr)) \impluego obtenerDM(dicc_0, nT)\igobs obtenerDM(dicc, nT)) \wedge \\
+	titulo(obtenerDM(dicc, titulo(pr)))\igobs titulo(obtenerDM(dicc_0, titulo(pr))) \wedge \\
+	disponibles(obtenerDM(dicc, titulo(pr)))\igobs disponibles(obtenerDM(dicc_0, titulo(pr))) \wedge \\
+	((tipo(pr)==compra \wedge \\
+	(compras(obtenerDM(dicc, titulo(pr)))\igobs \\
+	 compras(obtenerDM(dicc, titulo(pr)))\cup \lbrace nuevoInfoPromesa(cl, pr, pN)\rbrace) \wedge \\
+	 ventas(obtenerDM(dicc, titulo(pr)))\igobs ventas(obtenerDM(dicc_0, titulo(pr)))) \vee \\
+	 (tipo(pr)==venta \wedge \\
+	(ventas(obtenerDM(dicc, titulo(pr)))\igobs \\
+	 ventas(obtenerDM(dicc, titulo(pr)))\cup \lbrace nuevoInfoPromesa(cl, pr, pN)\rbrace) \wedge \\
+	 compras(obtenerDM(dicc, titulo(pr)))\igobs compras(obtenerDM(dicc_0, titulo(pr)))))}
+	\end{interfaz}
+
+	\begin{interfaz}{promesasDeDM}{\param{in}{dicc}{dMemory}, \param{in}{cl}{cliente}}{conj(promesa)}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{
+	 \forall nT \in titulosDM(dicc) \impluego \\
+	 (\forall infT \in obtener(nT, dicc) \impluego \\
+	 (\forall infPV \in ventas(infT) \impluego (cliente(infPV)=cl \Leftrightarrow promesa(infPV) \in resultado) \\
+	 (\forall infPC \in compras(infT) \impluego (cliente(infPC)=cl \Leftrightarrow promesa(infPC) \in resultado)}
+	\end{interfaz}
+
+
+	
+\subsection{Estructura de Representaci\'on}
+	diccMemory($\alpha$) se representa con estr$_-$diccMemory\\
+	Donde estr$_-$diccMemory es tupla< \\
+		fueModificado: bool,\\
+		cliente:  nat,\\
+		ultimasPromesas:	conj(promesa),\\
+		diccPorTitulo:		diccString(nombre, infoTitulo)\\
+		>\\
+
+
+\subsection{Invariante de Representaci\'on}
+
+$\bullet$ Todas las ultimas promesas son promesas que pertenecen al significado de algun titulo. \\
+$\bullet$ Cada clave tiene como significado un infoTitulo cuyo nombre de titulo es ella misma.
+
+
+
+\noindent Rep: $\widehat{dMemory}$ \en bool\\
+	($\forall$ e: $\widehat{dMemory}$) Rep(dicc) = $ true$ $\Leftrightarrow$ \\
+	$((\forall p: promesa) p \in e.ultimasPromesas \Rightarrow \\
+	(\exists nT:nombre) nT \in titulosDM(dicc) \impluego \\
+	((tipo(p)==venta \wedge \\
+	(\exists infoP:infoProm) (infoP \in ventas(obtener(e.diccPorTitulo, nT)) \wedge\\
+	 p \igobs promesa(infoP))) \vee \\
+	(tipo(p)==compra \wedge \\
+	(\exists infoP:infoProm) (infoP \in compras(obtener(e.diccPorTitulo, nT)) \wedge \\
+	p \igobs promesa(infoP))))) \wedge \\
+	(\forall t:nombre) t \in titulosDM(dicc) \impluego \\
+	nombre(titulo(obtener(dicc, t)))= t$
+
+	
+\subsection{Funci\'on de Abstracci\'on}
+\noindent Abs: $\widehat{dMemory}$ e \en $\widehat{dMemory}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ dicc: $\widehat{dMemory}$)\\
+ \! Abs(dicc) $\equiv$ e \!: $\widehat{dMemory}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		\left(\begin{array}{l} titulosDM(dicc)\igobs(clavesDS(e.diccPorTitulo)) \end{array}\right) \yluego \\
+		\left(
+		\begin{array}{l}
+			 (\forall n:nombre) definido?DM(dicc, n)\igobs \\
+			 {n\in clavesDS(e.diccPorTitulo)} \\
+		
+	\end{array}\right) \yluego\\
+		\left(
+		\begin{array}{l}	
+			(\forall n:nombre) (definido?DM(dicc, n)==true) \impluego \\
+			 obtenerDM(dicc, n) \igobs \\
+			{obtenerDS(e.diccPorTitulo,n)}	\\	
+		
+	\end{array}\right) \yluego \\
+		\left(	
+		\begin{array}{l}
+		
+		(\forall c:cliente)(\forall p:promesa)(p \in promesasDeDM(dicc, c)) \Leftrightarrow \\
+		definido?DM(e.diccPorTitulo, titulo(p)) \yluego \\
+		((tipo(p)==compra \wedge p \in compras(obtenerDM(e.diccPorTitulo, titulo(p))) \vee \\
+		(tipo(p)==venta \wedge p \in ventas(obtenerDM(e.diccPorTitulo, titulo(p))))) \\
+		  
+		
+		\end{array}\right)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+
+\begin{algorithm}{$i$VacioDM}{}{\param{}{resultado}{dMemory}}
+		resultado.fueModificado \leftarrow true \\
+		resultado.cliente \leftarrow 0 \\
+		resultado.ultimasPromesas \leftarrow vacio(); \\
+		resultado.diccPorTitulo \leftarrow crearDiccString();\\
+		\RETURN resultado
+			\end{algorithm}
+		\textit{Complejidad:}  
+O(1)\textsubscript{vacio()} + O(1)\textsubscript{crearDiccString} = \textbf{O(1)} \\
+
+ \begin{algorithm}{$i$AgregarTituloDM}{\param{inout}{e}{estr}, \param{in}{iT}{itConj(titulo)},  \param{in}{num}{nat}}{}
+ 			\VAR{infoT\!: infoTitulo} \\
+			infoT \= nuevoInfoTitulo(iT, vacio(), crear(num), $\#$MaxAcciones(siguiente(iT)));
+ 			definirDS(e.diccPorTitulo, nombre(siguiente(iT)), infoT) 
+ 			\end{algorithm}
+ 		\textit{Complejidad:}  
+ 		O(1)\textsubscript{vacio()} + O(num)\textsubscript{crear(n)} + O(1)\textsubscript{\#maxAcciones} + O(|nombre(iT)|)\textsubscript{definirDS} = \\
+ 		 \textbf{O(num + |nombre(iT)|)} \\
+	
+ \begin{algorithm}{$i$Definido?DM}{\param{in}{e}{estr}, \param{in}{nt}{nombre}}{\param{}{resultado}{bool}}
+ 				\RETURN  definidoDS?(nt, e.diccPorTitulo)	
+ 			\end{algorithm}
+		\textit{Complejidad:}  \textbf{O(|nt|)}\textsubscript{definido?DS}\\
+
+	
+ \begin{algorithm}{$i$obtenerDM}{\param{in}{e}{estr}, \param{in}{nt}{nombre}}{\param{}{resultado}{infoTitulo}}
+ 				\RETURN  obtenerDS(nt, e.diccPorTitulo)
+ 	 			\end{algorithm}	
+ 	\textit{Complejidad:}  \textbf{O(|nt|)}\textsubscript{obtenerDS}\\
+
+			
+ \begin{algorithm}{$i$titulosDM}{\param{in}{e}{estr}, \param{in}{nt}{nombre}}{\param{}{resultado}{conj(claves)}}
+ 				\RETURN  clavesDS(e.diccPorTitulo)	
+\end{algorithm}
+	\textit{Complejidad:}  \textbf{O(\#claves)}\textsubscript{clavesDS}\\
+
+			
+ \begin{algorithm}{$i$agregarPromesa}{\param{inout}{dicc}{dMemory}, \param{in}{pr}{promesa}, \param{in}{cl}{cliente}, \param{in}{pN}{punteroANat}}{}
+ 			e.fueModificado \leftarrow true \\
+ 			\VAR{datosTitulo\!: infoTitulo} \\
+ 			datosTitulo \leftarrow obtenerDS(e.diccPorTitulo, titulo(pr))\\
+ 			\VAR{datosPromesa\!: infoProm} \\
+ 			datosPromesa \leftarrow nuevoInfoProm(cl, pr, pN) \\ 			
+ 			\begin{IF}{tipo(pr) = Venta} \\
+ 			AgregarRapido(datosPromesa, ventas(datosTitulo))
+			\ELSE \\
+			insertar(datosPromesa, compras(datosTitulo))
+			\end{IF} 
+ 			\end{algorithm}
+		\textit{Complejidad:}  \\
+		
+		O(|titulo(pr)|)\textsubscript{obtenerDS}+O(|titulo(pr)|)\textsubscript{nuevoInfoProm}+O(copy(datosPromesa))\textsubscript{agregarRapido}+O(1)\textsubscript{insertar} = \\
+		 Donde O(copy(datosPromesa)) es copiar la tupla de InfoPromesa que es O(copiarPromesa)=O(|titulo(pr)|) \\
+		 \textbf{O(|titulo(pr)|)}\\	
+
+			
+ \begin{algorithm}{$i$promesasDeDM}{\param{in}{e}{estr}, \param{in}{cl}{cliente}}{\param{}{resultado}{conj(promesa)}}
+ 	\begin{IF}{\neg e.fueModificado$ $\&\&$ $e.cliente=c} \\
+ 		\RETURN e.ultimasPromesas 
+ 	\ELSE \\
+ 		\VAR{cs\!: conj(titulo)} \leftarrow titulosDM(e); \\
+ 		resultado \leftarrow vacio(); \\
+ 		It \leftarrow crearIt(cs) \\
+ 		\begin{WHILE}{(hayProx(It))} 
+ 			\VAR{Iventas\!: ItConj(infoPromesa)} \\
+ 			Iventas \leftarrow crearIt(ventas(obtenerDS(e.diccPorTitulo, titulo(siguiente(It))))) \\
+ 			\VAR{actual\!: ItConj(nombre)} \\
+ 			\begin{WHILE}{(hayProx(Iventas))} 
+ 				actual \leftarrow siguiente(Iventas) \\
+ 				\begin{IF}{(cliente(actual)=cl)} \\
+ 					AgregarRapido(promesa(actual), resultado) 
+ 				\ELSE \\
+ 					avanzar(Iventas) 
+ 				\end{IF} 
+ 			\end{WHILE}\\
+ 			\VAR{i\!: Nat} \leftarrow 1 \\
+ 			\begin{WHILE}{(i\leq tam(compras(e.DiccPorTitulo))))} 
+ 				\begin{IF}{(dameIndice(compras(e.DiccPorTitulo), i) \neq NULL$ $\&\& \\ cliente(dameIndice(compras(e.DiccPorTitulo), i)) = c)} \\
+ 					AgregarRapido(
+ 					promesa(dameIndice(compras(e.DiccPorTitulo), i)),
+ 					resultado
+ 					)
+ 				\ELSE \\
+ 					i++ 
+ 				\end{IF} 
+ 			\end{WHILE}
+ 		\end{WHILE}
+ 	\end{IF} 
+ \end{algorithm}	
+ 		\textit{Complejidad:}  \\
+ 		O(\#titulos)\textsubscript{titulosDM} + O(1)\textsubscript{crearIt} + O(\#titulos)* $\lbrace$ \\
+ 		O(1)\textsubscript{crearIt} + O(|max\_nt|) \textsubscript{obtenerDS} +  O(\#Ventas) * 
+ 		O(copy(promesa))\textsubscript{AgregarRapido} + \\
+ 		O(\#Compras) * [(O(1)\textsubscript{dameIndice} + O(1)\textsubscript{dameIndice}) +
+ 		O(copy(promesa))\textsubscript{AgregarRapido} + O(1)\textsubscript{dameIndice}]\\
+ 		$\rbrace$) \\
+		= O(\#titulos) + O(\#titulos) * [O(|max\_nt|) + O(\#Ventas) *  O(copy(promesa)) + O(\#Compras) * 
+ 		O(copy(promesa))] \\
+		= O(\#titulos) *  (O(|max\_nt|) +  O(copy(promesa)) [O(\#Ventas) + O(\#Compras)])
+
+		Ahora, O(copy(promesa)) = O(|titulo(promesa)|) $\leq$ |nombre(tituloMax)| , y como
+		\#Ventas $\leq$ C $\wedge$  \#Compras $\leq$ C
+
+		Complejidad = O(\#Titulos) * O(|max\_nt|) * O(C) = \textbf{O(T * C * |max\_nt|)}
+ 				
+
+	
+\subsection{Servicios usados}
+	
+{\LARGE 	Informacion de Titulo} \\ 
+	
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		nuevoInfoTitulo & No & O(copy(V)+copy(C)) \\
+		\hline
+		titulo & Si & O(1) \\
+		\hline
+		ventas & Si & O(1) \\
+		\hline
+		compras & Si & O(1) \\
+		\hline
+		disponibles & Si & O(1) \\
+		\hline
+	\end{tabular}\\\\
+	Donde V es un conjunto de infoProm y C un arreglo ordenable de infoProm \\	
+	
+	{\LARGE Informacion de Promesa} \\  
+
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		nuevoinfoProm & No & O(|nombre(t)|) \\
+		\hline
+		cliente & No & O(1) \\
+		\hline
+		promesa & No & O(1) \\
+		\hline
+		acccionesDelCliente & No & O(1) \\
+		\hline
+	\end{tabular}\\\\	
+	
+	Usa el Modulo {\LARGE Conjunto Lineal} de la Catedra. \\
+\newpage

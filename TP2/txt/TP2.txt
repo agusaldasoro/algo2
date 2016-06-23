@@ -1,0 +1,48 @@
+Estructura:
+
+estr es tupla<
+		multiDicAcciones: 	diccionarioInception(cliente, nombreTitulo, acciones)
+		diccionarioPromesas: 	diccConMemoria(titulo, conj(tupla<promesa, cliente>))
+		conjuntoClientes:	conjunto(cliente)		
+		conjuntoTitulos:	conjunto(titulo)
+>
+
+
+multidiccionario(cliente, nombreTitulo, acciones)
+...se representa con...
+diccionarioAVL(cliente, diccionarioTrie(nombreTitulo, acciones))
+
+diccionarioAVL(clave, significado)
+...se representa con...
+tupla<
+	nodo: clave,
+	izquierda: punteroANodo,
+	derecha: punteroANodo
+>
+
+
+diccConMemoria(titulo, promesa, cliente)
+...se representa con...
+conj(tupla<
+	clGuardado: tupla<cliente: cliente, promesas: conjunto(promesas)>
+	diccionarioTitulos: diccionarioTrie(nT, tupla<
+							titulo: punteroATitulo, 
+							ventas: conj(Promesa), 
+							compras: colaPrioridad(Promesa)
+							>))
+>
+
+
+diccionarioTrie(nombreTitulo, acciones)
+...se representa con...
+tupla<
+	nombresTitulos:	nombreTitulo,
+	definiciones:	nodoTRIE()
+>
+
+nodoTRIE(punteroANodo, punteroASignificado)
+...se representa con...
+tupla<
+	siguientes:	array[27](punteroANodo),
+	significado:	punteroASignificado
+>

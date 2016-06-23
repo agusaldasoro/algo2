@@ -1,0 +1,140 @@
+\section{M\'odulo Promesa}
+
+\subsection{Servicios Exportados}
+
+\begin{tabular}[c]{|c|c|c|}
+	
+	\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		T\'itulo & Si &  O(1)\\
+		\hline
+		Tipo & No & O(1)\\
+		\hline
+		L\'imite & No & O(1)\\
+		\hline
+		Cantidad& No & O(1)\\
+		\hline
+		CrearPromesa & No & O(1)\\
+		\hline
+		CopiarPromesa & No & O(|titulo(t)|)\\
+		\hline
+	\end{tabular}\\\\
+
+
+\subsection{Interfaz}
+	Interfaz \nombretad{Promesa}\\
+	Se explica con: Promesa \\
+	G\'{e}neros: Promesa \\
+	Operaciones:\\
+	
+	\begin{interfaz}{CrearPromesa}{\param{in}{nT}{nombre}, \param{in}{tP}{tipoPromesa}, \param{in}{d}{dinero}, \param{in}{n}{nat}}{Promesa}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$\post{\hat{resultado} \igobs CrearPromesa(\hat {nT}, \hat {tP}, \hat {d}, \hat {n})}
+	\end{interfaz}
+	
+	\begin{interfaz}{t\'itulo}{\param{in}{p}{Promesa}}{Nombre}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$\post{\hat{resultado} \igobs t$\'i$tulo(\hat {p})}
+	\end{interfaz}
+	
+	\begin{interfaz}{tipo}{\param{in}{p}{Promesa}}{tipoPromesa}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$\post{\hat{resultado} \igobs tipo(\hat {p})} 
+	\end{interfaz}
+	
+	\begin{interfaz}{l\'imite}{\param{in}{p}{Promesa}}{dinero}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$\post{\hat{resultado} \igobs l$\'i$mite(\hat {p})}
+	\end{interfaz}
+	
+	\begin{interfaz}{cantidad}{\param{in}{p}{Promesa}}{nat}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{\hat{resultado} \igobs cantidad(\hat {p})}
+	\end{interfaz}
+
+	\begin{interfaz}{CopiarPromesa}{\param{in}{p}{Promesa}}{Promesa}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{\hat{resultado} \igobs \widehat{p}}
+	\end{interfaz}
+
+
+\subsection{Estructura de Representaci\'on}
+	promesa se representa con estr\newline
+	donde estr es tupla
+		$<$t\'itulo$: string, 
+		\ $tipo$: enum [Compra, Venta], \ $ l\'imite$: nat, \ $cantidad$: nat>$ \\
+
+
+\subsection{Invariante de Representacii\'on}
+
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+true
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+\subsection{Funci\'on de Abstracci\'on}
+
+	\noindent Abs: $\widehat{estr}$ e \en Promesa\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv $$p$: $Promesa$ /  \\
+	$\left(
+	\begin{array}{l}
+	e.titulo = titulo(p) \wedge  \\
+	e.tipo = tipo(p) \wedge \\
+	e.limite = limite(p) \wedge  \\
+	e.cantidad= cantidad(p)  \\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+\subsection{Algoritmos}
+
+	\begin{algorithm}{$i$CrearPromesa}{\param{in}{nT}{nombre}, \param{in}{tP}{tipoPromesa}, \param{in}{d}{dinero}, \param{in}{n}{nat}}{\param{}{res}{estr}}
+	res.titulo \leftarrow nT\\
+	res.tipo \leftarrow tP \\
+	res.limite \leftarrow d \\
+	res.cantidad \leftarrow n \\
+	\RETURN res
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Titulo}{\param{in}{p}{estr}}{\param{}{res}{Nombre}}
+	res \leftarrow p.titulo \\
+	\RETURN res
+	\end{algorithm}
+
+	\begin{algorithm}{$i$Tipo}{\param{in}{p}{estr}}{\param{}{res}{TipoPromesa}}
+	res \leftarrow p.tipo \\
+	\RETURN res
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Limite}{\param{in}{p}{estr}}{\param{}{res}{Dinero}}
+	res \leftarrow p.limite \\
+	\RETURN res
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Cantidad}{\param{in}{p}{estr}}{\param{}{res}{Nat}}
+	res \leftarrow p.cantidad \\
+	\RETURN res
+	\end{algorithm}
+
+	\begin{algorithm}{$i$CopiarPromesa}{\param{in}{p}{estr}}{\param{}{res}{estr}}
+	res.titulo \leftarrow Copiar(p.titulo)\\
+	res.tipo \leftarrow p.tipo \\
+	res.limite \leftarrow p.limite \\
+	res.cantidad \leftarrow p.cantidad \\
+	\RETURN res
+	\end{algorithm}
+	
+	
+\subsection{Servicios usados}
+
+\newpage

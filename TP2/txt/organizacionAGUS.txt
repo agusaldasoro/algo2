@@ -1,0 +1,112 @@
+WOLFIE
+
+Estructura:
+
+estr es tupla<
+
+				diccClientesAcciones: 	diccionarioInception,
+				diccPromesas:			diccConMemoria,
+				conjuntoClientes:		conjunto(cliente),
+				conjuntoTitulos:		conjunto(titulo)
+				>
+
+
+TAD diccionarioInception
+extiende
+diccionarioAVL(cliente,diccionarioTRIE(nombreTitulo, nat))
+
+TAD diccConMemoria
+extiende
+diccionario(nombreTitulo, cosasTitulo)
+
+TAD cosasTitulo es 
+					tupla<
+							punteroTitulo: 	punteroAtitulo
+							ventas:			conj(parPC)
+							compras:		laColaQueHagamos
+					>
+
+TAD diccionarioAVL(a, B) es diccionario(a, B)
+
+TAD diccionarioTRIE(a, B) es diccionario(a, B)
+
++++++++++PREGUNTAR EL VIERNES++++++++++++
++ TAD laColaQueHagamos					+
++ extiende								+
++ conjunto(tupla<parPC, nat>)			+
++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+_______________________________________________________________________________________
+_______________________________________________________________________________________
+--------------COSAS QUE EXPORTA CADA MODULO----------------
+
+** diccionarioAVL 
+
+vacioAVL
+definirAVL
+definido?AVL
+clavesAVL
+obtenerAVL
+borrarAVL
+
+Poner que son renombres de las funciones del Tad Basico Diccionario.
+
+_______________________________________________________________________________________
+** diccionarioTRIE 
+
+vacioTRIE
+definirTRIE
+definido?TRIE
+clavesTRIE
+obtenerTRIE
+borrarTRIE
+
+Poner que son renombres de las funciones del Tad Basico Diccionario.
+
+_______________________________________________________________________________________
+** diccConMemoria
+
+(**)vacioDM()						-> dM
+(**)agregarTitulo(nT, cosasTitulo)	-> dM
+(**)definido?DM(nT, dM)				-> bool
+ultimoClientePedido(dM) 			-> cliente
+itPromesasUltCliente(dM) 			-> it(conJpromesas, ultimoClientePedido(dM))    (?)
+(**)clavesDM(dM)					-> conj(nombreTitulo)
+(**)significado(nT, dM)				-> cosasTitulo
+(**)borrarDM(nT, dM)				-> dM
+agregarVenta(parPC, nT, dM)	(*)		-> dM
+agregarCompra(parPC, nT, dM) (*)	-> dM
+eliminarCompra(parPC, nT, dM) (*)	-> dM
+eliminarVenta(parPC, nT, dM) (*)	-> dM
+cambiarPrioridad(parPC,nat, nT, dM)	-> dM
+
+(*) No me queda claro si basta con pasarle la promesa, o hay que pasarle el ParPC.
+(**) Son renombres del TAD basico diccionario. vacio, definir, definido?, claves, obtener, borrar.
+BORRAR NO LA USAMOS, LA PONEMOS IGUAL???
+
+_______________________________________________________________________________________
+** diccionarioInception
+
+(*)vacioDI()										-> dI
+agregarClienteDI(cliente, dI)						-> dI
+(*)definido?DI(cliente, dI)							-> bool
+(*)clientesDI(dI)									-> conj(cliente)
+(*)obtenerDI(cliente, dI)							-> diccionarioTRIE(nombreTitulo, nat)
+(*)borrarCliente(cliente, dI)						-> dI
+agregarTitulo(cliente, nombreTitulo, nat, dI)		-> dI
+cambiarNROacciones(cliente, nombreTitulo, nat, dI)	-> dI
+borrarTitulo(cliente, nombreTitulo, dI)				-> dI
+
+
+Son renombres del tad basico diccionario: vacio,definido?, claves, obtener, borrar.
+BORRAR NO LA USAMOS, LA PONEMOS IGUAL???
+
+_______________________________________________________________________________________
+** laColaQueHagamos
+
+ordenar(nombreTitulo, cot)  -> lcqh
+push(lcqh)					-> tupla<parPC, nat>
+pop(lcqh)					-> lcqh

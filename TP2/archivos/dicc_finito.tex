@@ -1,0 +1,239 @@
+\section{M\'odulo Diccionario Finito}
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Diccionario Finito(nat, significado)}}
+\igualobs{d}{d'}{dicc\_finito(nat, signficado)}{tamMax(d)  \igobs tamMax(d') \wedge tam(d)  \igobs tam(d') \wedge (\forall c: \mathrm{nat})~((\f{def?}(c, d) \igobs  \f{def?}(c, d')) \yluego \newline (\f{def?}(c, d) \impluego \newline ((\f{obtener}(c, d) \igobs \f{obtener}(c, d')))))}
+
+\generos{dicc\_finito(nat, significado)}
+\exporta{dicc\_finito(nat, significado), generadores, observadores, \igsub{dicc}}
+\usa{\nombretad{Bool, Nat, Conjunto(nat)}}
+
+\alinearfuncs{obtenoesaaf}{dicc(nat, significado) x dicc(nat, significado)xx}
+
+\observadores 
+\func{tamMax}{dicc \textunderscore finito($nat, $significado)}{nat}{}
+\func{tam}{dicc \textunderscore finito$(nat, $significado)}{nat}{}
+\func{def?}{nat/c, dicc \textunderscore finito($nat, $significado)}{bool}{}
+ \func{obtener}{nat/c,dicc \textunderscore finito($nat, $significado)/d}{significado}{(def?($c$, $d$))}
+
+\generadores
+\func{vac\'io}{nat /tamMax}{dicc\textunderscore finito(nat, significado)}{}
+\func{definir}{nat /n, significado /s, dicc\textunderscore finito($nat, $sig) /d}{dicc\textunderscore finito(nat, significado)}{$(def?(n, d) \vee hayLugar(d))$}
+
+\otrasops
+\func{claves}{dicc \textunderscore finito($nat, $significado)/d}{conj(nat)}{}
+\func{hayLugar}{dicc \textunderscore finito($nat, $significado)/d}{bool}{}
+
+\axiomas{\paratodo{dicc \textunderscore finito(nat, significado)}{d, e}, \paratodo{nat}{c, k, n}, \paratodo{significado}{s}}
+\alinearaxiomas{obtener(definir (a, b))zz}{}
+
+\axioma{tamMax(vac\'io($n$))}{$n$}
+\axioma{tamMax(definir($k$, $s$, $d$))}{tamMax($d$)}
+\axioma{tam(vac\'io($n$))}{0}
+\axioma{tam(definir($k$, $s$, $d$))}{\IF def?($k$, $d$) THEN tam($d$) ELSE 1 + tam($d$) FI}
+\axioma{def?($c$,vac\'io($n$))}{\false}
+\axioma{def?($c$, definir($k$, $s$, $d$)}{($c = k$) $\lor$ def?($c$, $d$)}
+
+\axioma{obtener(c, definir($k$, $s$, $d$))}{\IF $c = k$ THEN $s$ ELSE obtener($c$, $d$) FI}
+
+
+\axioma{claves(vac\'io($n$))}{$\emptyset$}
+\axioma{claves(definir($c$,$s$,$d$)}{Ag($c$, claves($d$))}
+
+\axioma{hayLugar($d$)}{$tam(d) < tamMax(d)$}
+\end{tad}
+
+\subsection{Servicios Exportados}
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Vacio & No & O(n) \\
+		\hline
+		Definir & No & O(n * copiar info)\\
+		\hline
+		Definida? & No & O($\log$ n)\\
+		\hline
+		Obtener & Si & O($\log$ n)\\
+		\hline
+		Tama\~no & No & O(1)\\
+		\hline
+		Tama\~noMax & No & O(1)\\
+		\hline
+		Claves & No & O(n)\\
+		\hline
+	
+	\end{tabular}\\\\
+n es la cantidad de claves\\
+
+\subsection{Interfaz}
+	\noindent Interfaz \nombretad{Dicc Finito(nat, significado)}\\
+	Se explica con: TAD Diccionario Finito(Nat, Significado)\\
+	G\'{e}neros: dicc\_finito(nat,significado)\\
+	Operaciones:\\
+	\begin{interfaz}{Vacio}{in $n$:nat}{dicc$_-$finito(nat,significado)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = vacio(n)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Definir}{inout $d$: dicc\_ finito(nat,significado), in $c$: nat, in $s$:significado}{}{}
+	\textbf{Pre} $\equiv$\pre{d=d_0}
+	\textbf{Post} $\equiv$\post{d = definir(c,s,d_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Definida?}{in $c$: nat, in $d$: dicc\_ finito(nat, significado)}{bool}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = def?(c,d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Obtener}{in $c$: nat, in $d$: dicc\_ finito(nat,significado)}{significado}{}
+	\textbf{Pre} $\equiv$\pre{def?(c,d)}
+	\textbf{Post} $\equiv$\post{resultado = obtener(c,d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Claves}{in $d$: dicc\_ finito(nat,significado)}{conj(nat)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = claves(d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Tama\~no}{in $d$: dicc\_ finito(nat,significado)}{nat}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = tam(d)}
+	\end{interfaz}
+
+	\begin{interfaz}{Tama\~noMax}{in $d$: dicc\_ finito(nat,significado)}{nat}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = tamMax(d)}
+	\end{interfaz}
+	
+
+\subsection{Estructura de Representaci\'on}
+dicc\_finito(nat,significado) se representa con arreglo\_extendido\_de\_info
+
+Donde arreglo\_extendido\_de\_info es tupl$a<tam:nat, arr: arreglo\_dimensionable\_de\_info>$  \\ info es tupla$<$clave: nat, sig:significado$>$ \\\\
+
+
+
+\subsection{Invariante de Representaci\'on}
+	Rep informal:\\
+	1 - Todos los naturales menores o iguales a e.tam est\'an definidos, mientras que los mayores no.\\
+	2 - Para todos los nats definidos y distintos, sus claves son diferentes y respetan el orden de sus claves.
+
+	\noindent Rep: $\widehat{arreglo_-extendido_-de_-info}$ \en bool\\
+	($\forall$ e: $\widehat{arreglo_-extendido_-de_-info}$) Rep(e) = $ true$ $\Leftrightarrow$ \\
+	($\forall$ i: nat)((1 $\leq$ $i$ $\leq$ e.tam $\wedge$ definido?(e.arr, $i$)) $\vee$ ($i$ > e.tam $\wedge$ $\neg$ definido?(e.arr, $i$)))\\
+	$\wedge$
+	($\forall$ c1, c2: nat)((c1 $\neq$ c2  $\wedge$ definido?(e.arr, c1) $\wedge$ definido?(e.arr, c2))\impluego (e.arr[c1].clave $\neq$ e.arr[c2].clave $\wedge$ (c1 < c2 $\wedge$ e.arr[c1].clave <  e.arr[c2].clave $\vee$ c2 < c1 $\wedge$ e.arr[c2].clave <  e.arr[c1].clave))\\
+	\\
+\subsection{Funci\'on de Abstracci\'on}
+	\noindent Abs: $\widehat{arreglo_-extendido_-de_-info}$ e \en $\widehat{dicc_-finito}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ arr: $\widehat{arreglo_-extendido_-de_-info}$)\\
+ \! Abs(arr) $\equiv$ d \!: $\widehat{dicc_-finito}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		\left(\begin{array}{l}	e.tam =_{obs} tam(d) \wedge tamMax(d)=_{obs}tam(e.arr) \\ \end{array}\right) \wedge\\
+		\left(\begin{array}{l}	(\forall c:\! nat)def?(c,d)\impluego (\exists k:\!nat) definido?(k,e.arr) \yluego\\ \end{array}\right)\\
+		\left(\begin{array}{l}	  c = e.arr[k]. clave \wedge obtener(c,d) \igobs e.arr[k].sig\\ \end{array}\right)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+	\begin{algorithm}{$i$Vacio}{\param{in}{n}{nat}}{arreglo\_ extendido\_ de\_ info}
+	\RETURN \langle0, crearArreglo(n)\rangle;
+	\end{algorithm}
+	Complejidad:  O(n)\textsubscript{crear arreglo} + O(2)\textsubscript{crear tupla}= O(n)
+	 \\
+	
+	\begin{algorithm}{$i$Definir}{\param{inout}{d}{arreglo\_ extendido\_ de\_ info},  \param{in}{k}{info}}{}
+	\begin{IF}{(e.tam < tam(d.arr))}
+	d.arr[e.tam + 1] \leftarrow Copiar(k);\\
+	\VAR{i\!: nat\=e.tam + 1}\\
+	\begin{WHILE}{(i > 1$ and $e.arr[i].clave < e.arr[i-1].clave)}
+	\VAR{temp\!: info\=Copiar(e.arr[i])}\\
+	e.arr[i] \= Copiar(e.arr[i-1]);\\
+	e.arr[i - 1] \= Copiar(temp);\\
+	i--;
+	\end{WHILE}\\
+	d.tam++;
+	\end{IF}
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1} + O(copiar info)\textsubscript{2} + O(1)\textsubscript{3} + O(n)\textsubscript{4} * (O(copiar info)\textsubscript{5} + O(copiar info)\textsubscript{6}+ O(copiar info)\textsubscript{7} + O(1)\textsubscript{8}) + O(1)\textsubscript{10}	\\
+	= O(copiar info) + O(n) * O(3*copiar info) \\
+	= O(copiar info) + O(n) * O(copiar info)	\\
+	= O(copiar info * (1 + n)) \\
+	= O(n * copiar info)
+	 \\	
+
+
+	\begin{algorithm}{$i$Definida?}{\param{in}{c}{clave}, \param{in}{d}{arreglo\_ extendido\_ de\_ info}}{\param{}{resultado}{bool}}
+	\VAR{i\!: nat\= 1}\\
+	\VAR{d\!: nat\= d.tam}\\
+	\VAR{m\!: nat}\\
+	\VAR{res\!: bool}\\
+	\begin{IF}{(c < d.arr[i].clave $ OR $ c > d.arr[d].clave)}
+		res \= false;
+	\ELSE\\
+	\begin{WHILE}{(d > i+1)}
+	m \= (i + d)/ 2;\\
+	\begin{IF}{(c == d.arr[m].clave)}
+		i \= m; d \= i;
+	\ELSE \begin{IF}{(c < d.arr[m].clave)}d\=m;
+	\ELSE i\=m;
+	\end{IF}
+	\end{IF}\\
+	res \= (d.arr[i] == c $  OR  $ d.arr[d] == c );
+	\end{WHILE}
+	\end{IF}\\
+	\RETURN res;
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1, 2, 3, 4, 5, 6} + O(log n)\textsubscript{8, por busqueda binaria} * O(1)\textsubscript{9, 10, 11, 12, 13, 14, 15, 16, 17} + O(1)\textsubscript{20}\\
+	= O(log n)\\
+	 \\
+	
+	\begin{algorithm}{$i$Obtener}{\param{in}{c}{nat}, \param{in}{d}{arreglo\_ extendido\_ de\_ info}}{\param{}{resultado}{significado}}
+	\comentario{Genera Aliasing}\\
+	\VAR{i\!: nat\= 1}\\
+	\VAR{d\!: nat\= d.tam}\\
+	\VAR{m\!: nat}\\
+	\begin{WHILE}{(d > i+1)}
+	m \= (i + d)/ 2;\\
+	\begin{IF}{(c == d.arr[m].clave)}
+		i \= m; d \= i;
+	\ELSE \begin{IF}{(c < d.arr[m].clave)}d\=m;
+	\ELSE i\=m;
+	\end{IF}
+	\end{IF}
+	\end{WHILE}\\
+	\RETURN d.arr[m].sig;
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{2, 3, 4} + O(log n)\textsubscript{5, por busqueda binaria} * O(1)\textsubscript{6, 7, 8, 9, 10, 11} + O(1)\textsubscript{16}\\
+	= O(log n)\\
+	 \\
+	
+	\begin{algorithm}{$i$Claves}{\param{in}{d}{arreglo\_extendido\_ de\_ info}}{\param{}{resultado}{conj(nat)}}
+	\VAR{i\!: nat}\\
+	resultado = Vacio();\\
+	\begin{FOR}{(i\=1 \TO e.tam)}
+	AgregarRápido(d.arr[i].clave, resultado);
+	\end{FOR}
+	\RETURN resultado;
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1, 2} + O(n)\textsubscript{3} * O(1)\textsubscript{4} + O(1)\textsubscript{6}\\
+	= O(n)\\
+	 \\
+	
+	\begin{algorithm}{$i$Tama\~no}{\param{in}{d}{arreglo\_ extendido\_ de\_ info}}{\param{}{resultado}{nat}}
+	\RETURN e.tam;
+	\end{algorithm}
+	Complejidad:  O(1)
+
+	\begin{algorithm}{$i$Tama\~noMax}{\param{in}{d}{arreglo\_ extendido\_ de\_ info}}{\param{}{resultado}{nat}}
+	\RETURN tam(d.arr);
+	\end{algorithm}
+	Complejidad: O(1)
+	
+
+\newpage

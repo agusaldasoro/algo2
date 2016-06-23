@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1397849855 source:c:\users\agustina\documents\uba\tplabo\messineria\tests.cpp
+	"mini_test.h"
+	"messineria.h"
+
+1397750154 c:\users\agustina\documents\uba\tplabo\messineria\mini_test.h
+	<iostream>
+	<sstream>
+	<exception>
+
+1398132205 c:\users\agustina\documents\uba\tplabo\messineria\messineria.h
+	<iostream>
+	<cassert>
+
+1397762073 source:c:\users\nico\documents\repos\compartidoagus\messineria\tests.cpp
+	"mini_test.h"
+	"messineria.h"
+
+1396965348 c:\users\nico\documents\repos\compartidoagus\messineria\mini_test.h
+	<iostream>
+	<sstream>
+	<exception>
+
+1397762501 c:\users\nico\documents\repos\compartidoagus\messineria\messineria.h
+	<iostream>
+	<cassert>
+

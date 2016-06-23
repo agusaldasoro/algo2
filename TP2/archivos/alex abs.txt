@@ -1,0 +1,33 @@
+\end{LARGE}
+\noindent Abs: $\widehat{dMemory}$ e \en $\widehat{dMemory}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ dicc: $\widehat{dMemory}$)\\
+ \! Abs(dicc) $\equiv$ e \!: $\widehat{dMemory}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		\left(\begin{array}{l} titulosDM(dicc)\igobs(clavesDS(e.diccPorTitulo)) \end{array}\right) \\
+		\left(
+		\begin{array}{l}
+			 (\forall n:nombre) definido?DM(dicc, n)\igobs \\
+			 {n\in clavesDS(e.diccPorTitulo)} \\
+		
+	\end{array}\right) \wedge\\
+		\left(
+		\begin{array}{l}	
+			(\forall n:nombre) definido?DM(dicc, n)==true \impluego \\
+			 obtenerDM(dicc, n) \igobs \\
+			{obtenerDS(e.diccPorTitulo,n)}	\\	
+		
+	\end{array}\right) \wedge \\
+		
+		\left(
+		\begin{array}{l}
+			  (\forall n:nombre) definido?DM(dicc, n)==true \impluego (\forall c:cliente) promesasDeDM(dicc, c ) \igobs \\
+			{\forall j:(compras.obtenerDS(e.diccPorTitulo,n) cliente(j)= c \impluego Ag(j,conjN) \\ %% termina siendo iguobs a conjN
+			  \forall v:(ventas.obtenerDS(e.diccPorTitulo, n) cliente(v) = c  \impluego Ag(v, conjN) } \\
+		
+		\end{array}\right)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\

@@ -1,0 +1,7 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}TAD \textsc {NombreCliente}}{2}{section.1}
+\contentsline {section}{\numberline {2}TAD \textsc {NombreT\'itulo}}{2}{section.2}
+\contentsline {section}{\numberline {3}TAD \textsc {Precio}}{2}{section.3}
+\contentsline {section}{\numberline {4}TAD \textsc {T\'itulo}}{2}{section.4}
+\contentsline {section}{\numberline {5}TAD \textsc {Promesa}}{3}{section.5}
+\contentsline {section}{\numberline {6}TAD \textsc {Wolfie}}{5}{section.6}

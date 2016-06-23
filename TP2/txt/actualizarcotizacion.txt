@@ -1,0 +1,24 @@
+\begin{algorithm}{$i$actualizarCotizacion}{\param{in}{nt}{nombreTitulo}, \param{in}{cot}{Nat}, \param{inOut}{w}{Wolfie}}{}
+\VAR{cosastitulo \ cosas} \\
+cosas \leftarrow obtenerDM(w.diccionarioPromesa, nt) \\
+(*cosas.punteroTitulo).recotizar(cot) \\
+\VAR{iterador(conjuntoVentas(ParPC)) it}  // iterador \ a \ conjunto \ de \ ventas \\
+\begin{WHILE}{(haySiguiente(it))}
+\VAR{sig} = siguiente(it) \\
+		\begin{IF}{cot < promesa.limite}		\\
+		borrarActual(it); \\
+		restarAcciones(w.diccClienteAcciones, sig.cliente, nombre(sig.promesa), cantidad(sig.promesa))
+		\end{IF} \\
+		avanzar(it)
+			\end{WHILE}\\
+\VAR{a: array} = ParPCcompras  \\
+a.ordenar
+\begin{WHILE}{(i \leq largo.array)}
+\begin{IF}{a[i].promesa.cantidad \leq disponibles(nt,w)}		\\
+		sumarAcciones(w.diccClienteAcciones, a.cliente, nombre(a.promesa), cantidad(a.promesa) \\
+a[i] \leftarrow NULL \\
+		\end{IF} \\
+			\end{WHILE} \\
+a.ordenar\\
+\RETURN 
+			\end{algorithm}	

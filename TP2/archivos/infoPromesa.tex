@@ -1,0 +1,157 @@
+\section{M\'odulo Informacion de Promesa}
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Informacion de Promesa}}
+	
+	\igualobs{infP1}{infP2}{infoProm}{
+	cliente(infP1)= cliente(infP2) \wedge \newline promesa(infP1)\igobs promesa(infP2) \wedge \newline
+	accionesDelCliente(infP1)= accionesDelCliente(infP2)
+	}
+
+
+\generos{infoProm}
+\exporta{generadores y observadores}
+\usa{\nombretad{Promesa, Cliente, Nat}}
+
+
+\observadores 
+\func{cliente}{infoProm}{cliente}{}
+\func{promesa}{infoProm}{promesa}{}
+\func{accionesDelCliente}{infoProm}{nat}{}
+
+\generadores
+\func{nuevoinfoProm}{cliente/c, promesa/p, nat/n}{infoProm}{}
+
+\axiomas{\paratodo{cliente}{c}, \paratodo{promesa}{p}, \paratodo{nat}{n}}
+\alinearaxiomas{}{}
+
+\axioma{cliente(nuevoinfoProm(c, p, n))}{c}
+\axioma{promesa(nuevoinfoProm(c, p, n))}{p}
+\axioma{accionesDelCliente(nuevoinfoProm(c, p, n))}{n}
+
+\end{tad}
+
+
+
+\subsection{Servicios Exportados}
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		nuevoinfoProm & No & O(|nombre(t)|) \\
+		\hline
+		cliente & No & O(1) \\
+		\hline
+		promesa & No & O(1) \\
+		\hline
+		acccionesDelCliente & No & O(1) \\
+		\hline
+	\end{tabular}\\\\
+
+
+\subsection{Interfaz}
+	\noindent Interfaz \nombretad{Informacion de Promesa}\\
+	Se explica con: TAD Informacion de Promesa\\
+	G\'{e}neros: infoProm\\
+	
+	Operaciones:\\
+	
+	\begin{interfaz}{nuevoinfoProm}{\param{in}{c}{cliente}, \param{in}{p}{promesa}, \param{in}{n}{nat}}{infoProm}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs nuevoinfoProm(c, p, n)}
+	\end{interfaz}
+	
+	\begin{interfaz}{cliente}{\param{in}{iP}{infoProm}}{cliente}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = cliente(iP)}
+	\end{interfaz}
+	
+	\begin{interfaz}{promesa}{\param{in}{iP}{infoProm}}{promesa}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs promesa(iP)}
+	\end{interfaz}
+	
+	\begin{interfaz}{accionesDelCliente}{\param{in}{iP}{infoProm}}{nat}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = accionesDelCliente(iP)}
+	\end{interfaz}
+	
+
+\subsection{Estructura de Representaci\'on}
+
+Estr es tupla<cliente: cliente, promesa: promesa, accionesDelCliente: punteroANat>
+
+
+\subsection{Invariante de Representacii\'on}
+
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	true
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+\subsection{Funci\'on de Abstracci\'on}
+
+	\noindent Abs: $\widehat{infoProm}$ e \en $\widehat{infoProm}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ iP: $\widehat{infoProm}$)
+ \! Abs(iP) $\equiv$ iprom \!: $\widehat{infoProm}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		e.cliente = cliente(iprom) \wedge \\ e.promesa=_{obs}promesa(iprom) \wedge \\ (*e.accionesDelCliente)=accionesDelCliente(iprom)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+	\begin{algorithm}{$i$nuevoinfoProm}{\param{in}{c}{cliente}, \param{in}{p}{promesa}, \param{in}{pN}{punteroANat}}{\param{}{resultado}{infoProm}}
+	\VAR{infoP\!: infoProm} \\
+	infoP.cliente \leftarrow c\\
+	infoP.promesa \leftarrow copiar(p)\\
+	infoP.accionesDelCliente \leftarrow pN\\
+	\RETURN infoT
+	\end{algorithm}
+
+	\begin{algorithm}{$i$cliente}{\param{in}{e}{estr}}{\param{}{resultado}{cliente}}
+		\RETURN e.cliente
+	\end{algorithm}
+
+	
+	\begin{algorithm}{$i$promesa}{\param{in}{e}{estr}}{\param{}{resultado}{promesa}}
+		\RETURN e.promesa
+	\end{algorithm}
+
+	
+	\begin{algorithm}{$i$accionesDelCliente}{\param{in}{e}{estr}}{\param{}{resultado}{nat}}
+		\RETURN (*e.accionesDelCliente)
+	\end{algorithm}
+
+\subsection{Servicios usados}
+
+
+{\LARGE Promesa} \\
+
+\begin{tabular}[c]{|c|c|c|}
+	
+	\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		T\'itulo & Si &  O(1)\\
+		\hline
+		Tipo & No & O(1)\\
+		\hline
+		L\'imite & No & O(1)\\
+		\hline
+		Cantidad& No & O(1)\\
+		\hline
+		CrearPromesa & No & O(1)\\
+		\hline
+		CopiarPromesa & No & O(|nombre(t)|)\\
+		\hline
+	\end{tabular}\\\\
+\newpage

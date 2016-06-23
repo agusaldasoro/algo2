@@ -1,0 +1,1448 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.9.2)  27 MAY 2014 17:34
+entering extended mode
+**compilado.tex
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\compilado.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size10.clo"
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2008/07/08 v3.8m The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\spanish.ldf"
+Language: spanish.ldf 2009/01/02 v5.0h Spanish support from the babel system
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2008/07/08 v3.8m Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen103
+)
+\es@datefmt=\count88
+\es@quottoks=\toks14
+\es@quotdepth=\count89
+Package babel Info: Making " an active character on input line 492.
+Package babel Info: Making . an active character on input line 585.
+Package babel Info: Making < an active character on input line 630.
+Package babel Info: Making > an active character on input line 630.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latin1.def"
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\caratula.sty"
+Package: caratula 2003/4/13 v0.1 Para componer caratulas de TPs del DC
+
+Cargando package 'caratula' v0.2 (21/4/2003)
+\intlist=\toks17
+) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\tad.sty"
+Package: tad 2002/9/23 v0.33 Para especificar TADs en formato AED2
+
+Cargando package 'tad' v0.33 (19/10/2002)
+\tadmargen=\dimen104
+\tadsubmargen=\dimen105
+\tadmaxenc=\dimen106
+\tadtitskip=\dimen107
+\tadfuncsep=\dimen108
+\tadaxisep=\dimen109
+\funcmaxnom=\dimen110
+\funcmaxari=\dimen111
+\aximaxizq=\dimen112
+) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\algo2symb.sty"
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\rcs.sty"
+Package: rcs 2003/02/02 v2.10 typeset info from RCS fields
+\rcsLogIntro=\toks18
+)
+Package: algo2symb 2004/04/17 v1.11Para componer simbolitos frecuentemente usad
+os en AED2
+
+Cargando package 'aed2symb' v1.11, \begingroup \year 2006 \month 09 \day 03 May
+ 27, 2014\endgroup 
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks19
+\ex@=\dimen113
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen114
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count90
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count91
+\leftroot@=\count92
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count93
+\DOTSCASE@=\count94
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen115
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count95
+\c@MaxMatrixCols=\count96
+\dotsspace@=\muskip10
+\c@parentequation=\count97
+\dspbrk@lvl=\count98
+\tag@help=\toks20
+\row@=\count99
+\column@=\count100
+\maxfields@=\count101
+\andhelp@=\toks21
+\eqnshift@=\dimen116
+\alignsep@=\dimen117
+\tagshift@=\dimen118
+\tagwidth@=\dimen119
+\totwidth@=\dimen120
+\lineht@=\dimen121
+\@envbody=\toks22
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fixltx2e.sty"
+Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
+LaTeX Info: Redefining \em on input line 420.
+LaTeX Info: The control sequence `\[' is already robust on input line 471.
+LaTeX Info: The control sequence `\]' is already robust on input line 472.
+)
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\newalgo.sty"
+Package: newalgo 2005/09/20 Format code algorithms nicely
+\algstack=\box28
+\algtab=\box29
+\algline=\count102
+\alga=\toks24
+\algb=\toks25
+)
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\itef.sty"
+Package: itef 2004/04/17 v1.4if-then-else-fi.
+
+Cargando package 'itef' v1.4, \begingroup \year 2006 \month 10 \day 12 May 27, 
+2014\endgroup 
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\designMacros.tex"
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count103
+))
+\c@linenumber=\count104
+\c@showln=\count105
+\c@tabs=\count106
+\c@backtabs=\count107
+)
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\compilado.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count108
+\scratchdimen=\dimen122
+\scratchbox=\box30
+\nofMPsegments=\count109
+\nofMParguments=\count110
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count111
+\MPscratchDim=\dimen123
+\MPnumerator=\count112
+\makeMPintoPDFobject=\count113
+\everyMPtoPDFconversion=\toks27
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 64.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 64.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 64.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/titulo.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 5--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 29--33
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 72--76
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--89
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 79--89
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--105
+
+ []
+
+[3] [4])
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/infoTitulo.tex"
+Overfull \hbox (51.94618pt too wide) detected at line 11
+\T1/cmr/bx/n/10 igualdad observacional 
+ []
+
+
+Overfull \hbox (165.65485pt too wide) in paragraph at lines 11--11
+$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 infT\OT1/cmr/m/n/10 1\OML/
+cmm/m/it/10 ; infT\OT1/cmr/m/n/10 2 : []) [] []$ 
+ []
+
+
+Overfull \hbox (25.45215pt too wide) in paragraph at lines 26--26
+[] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 39--55
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 90--96
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--104
+
+ []
+
+[6]
+Overfull \hbox (95.91895pt too wide) in paragraph at lines 106--123
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 106--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--140
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--140
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--236
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 218--236
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--261
+
+ []
+
+[8] [9]) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/promesa.te
+x"
+Underfull \hbox (badness 10000) in paragraph at lines 5--23
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--23
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--30
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 63--67
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 71--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--97
+
+ []
+
+[11] [12])
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/infoPromesa.tex"
+Overfull \hbox (51.94618pt too wide) detected at line 9
+\T1/cmr/bx/n/10 igualdad observacional 
+ []
+
+
+Overfull \hbox (164.79372pt too wide) in paragraph at lines 9--9
+$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 infP\OT1/cmr/m/n/10 1\OML/
+cmm/m/it/10 ; infP\OT1/cmr/m/n/10 2 : []) [] []$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--56
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--97
+
+ []
+
+
+Overfull \hbox (41.06609pt too wide) in paragraph at lines 99--110
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--110
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--157
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--157
+
+ []
+
+[15]) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/wolfie.tex"
+Overfull \hbox (34.87228pt too wide) in paragraph at lines 5--27
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--40
+
+ []
+
+Missing character: There is no Â in font cmr10!
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--91
+
+ []
+
+
+Overfull \hbox (65.34221pt too wide) in paragraph at lines 94--121
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--121
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--121
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 123--124
+
+ []
+
+
+Overfull \hbox (3.82494pt too wide) in paragraph at lines 126--128
+\T1/cmr/m/n/10 cantidad(c, nt, dicc) + can-ti-dad-To-tal-Por-Ti-tu-lo(sinUno(cs
+),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--137
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 143--156
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--156
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--184
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 213--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--238
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--245
+
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 261--264
+
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 277--306
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--306
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--306
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--329
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--329
+
+ []
+
+) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/dicc_finito.tex"
+Overfull \hbox (51.94618pt too wide) detected at line 5
+\T1/cmr/bx/n/10 igualdad observacional 
+ []
+
+
+Overfull \hbox (155.14067pt too wide) in paragraph at lines 5--5
+$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 d; d[] \OT1/cmr/m/n/10 : [
+]) [] []$ 
+ []
+
+[22]
+Overfull \hbox (5.19858pt too wide) detected at line 21
+[] 
+ []
+
+
+Overfull \hbox (5.19858pt too wide) detected at line 21
+[] 
+ []
+
+
+Overfull \hbox (0.39133pt too wide) detected at line 31
+\T1/cmr/m/n/10 tamMax(definir($\OML/cmm/m/it/10 k$\T1/cmr/m/n/10 , $\OML/cmm/m/
+it/10 s$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 d$\T1/cmr/m/n/10 )) 
+ []
+
+
+Overfull \hbox (5.97441pt too wide) detected at line 37
+\T1/cmr/m/n/10 obtener(c, definir($\OML/cmm/m/it/10 k$\T1/cmr/m/n/10 , $\OML/cm
+m/m/it/10 s$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 d$\T1/cmr/m/n/10 )) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--68
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--68
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 70--74
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 122--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--142
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--142
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 162--169
+
+ []
+
+
+Overfull \hbox (3.04176pt too wide) in paragraph at lines 191--195
+[]| \T1/cmr/m/n/10 Com-ple-ji-dad: O(1)$[]$ + O(log n)$[]$ * O(1)$[]$ + O(1)$[]
+$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--195
+
+ []
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 197.
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 211--215
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--215
+
+ []
+
+
+LaTeX Warning: Command \~ invalid in math mode on input line 220.
+
+
+LaTeX Warning: Command \textexclamdown invalid in math mode on input line 220.
+
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ½ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--227
+
+ []
+
+[27]) ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/dicc_trie.tex
+"
+Underfull \hbox (badness 10000) in paragraph at lines 5--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--25
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--45
+
+ []
+
+[28]
+Overfull \hbox (53.75192pt too wide) in paragraph at lines 85--101
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--101
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--114
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--114
+
+ []
+
+[29]
+Underfull \hbox (badness 10000) in paragraph at lines 124--127
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--188
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+[31]
+Underfull \hbox (badness 10000) in paragraph at lines 229--232
+
+ []
+
+[32])
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/diccionarioInceptio
+n.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 7--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--30
+
+ []
+
+
+Overfull \hbox (4.43703pt too wide) in paragraph at lines 53--54
+[] [][]\T1/cmr/m/n/10 cantidad(d, c, nT) + su-ma-to-ria-DeAc-cio-nes(d, c, conj
+) 
+ []
+
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 58--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 58--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 88--95
+
+ []
+
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 158--163
+
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 167--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--177
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--201
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--201
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--207
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 216--221
+
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 224--227
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--233
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--248
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--248
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 256--260
+
+ []
+
+[37]
+Underfull \hbox (badness 10000) in paragraph at lines 269--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--284
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 293--297
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--303
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--330
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--330
+
+ []
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 331--352
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--352
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--357
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 353--357
+
+ []
+
+[39])
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/diccConMemoria.tex"
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--8
+
+ []
+
+
+Overfull \hbox (16.31834pt too wide) in paragraph at lines 12--27
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--27
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--27
+
+ []
+
+
+Overfull \hbox (4.0471pt too wide) in paragraph at lines 64--65
+\T1/cmr/m/n/10 compras(obtenerDM(d, ti-tu-lo(pr))), dis-po-ni-bles(obtenerDM(d,
+
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 86--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
+
+ []
+
+[41]
+Overfull \hbox (82.48828pt too wide) in paragraph at lines 140--152
+[]\T1/cmr/bx/n/10 Post $\OMS/cmsy/m/n/10 $ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--174
+
+ []
+
+[42]
+Overfull \hbox (71.8688pt too wide) in paragraph at lines 198--232
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 198--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--253
+
+ []
+
+[43]
+Underfull \hbox (badness 10000) in paragraph at lines 256--258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 262--264
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--270
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--285
+
+ []
+
+
+Overfull \hbox (1.18472pt too wide) in paragraph at lines 286--289
+[]\T1/cmr/m/n/10 O(|titulo(pr)|)$[]$+O(|titulo(pr)|)$[]$+O(copy(datosPromesa))$
+[]$+O(1)$[]$
+ []
+
+
+Overfull \hbox (2.92181pt too wide) in paragraph at lines 286--289
+\T1/cmr/m/n/10 Donde O(copy(datosPromesa)) es co-piar la tu-pla de In-fo-Pro-me
+-sa que es O(copiarPromesa)=O(|titulo(pr)|) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--289
+
+ []
+
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--362
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 346--362
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 365--378
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 365--378
+
+ []
+
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 379--380
+
+ []
+
+[46])
+("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\archivos/arreglo_ordenable.t
+ex"
+Overfull \hbox (51.94618pt too wide) detected at line 5
+\T1/cmr/bx/n/10 igualdad observacional 
+ []
+
+
+Overfull \hbox (166.16852pt too wide) in paragraph at lines 5--5
+$\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 d; d[] \OT1/cmr/m/n/10 : [
+]) [] []$ 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 19--19
+[] [] 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 20--20
+[] [] 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 21--21
+[] [] 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 25--25
+[] [] 
+ []
+
+
+Overfull \hbox (0.55542pt too wide) detected at line 26
+\T1/cmr/m/n/10 ordenarAux 
+ []
+
+
+Overfull \hbox (0.55542pt too wide) detected at line 26
+\T1/cmr/m/n/10 ordenarAux 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 26--26
+[] [] 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 27--27
+[] [] 
+ []
+
+
+Overfull \hbox (7.99805pt too wide) detected at line 28
+\T1/cmr/m/n/10 dameMinAux 
+ []
+
+
+Overfull \hbox (7.99805pt too wide) detected at line 28
+\T1/cmr/m/n/10 dameMinAux 
+ []
+
+
+Overfull \hbox (1.85599pt too wide) in paragraph at lines 28--28
+[] [] 
+ []
+
+
+Overfull \hbox (13.55225pt too wide) detected at line 29
+\T1/cmr/m/n/10 damePromesas 
+ []
+
+
+Overfull \hbox (13.55225pt too wide) detected at line 29
+\T1/cmr/m/n/10 damePromesas 
+ []
+
+
+Overfull \hbox (31.8811pt too wide) detected at line 30
+\T1/cmr/m/n/10 damePromesasAux 
+ []
+
+
+Overfull \hbox (31.8811pt too wide) detected at line 30
+\T1/cmr/m/n/10 damePromesasAux 
+ []
+
+[47]
+Overfull \hbox (47.60619pt too wide) in paragraph at lines 47--48
+\T1/cmr/bx/n/10 el-se  if \T1/cmr/m/n/10 to-ta-les(dameIndice(i, d)) >to-ta-les
+(dameIndice(dameMinAux(d,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--80
+
+ []
+
+[48]
+Overfull \hbox (140.59851pt too wide) in paragraph at lines 117--118
+[]\T1/cmr/m/n/10 arreglo_ordenable(infoProm) se re-pre-sen-ta con tu-pla<datos:
+ conj(infoProm), ult: nat, arr: arre-glo_dimensionable(itConj(infoProm))> 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--129
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--129
+
+ []
+
+[49]
+Overfull \hbox (87.99387pt too wide) in paragraph at lines 130--143
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--155
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--161
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+ []
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 190--193
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--225
+
+ []
+
+) [51] ("C:\Users\Agustina\Documents\UBA\Repo\TP2 - Algo2\compilado.aux") ) 
+Here is how much of TeX's memory you used:
+ 3271 strings out of 493921
+ 40653 string characters out of 3147274
+ 102083 words of memory out of 3000000
+ 6468 multiletter control sequences out of 15000+200000
+ 26211 words of font info for 64 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 34i,25n,28p,469b,281s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:
+\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecb
+x0700.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
+ec\dpi600\ecti0900.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljf
+our\jknappen\ec\dpi600\ecrm0700.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9
+\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk> <C:\Users\Agustina\AppData\Loc
+al\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\Agustin
+a\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk> <C:\
+Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl
+1000.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
+c\dpi600\eccc1000.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\
+fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk> <C:\Users\Agustina\AppData\Loca
+l\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\Users\Agustina
+\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\U
+sers\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1
+440.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec
+\dpi600\ecbx1440.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
+r\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Agustina\AppData\Local\MiKTeX\2.9\f
+onts\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on compilado.pdf (51 pages, 398270 bytes).
+PDF statistics:
+ 761 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

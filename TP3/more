@@ -1,0 +1,1146 @@
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc: In member function ‘virtual aed2::aed2::std::basic_stringbuf<_CharT, _Traits, _Alloc>::int_type aed2::aed2::std::basic_stringbuf<_CharT, _Traits, _Alloc>::overflow(aed2::aed2::std::basic_stringbuf<_CharT, _Traits, _Alloc>::int_type)’:
+/usr/include/c++/4.8/bits/sstream.tcc:110:34: error: ‘max’ is not a member of ‘aed2::aed2::std’
+    const __size_type __opt_len = std::max(__size_type(2 * __capacity),
+                                  ^
+/usr/include/c++/4.8/bits/sstream.tcc:110:34: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/bits/char_traits.h:39:0,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/stl_algobase.h:260:5: note:   ‘std::max’
+     max(const _Tp& __a, const _Tp& __b, _Compare __comp)
+     ^
+/usr/include/c++/4.8/bits/stl_algobase.h:260:5: note:   ‘std::max’
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:112:30: error: ‘min’ is not a member of ‘aed2::aed2::std’
+    const __size_type __len = std::min(__opt_len, __max_size);
+                              ^
+/usr/include/c++/4.8/bits/sstream.tcc:112:30: note: suggested alternatives:
+In file included from /usr/include/c++/4.8/bits/char_traits.h:39:0,
+                 from /usr/include/c++/4.8/ios:40,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/stl_algobase.h:239:5: note:   ‘std::min’
+     min(const _Tp& __a, const _Tp& __b, _Compare __comp)
+     ^
+/usr/include/c++/4.8/bits/stl_algobase.h:239:5: note:   ‘std::min’
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc: At global scope:
+/usr/include/c++/4.8/bits/sstream.tcc:272:45: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_stringbuf<char>;
+                                             ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:64:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_stringbuf’
+     class basic_stringbuf : public basic_streambuf<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:273:49: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_istringstream<char>;
+                                                 ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:272:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_istringstream’
+     class basic_istringstream : public basic_istream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:274:49: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_ostringstream<char>;
+                                                 ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:387:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_ostringstream’
+     class basic_ostringstream : public basic_ostream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:275:48: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_stringstream<char>;
+                                                ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:502:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_stringstream’
+     class basic_stringstream : public basic_iostream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:278:48: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_stringbuf<wchar_t>;
+                                                ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:64:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_stringbuf’
+     class basic_stringbuf : public basic_streambuf<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:279:52: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_istringstream<wchar_t>;
+                                                    ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:272:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_istringstream’
+     class basic_istringstream : public basic_istream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:280:52: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_ostringstream<wchar_t>;
+                                                    ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:387:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_ostringstream’
+     class basic_ostringstream : public basic_ostream<_CharT, _Traits>
+           ^
+In file included from /usr/include/c++/4.8/sstream:600:0,
+                 from aed2/mini_test.h:5,
+                 from test.cpp:2:
+/usr/include/c++/4.8/bits/sstream.tcc:281:51: error: wrong number of template arguments (1, should be 3)
+   extern template class basic_stringstream<wchar_t>;
+                                                   ^
+In file included from aed2/mini_test.h:5:0,
+                 from test.cpp:2:
+/usr/include/c++/4.8/sstream:502:11: error: provided for ‘template<class _CharT, class _Traits, class _Alloc> class aed2::aed2::std::basic_stringstream’
+     class basic_stringstream : public basic_iostream<_CharT, _Traits>
+           ^
+In file included from test.cpp:2:0:
+aed2/mini_test.h:13:57: error: expected class-name before ‘{’ token
+ class ValueExpectationException : public std::exception {
+                                                         ^
+aed2/mini_test.h: In member function ‘virtual const char* aed2::aed2::mt::ValueExpectationException<T>::what() const’:
+aed2/mini_test.h:24:8: error: no match for ‘operator<<’ (operand types are ‘std::ostringstream {aka std::basic_ostringstream<char>}’ and ‘const char [6]’)
+     os << "  at " << _location << endl;
+        ^
+aed2/mini_test.h:24:8: note: candidates are:
+In file included from diccIncep.h:7:0,
+                 from wolfie.h:8,
+                 from Driver.h:6,
+                 from test.cpp:1:
+diccionario_finito.h:214:15: note: template<class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Diccionario_Finito<S>&)
+ std::ostream& operator<<(std::ostream& os, const Diccionario_Finito<S>& d){
+               ^
+diccionario_finito.h:214:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from aed2.h:20:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/ConjAcotado.h:105:19: note: std::ostream& aed2::operator<<(std::ostream&, const aed2::ConjAcotado&)
+     std::ostream& operator<<(std::ostream& os, const ConjAcotado&);
+                   ^
+aed2/ConjAcotado.h:105:19: note:   no known conversion for argument 1 from ‘std::ostringstream {aka std::basic_ostringstream<char>}’ to ‘std::ostream& {aka std::basic_ostream<char>&}’
+In file included from aed2.h:19:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Conj.h:419:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Conj<T>&)
+ std::ostream& operator<<(std::ostream& os, const Conj<T>& c)
+               ^
+aed2/Conj.h:419:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from aed2.h:18:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Dicc.h:595:15: note: template<class K, class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Dicc<K, S>&)
+ std::ostream& operator << (std::ostream& os, const Dicc<K,S>& d)
+               ^
+aed2/Dicc.h:595:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from aed2.h:17:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Vector.h:193:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Vector<T>&)
+ std::ostream& operator<<(std::ostream& os, const Vector<T>& v) {
+               ^
+aed2/Vector.h:193:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from aed2.h:16:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Lista.h:653:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Lista<T>&)
+ std::ostream& operator<<(std::ostream& os, const Lista<T>& lista)
+               ^
+aed2/Lista.h:653:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from aed2.h:15:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Arreglo.h:267:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Arreglo<T>&)
+ std::ostream& operator<<(std::ostream& os, const Arreglo<T>& a) {
+               ^
+aed2/Arreglo.h:267:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:24:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "  at " << _location << endl;
+           ^
+aed2/mini_test.h:25:8: error: no match for ‘operator<<’ (operand types are ‘std::ostringstream {aka std::basic_ostringstream<char>}’ and ‘const char [21]’)
+     os << "    expected value: " << _expected << endl;
+        ^
+aed2/mini_test.h:25:8: note: candidates are:
+In file included from diccIncep.h:7:0,
+                 from wolfie.h:8,
+                 from Driver.h:6,
+                 from test.cpp:1:
+diccionario_finito.h:214:15: note: template<class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Diccionario_Finito<S>&)
+ std::ostream& operator<<(std::ostream& os, const Diccionario_Finito<S>& d){
+               ^
+diccionario_finito.h:214:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from aed2.h:20:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/ConjAcotado.h:105:19: note: std::ostream& aed2::operator<<(std::ostream&, const aed2::ConjAcotado&)
+     std::ostream& operator<<(std::ostream& os, const ConjAcotado&);
+                   ^
+aed2/ConjAcotado.h:105:19: note:   no known conversion for argument 1 from ‘std::ostringstream {aka std::basic_ostringstream<char>}’ to ‘std::ostream& {aka std::basic_ostream<char>&}’
+In file included from aed2.h:19:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Conj.h:419:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Conj<T>&)
+ std::ostream& operator<<(std::ostream& os, const Conj<T>& c)
+               ^
+aed2/Conj.h:419:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from aed2.h:18:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Dicc.h:595:15: note: template<class K, class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Dicc<K, S>&)
+ std::ostream& operator << (std::ostream& os, const Dicc<K,S>& d)
+               ^
+aed2/Dicc.h:595:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from aed2.h:17:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Vector.h:193:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Vector<T>&)
+ std::ostream& operator<<(std::ostream& os, const Vector<T>& v) {
+               ^
+aed2/Vector.h:193:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from aed2.h:16:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Lista.h:653:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Lista<T>&)
+ std::ostream& operator<<(std::ostream& os, const Lista<T>& lista)
+               ^
+aed2/Lista.h:653:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from aed2.h:15:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Arreglo.h:267:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Arreglo<T>&)
+ std::ostream& operator<<(std::ostream& os, const Arreglo<T>& a) {
+               ^
+aed2/Arreglo.h:267:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:25:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "    expected value: " << _expected << endl;
+           ^
+aed2/mini_test.h:26:8: error: no match for ‘operator<<’ (operand types are ‘std::ostringstream {aka std::basic_ostringstream<char>}’ and ‘const char [21]’)
+     os << "      actual value: " << _actual;
+        ^
+aed2/mini_test.h:26:8: note: candidates are:
+In file included from diccIncep.h:7:0,
+                 from wolfie.h:8,
+                 from Driver.h:6,
+                 from test.cpp:1:
+diccionario_finito.h:214:15: note: template<class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Diccionario_Finito<S>&)
+ std::ostream& operator<<(std::ostream& os, const Diccionario_Finito<S>& d){
+               ^
+diccionario_finito.h:214:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from aed2.h:20:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/ConjAcotado.h:105:19: note: std::ostream& aed2::operator<<(std::ostream&, const aed2::ConjAcotado&)
+     std::ostream& operator<<(std::ostream& os, const ConjAcotado&);
+                   ^
+aed2/ConjAcotado.h:105:19: note:   no known conversion for argument 1 from ‘std::ostringstream {aka std::basic_ostringstream<char>}’ to ‘std::ostream& {aka std::basic_ostream<char>&}’
+In file included from aed2.h:19:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Conj.h:419:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Conj<T>&)
+ std::ostream& operator<<(std::ostream& os, const Conj<T>& c)
+               ^
+aed2/Conj.h:419:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from aed2.h:18:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Dicc.h:595:15: note: template<class K, class S> std::ostream& aed2::operator<<(std::ostream&, const aed2::Dicc<K, S>&)
+ std::ostream& operator << (std::ostream& os, const Dicc<K,S>& d)
+               ^
+aed2/Dicc.h:595:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from aed2.h:17:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Vector.h:193:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Vector<T>&)
+ std::ostream& operator<<(std::ostream& os, const Vector<T>& v) {
+               ^
+aed2/Vector.h:193:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from aed2.h:16:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Lista.h:653:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Lista<T>&)
+ std::ostream& operator<<(std::ostream& os, const Lista<T>& lista)
+               ^
+aed2/Lista.h:653:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from aed2.h:15:0,
+                 from wolfie.h:4,
+                 from Driver.h:6,
+                 from test.cpp:1:
+aed2/Arreglo.h:267:15: note: template<class T> std::ostream& aed2::operator<<(std::ostream&, const aed2::Arreglo<T>&)
+ std::ostream& operator<<(std::ostream& os, const Arreglo<T>& a) {
+               ^
+aed2/Arreglo.h:267:15: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   cannot convert ‘os’ (type ‘std::ostringstream {aka std::basic_ostringstream<char>}’) to type ‘std::ostream& {aka std::basic_ostream<char>&}’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:548:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const unsigned char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const unsigned char* __s)
+     ^
+/usr/include/c++/4.8/ostream:548:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:543:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const signed char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const signed char* __s)
+     ^
+/usr/include/c++/4.8/ostream:543:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:530:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, const char*)
+     operator<<(basic_ostream<char, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/ostream:530:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/ostream:609:0,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const char*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const char* __s)
+     ^
+/usr/include/c++/4.8/bits/ostream.tcc:321:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:513:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const _CharT*)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, const _CharT* __s)
+     ^
+/usr/include/c++/4.8/ostream:513:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:493:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, unsigned char)
+     operator<<(basic_ostream<char, _Traits>& __out, unsigned char __c)
+     ^
+/usr/include/c++/4.8/ostream:493:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:488:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, signed char)
+     operator<<(basic_ostream<char, _Traits>& __out, signed char __c)
+     ^
+/usr/include/c++/4.8/ostream:488:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:482:5: note: template<class _Traits> std::basic_ostream<char, _Traits>& std::operator<<(std::basic_ostream<char, _Traits>&, char)
+     operator<<(basic_ostream<char, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:482:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<char, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:476:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, char)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, char __c)
+     ^
+/usr/include/c++/4.8/ostream:476:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:471:5: note: template<class _CharT, class _Traits> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, _CharT)
+     operator<<(basic_ostream<_CharT, _Traits>& __out, _CharT __c)
+     ^
+/usr/include/c++/4.8/ostream:471:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+In file included from /usr/include/c++/4.8/string:52:0,
+                 from /usr/include/c++/4.8/bits/locale_classes.h:40,
+                 from /usr/include/c++/4.8/bits/ios_base.h:41,
+                 from /usr/include/c++/4.8/ios:42,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note: template<class _CharT, class _Traits, class _Alloc> std::basic_ostream<_CharT, _Traits>& std::operator<<(std::basic_ostream<_CharT, _Traits>&, const std::basic_string<_CharT, _Traits, _Alloc>&)
+     operator<<(basic_ostream<_CharT, _Traits>& __os,
+     ^
+/usr/include/c++/4.8/bits/basic_string.h:2753:5: note:   template argument deduction/substitution failed:
+In file included from test.cpp:2:0:
+aed2/mini_test.h:26:11: note:   ‘std::ostringstream {aka std::basic_ostringstream<char>}’ is not derived from ‘std::basic_ostream<_CharT, _Traits>’
+     os << "      actual value: " << _actual;
+           ^
+aed2/mini_test.h:27:14: error: invalid use of incomplete type ‘std::ostringstream {aka class std::basic_ostringstream<char>}’
+     return os.str().c_str();
+              ^
+In file included from /usr/include/c++/4.8/ios:38:0,
+                 from /usr/include/c++/4.8/ostream:38,
+                 from /usr/include/c++/4.8/iostream:39,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/iosfwd:101:11: error: declaration of ‘std::ostringstream {aka class std::basic_ostringstream<char>}’
+     class basic_ostringstream;
+           ^
+In file included from test.cpp:2:0:
+aed2/mini_test.h: At global scope:
+aed2/mini_test.h:45:68: error: expected class-name before ‘{’ token
+ class MissingExceptionExpectationException : public std::exception {
+                                                                    ^
+aed2/mini_test.h: In member function ‘virtual const char* aed2::aed2::mt::MissingExceptionExpectationException::what() const’:
+aed2/mini_test.h:55:19: error: aggregate ‘std::ostringstream os’ has incomplete type and cannot be defined
+     ostringstream os;
+                   ^
+aed2/mini_test.h:60:3: warning: no return statement in function returning non-void [-Wreturn-type]
+   }
+   ^
+aed2/mini_test.h: At global scope:
+aed2/mini_test.h:72:66: error: expected class-name before ‘{’ token
+ class WrongExceptionExpectationException : public std::exception {
+                                                                  ^
+aed2/mini_test.h: In member function ‘virtual const char* aed2::aed2::mt::WrongExceptionExpectationException::what() const’:
+aed2/mini_test.h:82:19: error: aggregate ‘std::ostringstream os’ has incomplete type and cannot be defined
+     ostringstream os;
+                   ^
+aed2/mini_test.h: In function ‘std::string aed2::aed2::mt::location(const char*, int)’:
+aed2/mini_test.h:106:17: error: aggregate ‘std::ostringstream os’ has incomplete type and cannot be defined
+   ostringstream os;
+                 ^
+test.cpp: At global scope:
+test.cpp:16:1: error: ‘string’ in namespace ‘aed2::aed2::std’ does not name a type
+ std::string to_str(const T& t)
+ ^
+In file included from test.cpp:2:0:
+test.cpp: In function ‘void aed2::aed2::test_wolfie_simple()’:
+aed2/mini_test.h:137:91: error: call of overloaded ‘assert_eq(aed2::Nat, aed2::Nat, std::string)’ is ambiguous
+ #define ASSERT_EQ(lhs, rhs) { mt::assert_eq((lhs), (rhs), mt::location(__FILE__, __LINE__)); }
+                                                                                           ^
+test.cpp:95:2: note: in expansion of macro ‘ASSERT_EQ’
+  ASSERT_EQ(wolfie.CantidadDeClientes(), clientes.Cardinal());
+  ^
+aed2/mini_test.h:137:91: note: candidates are:
+ #define ASSERT_EQ(lhs, rhs) { mt::assert_eq((lhs), (rhs), mt::location(__FILE__, __LINE__)); }
+                                                                                           ^
+test.cpp:95:2: note: in expansion of macro ‘ASSERT_EQ’
+  ASSERT_EQ(wolfie.CantidadDeClientes(), clientes.Cardinal());
+  ^
+aed2/mini_test.h:114:6: note: void aed2::aed2::mt::assert_eq(int, int, std::string)
+ void assert_eq(T lhs, T rhs, string loc) { if (!(lhs == rhs)) { make_error(lhs, rhs, loc); } }\
+      ^
+aed2/mini_test.h:117:1: note: in expansion of macro ‘SUPPORT_ASSERT_EQ_ON’
+ SUPPORT_ASSERT_EQ_ON(int)
+ ^
+aed2/mini_test.h:114:6: note: void aed2::aed2::mt::assert_eq(double, double, std::string)
+ void assert_eq(T lhs, T rhs, string loc) { if (!(lhs == rhs)) { make_error(lhs, rhs, loc); } }\
+      ^
+aed2/mini_test.h:118:1: note: in expansion of macro ‘SUPPORT_ASSERT_EQ_ON’
+ SUPPORT_ASSERT_EQ_ON(double)
+ ^
+aed2/mini_test.h:114:6: note: void aed2::aed2::mt::assert_eq(float, float, std::string)
+ void assert_eq(T lhs, T rhs, string loc) { if (!(lhs == rhs)) { make_error(lhs, rhs, loc); } }\
+      ^
+aed2/mini_test.h:119:1: note: in expansion of macro ‘SUPPORT_ASSERT_EQ_ON’
+ SUPPORT_ASSERT_EQ_ON(float)
+ ^
+aed2/mini_test.h:120:6: note: void aed2::aed2::mt::assert_eq(bool, bool, std::string)
+ void assert_eq(bool lhs, bool rhs, string loc) { if (lhs != rhs) { make_error(bool_to_s(lhs), bool_to_s(rhs), loc); } }
+      ^
+aed2/mini_test.h:121:6: note: void aed2::aed2::mt::assert_eq(std::string, std::string, std::string) <near match>
+ void assert_eq(string lhs, string rhs, string loc) { if (lhs.compare(rhs) != 0) { make_error(lhs, rhs, loc); } }
+      ^
+aed2/mini_test.h:121:6: note:   no known conversion for argument 2 from ‘aed2::Nat {aka unsigned int}’ to ‘std::string {aka std::basic_string<char>}’
+aed2/mini_test.h:122:6: note: void aed2::aed2::mt::assert_eq(const char*, const char*, std::string) <near match>
+ void assert_eq(const char* lhs, const char* rhs, string loc) { assert_eq(string(lhs), string(rhs), loc); }
+      ^
+aed2/mini_test.h:122:6: note:   no known conversion for argument 2 from ‘aed2::Nat {aka unsigned int}’ to ‘const char*’
+test.cpp: In function ‘int aed2::aed2::main(int, char**)’:
+aed2/mini_test.h:128:3: error: ‘cout’ is not a member of ‘aed2::aed2::std’
+   std::cout << #test << "..." << std::flush;\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:128:3: note: suggested alternatives:
+   std::cout << #test << "..." << std::flush;\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from aed2/TiposBasicos.h:5:0,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+In file included from test.cpp:2:0:
+aed2/mini_test.h:128:34: error: ‘flush’ is not a member of ‘aed2::aed2::std’
+   std::cout << #test << "..." << std::flush;\
+                                  ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:128:34: note: suggested alternatives:
+   std::cout << #test << "..." << std::flush;\
+                                  ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:586:5: note:   ‘std::flush’
+     flush(basic_ostream<_CharT, _Traits>& __os)
+     ^
+/usr/include/c++/4.8/ostream:586:5: note:   ‘std::flush’
+In file included from test.cpp:2:0:
+aed2/mini_test.h:130:10: error: expected type-specifier
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+          ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:130:24: error: expected unqualified-id before ‘&’ token
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+                        ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:130:24: error: expected ‘)’ before ‘&’ token
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+                        ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:130:24: error: expected ‘{’ before ‘&’ token
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+                        ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:130:26: error: ‘e’ was not declared in this scope
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+                          ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:130:27: error: expected ‘;’ before ‘)’ token
+   catch (std::exception& e) { mt_ok = false; std::cout << "failed" << std::endl << e.what(); } \
+                           ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:131:3: error: expected primary-expression before ‘catch’
+   catch (const char* msg) { mt_ok = false; std::cout << "failed" << std::endl << msg; } \
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:131:3: error: expected ‘;’ before ‘catch’
+   catch (const char* msg) { mt_ok = false; std::cout << "failed" << std::endl << msg; } \
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:132:3: error: expected primary-expression before ‘catch’
+   catch (...) { mt_ok = false; std::cout << "failed"; }\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:132:3: error: expected ‘;’ before ‘catch’
+   catch (...) { mt_ok = false; std::cout << "failed"; }\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:133:16: error: ‘cout’ is not a member of ‘aed2::aed2::std’
+   if (mt_ok) { std::cout << "ok"; }\
+                ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:133:16: note: suggested alternatives:
+   if (mt_ok) { std::cout << "ok"; }\
+                ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from aed2/TiposBasicos.h:5:0,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+In file included from test.cpp:2:0:
+aed2/mini_test.h:134:3: error: ‘cout’ is not a member of ‘aed2::aed2::std’
+   std::cout << std::endl << std::flush;\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:134:3: note: suggested alternatives:
+   std::cout << std::endl << std::flush;\
+   ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from aed2/TiposBasicos.h:5:0,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^
+/usr/include/c++/4.8/iostream:61:18: note:   ‘std::cout’
+In file included from test.cpp:2:0:
+aed2/mini_test.h:134:16: error: ‘endl’ is not a member of ‘aed2::aed2::std’
+   std::cout << std::endl << std::flush;\
+                ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:134:16: note: suggested alternatives:
+   std::cout << std::endl << std::flush;\
+                ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:564:5: note:   ‘std::endl’
+     endl(basic_ostream<_CharT, _Traits>& __os)
+     ^
+/usr/include/c++/4.8/ostream:564:5: note:   ‘std::endl’
+In file included from test.cpp:2:0:
+aed2/mini_test.h:134:29: error: ‘flush’ is not a member of ‘aed2::aed2::std’
+   std::cout << std::endl << std::flush;\
+                             ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+aed2/mini_test.h:134:29: note: suggested alternatives:
+   std::cout << std::endl << std::flush;\
+                             ^
+test.cpp:106:2: note: in expansion of macro ‘RUN_TEST’
+  RUN_TEST(test_wolfie_simple);
+  ^
+In file included from /usr/include/c++/4.8/iostream:39:0,
+                 from aed2/TiposBasicos.h:5,
+                 from Tipos.h:4,
+                 from Driver.h:4,
+                 from test.cpp:1:
+/usr/include/c++/4.8/ostream:586:5: note:   ‘std::flush’
+     flush(basic_ostream<_CharT, _Traits>& __os)
+     ^
+/usr/include/c++/4.8/ostream:586:5: note:   ‘std::flush’
+test.cpp: At global scope:
+test.cpp:116:1: error: expected ‘}’ at end of input
+ }
+ ^
+test.cpp:116:1: error: expected ‘}’ at end of input
+In file included from test.cpp:2:0:
+aed2/mini_test.h: In instantiation of ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = std::basic_string<char>]’:
+test.cpp:116:1:   required from here
+aed2/mini_test.h:23:19: error: ‘std::ostringstream os’ has incomplete type
+     ostringstream os;
+                   ^
+aed2/mini_test.h: In instantiation of ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = float]’:
+test.cpp:116:1:   required from here
+aed2/mini_test.h:23:19: error: ‘std::ostringstream os’ has incomplete type
+aed2/mini_test.h: In instantiation of ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = double]’:
+test.cpp:116:1:   required from here
+aed2/mini_test.h:23:19: error: ‘std::ostringstream os’ has incomplete type
+aed2/mini_test.h: In instantiation of ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = int]’:
+test.cpp:116:1:   required from here
+aed2/mini_test.h:23:19: error: ‘std::ostringstream os’ has incomplete type
+aed2/mini_test.h: In function ‘std::string aed2::aed2::mt::location(const char*, int)’:
+aed2/mini_test.h:109:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+aed2/mini_test.h: In member function ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = int]’:
+aed2/mini_test.h:28:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+aed2/mini_test.h: In member function ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = double]’:
+aed2/mini_test.h:28:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+aed2/mini_test.h: In member function ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = float]’:
+aed2/mini_test.h:28:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+aed2/mini_test.h: In member function ‘const char* aed2::aed2::mt::ValueExpectationException<T>::what() const [with T = std::basic_string<char>]’:
+aed2/mini_test.h:28:3: warning: control reaches end of non-void function [-Wreturn-type]
+   }
+   ^
+make: *** [test.o] Error 1

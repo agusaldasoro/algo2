@@ -1,0 +1,51 @@
+Estructura:
+
+estr es tupla<
+		multiDicAcciones: 	multidiccionario(cliente, nombreTitulo, acciones) // multidiccionario no es esto, sino aquel que para una clave admite varios significados
+
+
+pondría:        diccionarioInception:	diccionario (cliente, accionesPorTitulo: diccionario(nombreTitulo, acciones)) //le paso un cliente y un nombre de titulo y me da las acciones q tiene para el mismo
+		diccionarioPromesas: 	diccConMemoria(titulo, promesa) //no seria multiconj(promesa)? guarda sólo las no ejecutadas, no? como no tienen distincion... cómo recupero las acciones de un cliente en particular?!! aaaayy *se arranca un pelo*
+		conjuntoClientes:	conjunto(cliente)		
+		conjuntoTitulos:	conjunto(titulo)
+>
+
+
+multidiccionario(cliente, nombreTitulo, acciones)
+...se representa con...
+diccionarioAVL(cliente, diccionarioTrie(nombreTitulo, acciones))
+
+diccionarioAVL(clave, significado)
+...se representa con...
+tupla<
+	nodo: clave,
+	izquierda: punteroANodo,
+	derecha: punteroANodo
+>
+
+
+diccConMemoria(titulo, promesa)
+...se representa con...
+tupla<
+	clGuardado: tupla<cliente: cliente, promesas: conjunto(promesas)>
+	diccionarioTitulos: diccionarioTrie(nT, tupla<
+							titulo: punteroATitulo, 
+							ventas: conj(Promesa), 
+							compras: colaPrioridad(Promesa)
+							>)
+>
+
+
+diccionarioTrie(nombreTitulo, acciones)
+...se representa con...
+tupla<
+	nombresTitulos:	nombreTitulo,
+	definiciones:	nodoTRIE()
+>
+
+nodoTRIE(punteroANodo, punteroASignificado)
+...se representa con...
+tupla<
+	siguientes:	array[27](punteroANodo),
+	significado:	punteroASignificado
+>

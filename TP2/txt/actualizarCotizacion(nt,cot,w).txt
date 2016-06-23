@@ -1,0 +1,24 @@
+actualizarCotizacion(nt,cot,w)
+
+VAR cosas : cosasTitulo
+cosas <- obtenerDM(w.diccPromesa, nT)																		|nt|
+(*cosas.punteroTitulo).recotizar(cot)			
+VAR I : Iterador(conjuntoVENTAS(ParPC))
+I <- Iterador a conjunto de ventas 				
+while(hayProximo(I)){
+	VAR sig = siguiente(I)
+	If (cot < promesa.limite) then{
+		borrarActual(I)
+		restarAcciones(w.diccAcciones, sig.cliente, nombre(sig.promesa), cantidad(sig.promesa))				c(log(c) + |nt|) 
+	}
+	avanzar(I)
+}
+VAR a : array <- ParPCcompras
+a.ordenar																									c(log c)
+while(i <= largo.array){
+	if (a[i].promesa.cantidad <= disponibles(nT, w)){
+		sumarAcciones(w.diccAcciones, a.cliente, nombre(a.promesa), cantidad(a.promesa))					c(log(c) + |nt|) 
+		a[i]<- NULL
+	}
+}
+a.ordenar																									c(log c)

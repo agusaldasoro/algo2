@@ -1,0 +1,388 @@
+% **************************************************************************
+%
+%  Package TAD  ---  versión 0.33  ---  Algoritmos y Estructuras de Datos II
+%
+% **************************************************************************
+%
+%  Cambios al incorporar al repositorio CVS:
+%
+%  Se eliminaron todas las macros \xxluego; pasaron al package algo2symb.
+%  Se mantuvo la macro para la igualdad observacional, aunque convirtiendo
+%  a minúsculas su salida (Igualdad Observ -> igualdad observ) por consist.
+%
+% **************************************************************************
+%
+%  Cambios en la versión extraoficial:
+%
+%  Se agregó una macro para el "o luego" y el encabezado para la igualdad
+%  observacional.
+%
+% **************************************************************************
+%
+%  Cambios en la versión 0.33:
+%
+%  Se agregó un entorno experimental 'tadx' que toma un parámetro adicional,
+%  dándole al usuario la oportunidad de agregar un "preámbulo" (una serie de
+%  comandos que se insertan en el código producido, justo antes del TAD).
+%
+%  La idea es que las longitudes modificadas en el preámbulo afecten sólo al
+%  TAD en el que aparecen, mientras que modificadas afuera deberían afectar
+%  a todos los TADs del documento (desde la modificacion en adelante). Esto
+%  todavia no ha sido testeado exhaustivamente, pero parece funcionar OK.
+%
+%  Se convirtieron en verdaderas longitudes (dimens) unas cuantas macros que
+%  hasta ahora eran sólo eso (simples macros). Ahora se pueden manipular con
+%  los comandos habituales para modificación de dimens.
+%
+%  Se agregaron un par de macros extra para "y luego", "implica luego", etc.
+%
+%  Pendiente: Dejar de usar por completo el parskip (que idealmente no debe-
+%  ría tener nada que ver con los TADs, sino sólo con el resto del texto).
+%
+% **************************************************************************
+%
+%  Cambios en la versión 0.32:
+%
+%  El package fue reescrito desde cero usando primitivas de TeX y alguna que
+%  otra macro de Plain TeX. Esto se debe a que el código anterior en LaTeX
+%  era sumamente ineficiente y bastante chancho en general. Además, había
+%  demasiadas limitaciones trabajando en LaTeX.
+%
+%  Esta nueva versión es muchÍsimo más eficiente que las 0.2x, y
+%
+%     (i) permite controlar en forma mucho más precisa las separaciones
+%         y dimensiones de las distintas componentes del TAD
+%
+%    (ii) debería ser compatible tanto con LaTeX como con Plain TeX
+%
+%   (iii) es mucho más flexible, adaptable, extensible, etc.
+%
+%
+%  Seguimos siendo compatibles con babel. Eso es bueno.
+%
+%  Todavía quedan varias cositas para emprolijar. Ya tenemos restriciones,
+%  y el soporte para axiomas --si bien sigue siendo rudimentario-- funciona.
+%
+%  Muchas gracias a Brian Blackmore <blb8@math.washington.edu> por su enorme
+%  ayuda con TeX en general, y en particular por las macros \parsearparams y
+%  \funcrestr, que (más allá de modificaciones menores) son de su autoría.
+%
+% **************************************************************************
+
+
+% Información sobre el package para el sistema
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tad}[2002/9/23 v0.33 Para especificar TADs en formato AED2]
+
+% Imprimir un mensajito al procesar un .tex que use este package
+\typeout{Cargando package 'tad' v0.33 (19/10/2002)}
+
+
+
+% **************************************************************************
+%   Parámetros que permiten ajustar el aspecto final de los TADs
+% **************************************************************************
+
+
+% Margen para el TAD. Todos los títulos y encabezados,
+% excepto el primero y el último, llevan esta sangría.
+\newdimen\tadmargen\tadmargen=2em
+
+% Margen secundario. Las funciones y axiomas llevan esta sangría,
+% es decir que estan a \tadmargen + \tadsubmargen del borde izq.
+% Si esto vale cero, las funcs y axiomas quedan al mismo nivel
+% que los títulos en negrita del TAD.
+\newdimen\tadsubmargen\tadsubmargen=1em
+
+% El ancho del encabezado más largo, donde 'encabezado' se refiere
+% a los títulos usa, exporta, generos, etc.  Esto sirve para que el
+% texto a la derecha de estos encabezados quede alineado.
+\newdimen\tadmaxenc\tadmaxenc=6em
+
+% Espacio vertical extra antes de cada título o encabezado.
+% Este skip se adiciona al parskip standard. Afecta a todos
+% los títulos y encabezados, pero no a las funcs ni axiomas.
+\newdimen\tadtitskip\tadtitskip=4pt
+
+% Separación antes y después de la flechita y del : (en las funcs)
+\newdimen\tadfuncsep\tadfuncsep=6pt
+
+% Separación antes y después del equivalente (en axiomas)
+\newdimen\tadaxisep\tadaxisep=6pt
+
+% Tipo de flechita a usar
+\def\tadflecha{\longrightarrow}
+
+% Separación (espacio en blanco anterior y posterior) para los
+% símbolos de prod. cartesiano (\times) en las aridades.
+\def\timessep{ }
+
+
+
+% **************************************************************************
+%   Macros que implementan las distintas componentes del TAD
+% **************************************************************************
+
+
+% ------- Apertura del TAD -------------------------------------------------
+%
+% Uso:  \tadcom{nombre del TAD}
+%
+% Compone el título "TAD XXX". Este es un buen lugar para inicializaciones.
+% Ahora tomamos dos parámetros para poder soportar "preámbulos" (tadx).
+%
+\def\tadcom#1#2{#2\parindent=\tadmargen\vskip\tadtitskip\noindent%
+\hbox to \hsize{{\bf TAD} #1\hfil}}
+
+
+% ------- Clausura del TAD -------------------------------------------------
+%
+% Uso:  \tadfin
+%
+% Compone el título "Fin TAD". Restaurar aquí todo lo que hayamos pisado.
+% (PEND: Restaurar aquí el parskip que había antes de empezar el TAD)
+%
+\def\tadfin{\vskip\tadtitskip\par\noindent%
+\hbox to \hsize{{\bf Fin TAD}\hfil}\vskip\tadtitskip}
+
+
+% ------- Encabezado (con texto a derecha) ---------------------------------
+%
+% Uso:  \tadenc{título}{texto posiblemente largo que va a la derecha}
+%
+% Compone un título en negrita con cierta cantidad de texto (que puede
+% ocupar varias líneas) a su derecha. Para usa, exporta, generos, etc.
+%
+\def\tadenc#1#2{\dimen0=\tadmaxenc\advance\dimen0 by \tadmargen%
+\vskip\tadtitskip\par\hangindent=\dimen0\hangafter=1\hskip0pt%
+\hbox to \tadmaxenc{{\bf #1}\hfil}#2}
+
+% ------- El título para la igualdad observacional ------------------------------------
+%
+% Uso:  \igualobs{n}{m}{género}{condiciones de igualdad...}
+%
+\def\igualobs#1#2#3#4{\tadenc{igualdad observacional}%
+{\vtop{\smallskip \hsize0.75\hsize{\noindent $(\forall #1, #2: \mathrm{#3})~\left(#1 \igobs #2 \ssi \centering{\vtop{\hsize0.75\hsize \noindent $(#4)$}}\right)$}}}}
+
+%
+% Uso:  \igualobssimple{n}{m}{género}{cuando son iguales...}
+%
+\def\igualobssimple#1{\tadenc{igualdad observacional}{\vtop{\smallskip \hsize0.75\hsize{\noindent #1}}}}
+
+% ------- Los tres encabezados standard ------------------------------------
+%
+% Uso:  \usa{tal cosa}, \exporta{esto, aquello}, \generos{fulano}, etc.
+%
+\def\usa#1{\tadenc{usa}{#1}}
+\def\exporta#1{\tadenc{exporta}{#1}}
+\def\generos#1{\tadenc{g\'eneros}{#1}}
+
+% ------- Títulos adicionales ------------------------------------
+%
+% Uso:  \extiende{tal cosa}
+%
+\def\extiende#1{\tadenc{extiende}{#1}}
+
+%
+% Parámetros formales.
+%
+\def\parametrosformales#1{\tadenc{parámetros formales}{\vtop{\hsize0.75\hsize{#1}}}}
+
+
+% ------- El título para 'axiomas' -----------------------------------------
+%
+% Uso:  \axiomas{$\forall p,q$ : tipo, $\forall n$ : nat ...}
+%
+% Por ahora estamos implementando esto con \tadenc, igual que usa, exporta,
+% etc. En realidad debería ser independiente, porque 'axiomas', si bien
+% lleva texto a su derecha, no es el mismo tipo de encabezado. Podríamos
+% querer que la separación sea distinta, por ejemplo, o que no la haya.
+
+\def\axiomas#1{\tadenc{axiomas}#1}
+
+
+% ------- título simple ----------------------------------------------------
+%
+% Uso:  \tadtit{título}
+%
+% Compone un título simple en negrita sin nada a su derecha. Esto es para
+% implementar títulos como 'observadores básicos', 'generadores', etc.
+%
+\def\tadtit#1{\vskip\tadtitskip\par{\bf #1}}
+
+
+% ------- Los tres títulos standard ----------------------------------------
+%
+% Uso:  \observadores, \generadores, \otrasops
+%
+\def\observadores{\tadtit{observadores b\'asicos}}
+\def\generadores{\tadtit{generadores}}
+\def\otrasops{\tadtit{otras operaciones}}
+
+
+
+% ------- MACROS PARA LAS FUNCIONES ----------------------------------------
+
+
+% ------- Alineamiento de las funciones ------------------------------------
+%
+% Cantidad de espacio reservado para el nombre de una función (es decir, el
+% máximo ancho que tendrá la función de nombre más largo). Esto permite que
+% los símbolos ':' queden alineados. Si es cero (default), no alinear.
+%
+\newdimen\funcmaxnom\funcmaxnom=0cm
+%
+% Cantidad de espacio reservado para la aridad de una función (en particu-
+% lar, entiendase aquí 'aridad' como los argumentos que recibe la función,
+% por ejemplo 'persona x nat a x nat b'). Esto permite que las flechitas
+% queden alineadas. Si es cero (default), no alinear.
+%
+\newdimen\funcmaxari\funcmaxari=0cm
+%
+% Esta macro permite setear rápidamente las dos medidas anteriores usando
+% texto en lugar de medidas numéricas. Por ejemplo, si se ingresa esto:
+%
+%   \alinearfuncs{NombreLargo}{MuchosMuchosArgumentos}
+%
+% todas las funciones de ahí en adelante serán alineadas respetando los
+% anchos máximos de NombreLargo y MuchosMuchosArgumentos.
+%
+\def\alinearfuncs#1#2{\setbox0=\hbox{#1}%
+\funcmaxnom=\wd0\setbox0=\hbox{#2}\funcmaxari=\wd0}
+
+
+% ------- Parseo de aridades (listas de argumentos) de funciones -----------
+%
+% Uso:  \funcparams{fulano/f, nat, bool/b} --> 'fulano $f$ x nat x bool $b$'
+%
+% La idea es que esto permita listas de parámetros como {banco b, banco c}
+% donde la cant. de params es arbitrariamente larga. El tipo de cada param
+% es obligatorio, pero el nombre de la instancia es opcional. El cambio a
+% math mode para los nombres de instancia, cuando existan, es automático
+% (esto evita tener que poner los signos $). Los símbolos de producto car-
+% tesiano (\times) también son automáticos. La idea es que esto sea fácil
+% de leer y de tipear, automatizando todo lo que es repetitivo.
+%
+% Actualmente esto usa sintaxis con barras, ej: {banco/b, banco/c, nat}.
+% Sigue pendiente lograr manejar el cambio de categoría del carácter space
+% para poder parsearlo como un token cualquiera (y de ese modo chau barras)
+% Eso todavía necesita un poco de trabajo para que ande bien y no tenga
+% efectos colaterales indeseados, así que por ahora, las barras quedan.
+%
+% Esta macro fue escrita por Brian Blackmore <blb8@math.washington.edu>.
+%
+\def\finparams{zMqtPfKkJ}
+\def\parsearparams#1{\ifx#1\finparams\ifmmode$\fi\else\if#1/{ }$%
+\else\if#1,\ifmmode$\fi{\timessep$\times$\timessep}\else#1\fi\fi%
+\expandafter\parsearparams\fi}
+\def\funcparams#1{\parsearparams#1\finparams}
+
+
+% ------- Composición de restriciones al lado o debajo de la func. -------
+%
+% Uso:  \funcrestr{bloque de decl. de función}{restr}
+%
+% Esto recibe un bloque completo, ya compuesto, como 'f : t1 x t2 --> t3' y
+% una restricción para f. Si la restr. entra en el espacio que queda a
+% la derecha de la declaración, se la coloca allí, alineada contra el borde
+% derecho de la página o del entorno en el que estemos. Si NO entra por ser
+% demasiado larga, entonces se la coloca en el renglón siguiente (sin dejar
+% parskip ni titskip entre la función y su restr, que se consideran parte
+% de una misma cosa). La restricción puede ser larga, en cuyo caso se la
+% compone en varias líneas, todas alineadas contra el margen derecho.
+%
+% Esta macro fue escrita por Brian Blackmore <blb8@math.washington.edu>.
+%
+\def\funcrestr#1#2{{\par\hskip0pt#1\parskip=0pt\hfill%
+\setbox1=\hbox{#1\hskip1.5em#2}\ifdim\wd1>\hsize\par\hfill%
+\setbox1=\hbox{#2}\ifdim\wd1>\hsize%
+\hbox{\vtop{\hsize0.9\hsize \leftskip0pt plus0.4\hsize \spaceskip0.3em
+\xspaceskip.5em\rightskip0pt \parfillskip0pt #2\par}}%
+\else#2\fi\par\else#2\par\fi}}
+
+
+% ------- Macro para componer una función completa -------------------------
+%
+% Uso:  \func{nombre}{tipo/a, tipo/b, tipo}{tipo devuelto}{(restr)}
+%
+% Componer una función. Esto usa \funcparams para procesar los parámetros
+% pasados como 2do argumento, y \funcrestr para componer la restricción
+% y decidir automáticamente si ponerla a la derecha o abajo.
+%
+\def\funcppal#1#2#3{\hbox{\hskip\tadsubmargen%
+\setbox2=\hbox{\funcparams{#2}}\ifdim\funcmaxnom>0pt%
+\hbox to \funcmaxnom{#1\hfil}\else\hbox{#1}\fi%
+\hbox{\hskip\tadfuncsep:\hskip\tadfuncsep}%
+\ifdim\funcmaxari>0pt\hbox to \funcmaxari{\box2\hfil}\else\box2\fi%
+\hbox{\hskip\tadfuncsep\ensuremath{\tadflecha}\hskip\tadfuncsep}#3}}
+\def\func#1#2#3#4{\funcrestr{\funcppal{#1}{#2}{#3}}{#4}}
+
+
+
+% ------- MACROS PARA LOS AXIOMAS ------------------------------------------
+
+
+% ------- Alineamiento de los axiomas --------------------------------------
+%
+% Cantidad de espacio reservado para los lados izquierdos (es decir, el
+% ancho máximo que puede llegar a tener el lado izq. de un axioma). Esto
+% permite alinear los signos de equivalencia. Si este valor es cero
+% (default), no se intentará alinearlos.
+%
+\newdimen\aximaxizq\aximaxizq=0pt
+%
+% Macro que le permite al usuario setear rápidamente el valor anterior
+% por medio de 'texto ejemplo', es decir que si se ingresa esto:
+%
+%   \alinearaxiomas{LadoIzquierdoLargo}
+%
+% todos los axiomas de allí en adelante serán compuestos alineando los
+% signos de equivalencia como para alojar el texto LadoIzquierdoLargo.
+%
+\def\alinearaxiomas#1{\setbox0=\hbox{#1}\aximaxizq=\wd0}
+
+
+% ------- Composición de un axioma completo --------------------------------
+%
+% Uso:  \axioma{lado izquierdo}{lado derecho}
+%
+% Si aximaxizq es mayor que cero, reservamos esa cant. de espacio usando
+% un hbox. Si es cero, usamos la longitud 'natural' del texto izquierdo y
+% los equivalentes no quedan alineados.
+%
+\def\axioma#1#2{\ifdim\aximaxizq>0pt\setbox1=\hbox to \aximaxizq{#1\hfil}%
+\else\setbox1=\hbox{#1}\fi%
+\setbox2=\hbox{\hskip\tadaxisep\ensuremath{\equiv}\hskip\tadaxisep}%
+\dimen0=\tadmargen\advance\dimen0 by \tadsubmargen\advance\dimen0 by \wd1%
+\advance\dimen0 by \wd2\par\hangindent=\dimen0\hangafter=1\hskip\tadsubmargen%
+\box1\hbox{\hskip\tadaxisep\ensuremath{\equiv}\hskip\tadaxisep}#2}
+
+%
+%
+%
+
+\def\axiomalargo#1#2{\ifdim\aximaxizq>0pt\setbox1=\hbox to \aximaxizq{#1\hfil}%
+\else\setbox1=\hbox{#1}\fi%
+\setbox2=\hbox{\hskip\tadaxisep\ensuremath{\equiv}\hskip\tadaxisep}%
+\dimen0=\tadmargen\advance\dimen0 by \tadsubmargen%
+\advance\dimen0 by \tadaxisep\par\hskip\tadsubmargen%
+\box1\hbox{\hskip\tadaxisep\ensuremath{\equiv}\hskip\tadaxisep}\par\hangindent=\dimen0\hangafter=1\hskip\tadsubmargen\hbox{\hskip\tadaxisep}#2}
+
+
+
+% ------- DECLARACIÓN DEL ENTORNO 'tad' ------------------------------------
+%
+% Uso:  \begin{tad}{nombre del TAD}                    (Requiere LaTeX)
+%          ...
+%       \end{tad}
+%
+% Para agregar un preámbulo, usar
+%
+%       \begin{tadx}{nombre del TAD}{preámbulo}
+%          ...
+%       \end{tadx}
+%
+\newenvironment{tad}[1]{\tadcom{#1}{}}{\tadfin}
+\newenvironment{tadx}[2]{\tadcom{#1}{#2}}{\tadfin}
+
+

@@ -1,0 +1,233 @@
+\section{Módulo Diccionario String}
+
+\subsection{Servicios Exportados}
+
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		CrearDiccString & No & O(1) \\
+		\hline
+		DefinirDS & No & O(|c|)\\
+		\hline
+		Definido?DS & No & O(|c|)\\
+		\hline
+		ObtenerDS & Si & O(|c|)\\
+		\hline
+		ClavesDS & Si & O(N) \\
+		\hline
+		CopiarDS & No & O(N*(|c\textsubscript{max}|+O(copiarSignificado))) \\
+		\hline
+		
+		
+		
+	\end{tabular}\\\\
+
+N es la cantidad de claves.\\
+c es la clave, |c| es su largo.
+
+Asumimos:\\
+Todos los arreglos empiezan en 1\\
+Para los strings asumimos que a cada char se puede acceder en O(1)\\
+y que se puede obtener la longitud en O(N) y su creacion es proporcional a la longitud.\\
+Asumimos que la posicion i del array corresponde a la letra i del abecedario.\\
+Longitud: long(string)\\
+Acceso: String[nat]\\
+int(char) nos da el numero entre 1 y 27 que le corresponde en el abecedario. \\
+\textbf{TAD Clave} es String
+
+
+\subsection{Interfaz}
+	Interfaz \nombretad{Diccionario String(Clave, Significado)}\\
+	Se explica con: Diccionario(Clave, Significado)\\
+	G\'{e}neros: diccionarioDS\\
+	Operaciones:\\
+	
+	\begin{interfaz}{CrearDiccString}{}{diccionarioDS}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = vacio}
+	\end{interfaz}
+	
+	\begin{interfaz}{DefinirDS}{\param{inout}{d}{diccionarioDS}, \param{in}{c}{clave}, \param{in}{s}{significado}}{}{}
+	\textbf{Pre} $\equiv$\pre{d=d_0}
+	\textbf{Post} $\equiv$\post{d= definir(c,s,d_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Definido?DS}{\param{inout}{d}{diccionarioDS}, \param{in}{c}{clave}}{bool}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = def?(c,d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{ObtenerDS}{\param{inout}{d}{diccionarioDS}, \param{in}{c}{clave}}{significado}{}
+	\textbf{Pre} $\equiv$\pre{def?(c,d)}
+	\textbf{Post} $\equiv$\post{resultado = obtener(c,d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{ClavesDS}{\param{inout}{d}{diccionarioDS}}{conj(clave)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = claves(d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{CopiarDS}{\param{inout}{d}{diccionarioDS}}{diccionarioDS}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = d}
+	\end{interfaz}	
+	
+
+\subsection{Estructura de Representación}
+	diccionario se representa con estr\\
+	Donde estr es tupla $<$ definiciones: nodo , claves: conj(string), conjSignificados: conj(significado) $>$\\
+	Donde nodo es tupla $<$siguientes: arreglo[27] de puntero a nodo, significado: puntero a significado  $>$
+	
+	
+	
+\subsection{Invariante de Representación}
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ d: $\widehat{estr}$) Rep(d) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	$No hay ciclos en d.definiciones$\\
+	$Todos los caminos con significados validos estan en claves$\\
+	$Para todo elemento del conjunto claves existe un camino de nodos valido $\\$ que tiene un significado valido$\\
+	$No hay caminos finales (con todos los siguientes NULL) que no tengan significado valido$\\
+	$Todos los significados validos apuntan a algun elemento de e.conjSignificados$ \\$
+	y todos los elementos de e.conjSignificados tienen algun significado valido $\\$
+	 con un puntero hacia el.$ 
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\
+
+\subsection{Función de Abstracción}
+	\noindent Abs: $\widehat{estr}$ e \en diccionario (Rep(d))\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv$ d: $\widehat{diccionario}$ /  \\
+	$\left(
+	\begin{array}{l}
+	(\forall c: clave) def?(c,d) \Leftrightarrow $(la clave tiene su camino valido con significado valido) $  \yluego \\ 
+	(\forall c: clave) def?(c,d) \impluego obtener(c,d) \igobs $(el significado en e.conjSignificados al cual apunta $\\$ el puntero del camino de c)$ \\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\$
+$
+\subsection{Algoritmos}
+	
+	\begin{algorithm}{$i$CrearDiccString}{}{\param{}{resultado}{estr}}
+	\VAR{i:nat}\\
+	resultado.claves = Vacio()\\
+	\begin{FOR}{i\=1 \TO 27}
+		resultado.definiciones.siguientes[i] = NULL
+	\end{FOR}
+	resultado.definiciones.significado = NULL\\
+	\RETURN resultado
+	\end{algorithm}
+	\textit{Complejidad:} 27 * O(1)=\textbf{O(1)}\\
+	\textit{Aliasing:} No \\
+	
+	\begin{algorithm}{$i$DefinirDS}{\param{inout}{d}{estr}, \param{in}{c}{clave}, \param{in}{s}{significado}}{}
+	Agregar(c, d.claves);\\
+	Agregar(s, d.conjSiguientes);\\
+	\VAR{punt\!: punteroAsignificado} \leftarrow \&s\\
+	\VAR{actual\!: nodo}\\
+	actual = d.definiciones;\\
+		\begin{FOR}{i=1 \TO Longitud(c)}
+			\begin{IF}{actual.siguientes[int(c[i])] == NULL}\\
+				\VAR{nuevoNodo\!: nodo}\\
+				nuevoNodo.significado = NULL\\
+				\begin{FOR}{j=1 \TO 27}
+					nuevoNodo.siguientes[j] = NULL
+				\end{FOR}
+				actual.siguientes[c[i]] = \&nuevoNodo
+			\end{IF}\\
+			actual = ({}^* actual).siguientes[int(c[i])];					
+		\end{FOR}
+	actual.significado = *punt
+	\end{algorithm}	
+	\textit{Complejidad:} |c| *(27*(O(1))) = O(|c|)\\
+	\textit{Aliasing:} No \\	
+	
+	
+	\begin{algorithm}{$i$Definido?DS}{\param{in}{d}{estr}, \param{in}{c}{clave}}{\param{}{resultado}{bool}}
+	\VAR{ def \!: bool}\\
+	\VAR{actual \!: nodo}\\
+	\begin{IF}{(d.definiciones.siguientes[c[1]]) \neq NULL} \\
+		actual={}^* (d.definiciones.siguientes[c[1]])\\
+		def \leftarrow true \\
+		\begin{FOR}{i=2 \TO Longitud(c)}
+			\begin{IF}{(actual.siguientes[int(c[i])] \neq NULL$ $ \&\&$ $ def)}		\\
+				actual = {}^* (actual.siguientes[int(c[i])])
+			\ELSE \\
+				def \leftarrow false
+			\end{IF}
+		\end{FOR}
+		\begin{IF}{actual.significado \neq NULL}\\
+			\RETURN def
+		\ELSE \\
+			def \leftarrow false
+		\end{IF}
+		\ELSE \\
+			def \leftarrow false
+		\end{IF} \\
+	\RETURN def
+	\end{algorithm}
+	\textit{Complejidad:}\textbf{ O(|c|)}\\
+	\textit{Aliasing:} No \\		
+	
+	
+	\begin{algorithm}{$i$ObtenerDS}{\param{in}{d}{estr}, \param{in}{c}{clave}}{\param{}{resultado}{significado}}
+	\VAR{actual\!: nodo}\\
+	actual = d.definiciones\\
+	\begin{FOR}{i=1 \TO Longitud(c)}
+		actual = {}^* (actual.siguientes[int(c[i])])
+	\end{FOR}
+	\RETURN actual.significado
+	\end{algorithm}
+	\textit{Complejidad:}\textbf{ O(|c|)}\\
+	\textit{Aliasing:} Si \\	
+	
+	\begin{algorithm}{$i$ClavesDS}{\param{in}{d}{estr}}{\param{}{resultado}{conj}}
+	\RETURN d.claves
+	\end{algorithm}
+	\textit{Complejidad:}\textbf{ O(1)}\\
+	\textit{Aliasing:} Si \\	
+	
+	\begin{algorithm}{$i$CopiarDS}{\param{in}{d}{diccionario}}{\param{}{resultado}{diccionario}}
+	resultado.claves= Copiar(d.claves)\\
+	resultado.conjSignificados= Copiar(d.conjSignificados)\\
+	\begin{FOR}{i=1 \TO 27}
+		\begin{IF}{d.siguientes[i]!=NULL}
+			resultado.siguientes[i]={}^*iCopiarNodo(d.siguientes[i])
+		\ELSE
+			resultado.siguientes[i]=NULL
+		\end{IF}
+	\end{FOR}
+	\RETURN resultado
+	\end{algorithm}
+	\textit{Complejidad:} O(\#(claves)*|clave\textsubscript{max}|)+O(\#(significados)*copiarSignificado)+27*O(copiarNodo) \\
+	Donde \#(claves) == \#(significados) \\
+	O(copiarNodo)=O(copiarSignificado) $\Rightarrow$ \\
+	O(\#(claves) (O(|clave\textsubscript{max}|)+ O(copiarSignificado)))+O(copiarSignificado) = \\
+	\textbf{O(\#(claves) (O(|clave\textsubscript{max}|)+ O(copiarSignificado)))}
+	
+	\textit{Aliasing:} No \\
+	
+	\begin{algorithm}{$i$CopiarNodo}{\param{in}{n}{puntero(nodo)}}{\param{}{resultado}{nodo}}
+	\begin{IF}{\& n.significado!=NULL}
+		resultado.significado \leftarrow Copiar(\& n.significado)
+		\ELSE
+		resultado.significado=NULL
+	\end{IF} \\
+	\begin{FOR}{i=1 \TO 27}
+		\begin{IF}{\& n.siguientes[i]!=NULL}
+			resultado.siguientes[i]={}^*iCopiarNodo(n.siguientes[i])
+		\ELSE
+			resultado.siguientes[i]=NULL
+		\end{IF}
+	\end{FOR}
+	\RETURN resultado
+	\end{algorithm}
+	\textit{Complejidad:} 27*O(copiarSignificado) = \textbf{O(copiarSignificado})\\
+	\textit{Aliasing:} No \\
+	
+\newpage

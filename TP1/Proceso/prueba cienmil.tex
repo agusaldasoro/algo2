@@ -1,0 +1,381 @@
+\documentclass[10pt, a4paper]{article}
+\usepackage[paper=a4paper, left=1.5cm, right=1.5cm, bottom=1.5cm, top=3.5cm]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+\usepackage{latexsym}
+\usepackage[usenames]{color}
+\usepackage{lastpage}
+\usepackage{aed2-symb,aed2-itef,aed2-tad}
+\usepackage[colorlinks=true, linkcolor= blue]{hyperref}
+\usepackage{calc}
+
+\newcommand{\f}[1]{\text{#1}}
+\renewcommand{\paratodo}[2]{$\forall~#2$: #1}
+\newcommand{\tab}{\hspace*{5mm}}
+
+\sloppy
+
+\hypersetup{%
+ % Para que el PDF se abra a p�gina completa.
+ pdfstartview= {FitH \hypercalcbp{\paperheight-\topmargin-1in-\headheight}},
+ pdfauthor={C�tedra de Algoritmos y Estructuras de Datos II - DC - UBA},
+ pdfkeywords={TADs b�sicos},
+ pdfsubject={Tipos abstractos de datos basicos}
+}
+
+\parskip=5pt % 10pt es el tamaño de fuente
+
+% Pongo en 0 la distancia extra entre �temes.
+\let\olditemize\itemize
+\def\itemize{\olditemize\itemsep=0pt}
+
+% Acomodo fancyhdr.
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\addtolength{\headheight}{1pt}
+\lhead{Algoritmos y Estructuras de Datos II}
+\rhead{$1^{\mathrm{er}}$ cuatrimestre de 2012}
+\cfoot{\thepage /\pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\author{Algoritmos y Estructuras de Datos II, DC, UBA.}
+\date{}
+\title{Tipos abstractos de datos b\'asicos}
+
+\begin{document}
+
+%Pagina de titulo e indice
+\thispagestyle{empty}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+%TADS
+
+\section{TAD \tadNombre{NombreCliente}}
+
+\begin{tad}{\tadNombre{NombreCliente}}
+
+TAD NombreCliente es String
+
+
+\end{tad}
+
+
+\section{TAD \tadNombre{NombreT\'itulo}}
+
+\begin{tad}{\tadNombre{NombreT\'itulo}}
+
+TAD NombreT\'itulo es String
+
+
+\end{tad}
+
+\section{TAD \tadNombre{Precio}}
+
+\begin{tad}{\tadNombre{Precio}}
+
+TAD Precio es Nat
+
+\end{tad}
+
+
+
+
+\section{TAD \tadNombre{T\'itulo}}
+
+\begin{tad}{\tadNombre{T\'itulo}}
+
+\tadGeneros{t\'itulo}
+\tadUsa{\tadNombre{Nat, NombreT\'itulo, Precio}}
+\tadExporta{nombre, maxCant, cotizaci\'onInicial}
+
+\tadIgualdadObservacional{t_1}{t_2}{t\'itulo}{$(nombre (t_1) = nombre (t_2)) \land \newline (maxCant (t_1) = maxCant (t_2)) \land \newline (cotizaci$\'o$nInicial (t_1) = cotizaci$\'o$nInicial (t_2))$}
+
+
+\tadAlinearFunciones{\argumento $\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\impluego$ \argumento}{bool,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$}{}
+\tadGeneradores
+
+\tadOperacion{crearT\'itulo}{NombreT\'itulo, Nat, Precio}{T\'itulo}{}
+
+\tadObservadores
+
+\tadOperacion{nombre}{T\'itulo}{NombreT\'itulo}{}
+\tadOperacion{maxCant}{T\'itulo}{Nat}{}
+\tadOperacion{cotizaci\'onInicial}{T\'itulo}{Precio}{}
+
+\tadAxiomas
+
+(\paratodo{NombreT\'itulo}{nT},\paratodo{Nat}{m}, \paratodo{Precio}{p}) 
+
+\tadAlinearAxiomas{false$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$ $\oluego$ $x$}
+\tadAxioma{nombre(crearT\'itulo(nT,m,p))}{nT}
+\tadAxioma{maxCant(crearT\'itulo(nT,m,p))}{m}
+\tadAxioma{cotizaci\'onInicial(crearT\'itulo(nT,m,p))}{p}
+
+\setlength{\parskip}{8mm}
+
+\end{tad}
+\setlength{\parskip}{8mm}
+
+\section{TAD \tadNombre{Promesa}}
+
+\begin{tad}{\tadNombre{Promesa}}
+\tadGeneros{promesa}
+\tadUsa{\tadNombre{NombreT\'itulo, NombreCliente, Nat, Bool}}
+\tadExporta{nombreDue\~no, nombreEmpresa, cota, cantidad, esDeCompra?, esDeVenta?}
+
+
+\tadIgualdadObservacional{p_1}{p_2}{promesa}{$(nombreDue$\~n$o(p_1)=nombreDue$\~n$o(p_2)) \land \newline (nombreEmpresa(p_1)= nombreEmpresa(p_2)) \land \newline (cota(p_1)=cota(p_2)) \land \newline (cantidad(p_1) =cantidad(p_2)) \land \newline (esDeCompra?(p_1))=esDeCompra?(p_2)$}
+\tadAlinearFunciones{\argumento = 0?}{nat/$n$,nat/$m$}
+
+\tadAlinearFunciones{\argumento $\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\impluego$ \argumento}{bool,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$,$\alpha$}{}
+
+\tadGeneradores
+
+\tadOperacion{promesaDeC}{NombreCliente, NombreT\'itulo, Nat ,Nat}{Promesa}{}
+\tadOperacion{promesaDeV}{NombreCliente, NombreT\'itulo, Nat ,Nat}{Promesa}{}
+
+\tadObservadores
+
+\tadOperacion{nombreDue\~no}{Promesa}{NombreCliente}{}
+\tadOperacion{nombreEmpresa}{Promesa}{NombreT\'itulo}{}
+\tadOperacion{cota}{Promesa}{Nat}{}
+\tadOperacion{cantidad}{Promesa}{Nat}{}
+\tadOperacion{esDeCompra?}{Promesa}{Bool}{}
+
+\tadOtrasOperaciones
+
+\tadOperacion{esDeVenta?}{Promesa}{Bool}{}
+
+\tadAxiomas
+\tadAlinearAxiomas{pred(suc($n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$k$n$,$n$,$n$))}
+(\paratodo{nombreCliente}{nC},\paratodo{nombreTitulo}{nT}, \paratodo{Nat}{cot}, \paratodo{Nat}{cant}) 
+
+\tadAxioma{nombreDue\~no(promesaDeC(nC,nT,cot,cant))}{nC}
+\tadAxioma{nombreDue\~no(promesaDeV(nC,nT,cot,cant))}{nC}
+
+\tadAxioma{nombreEmpresa(promesaDeC(nC,nT,cot,cant))}{nT}
+\tadAxioma{nombreEmpresa(promesaDeV(nC,nT,cot,cant))}{nT}
+
+\tadAxioma{cota(promesaDeC(nC,nT,cot,cant))}{cot}
+\tadAxioma{cota(promesaDeV(nC,nT,cot,cant))}{cot}
+
+\tadAxioma{cantidad(promesaDeC(nC,nT,cot,cant))}{cant}
+\tadAxioma{cantidad(promesaDeV(nC,nT,cot,cant))}{cant}
+
+\tadAxioma{esDeCompra?(promesaDeC(nC,nT,cot,cant))}{true}
+\tadAxioma{esDeCompra?(promesaDeV(nC,nT,cot,cant))}{false}
+
+\tadAxioma{esDeVenta?(p)}{$\neg$ esDeCompra?(p)}
+
+\end{tad}
+
+\section{TAD \tadNombre{Wolfie}}
+
+\begin{tad}{\tadNombre{Wolfie}}
+
+\tadGeneros{Wolfie}
+\tadUsa{\tadNombre{Conj($\alpha$), Nat, T\'itulo, NombreCliente, NombreT\'itulo, Promesa, Precio, Bool}}
+\tadExporta{nombresT\'itulos, nombresClientes, dameT\'itulo, promesasSinCumplir, cotizaci\'on, accionesPorCliente, enAlza}
+
+
+\tadIgualdadObservacional{w_1}{w_2}{wolfie}{$(nombresT$\'i$tulos(w_1) \igobs  nombresT$\'i$tulos(w_2)) \land \newline 
+(nombresClientes(w_1) \igobs  nombresClientes(w_2))  $\yluego$ \newline 
+(\forall nT: nombreT$\'i$tulo \in nombresT$\'i$tulos(w_1)) \newline 
+promesasSinCumplir(nT,w_1) \igobs promesasSinCumplir(nT,w_2) \land
+dameT$\'i$tulo(nT,w_1) \igobs dameT$\'i$tulo(nT,w_2) \land \newline
+cotizaci$\'o$n(nT,w_1) = cotizaci$\'o$n(nT,w_2) \land \newline 
+enAlza(nT,w1) = enAlza(nT,w2) $\yluego$ \newline
+ (\forall nC: nombreCliente \in nombresClientes(w_1)) \newline
+accionesPorCliente(nC,nT,w_1) = accionesPorCliente(nC,nT,w_2)
+$} 
+
+
+\tadGeneradores
+
+\tadOperacion{crearW}{}{Wolfie}{}
+\tadOperacion{agregarT\'itulo}{T\'itulo \ t, Wolfie \ w}{Wolfie}{nombre(t) $\notin$ nombresT\'itulos(w)}
+\tadOperacion{agregarCliente}{NombreCliente \ nC, Wolfie \ w }{Wolfie}{nC $\notin$ nombresClientes(w)}
+\tadOperacion{agregarPromesa}{Promesa \ p , Wolfie \ w }{Wolfie} {(nombreEmpresa(p) $\in$ nombresT\'itulos(w)\newline  $\land$  nombreDue\~no(p) $\in$ nombresClientes(w)) \newline \yluego ($\neg$ yaExiste(p,promesasSinCumplir(nombreEmpresa(p),w))\newline $\land$ ((esDeVenta?(p)$\land$  accionesPorCliente(nombreDue\~no(p),nombreEmpresa(p),w) $\geq$ cantidad(p))\newline $\lor$ (esDeCompra?(p) $\land$ cantidad(p) $\leq$ maxCant(dameT\'itulo(nombreEmpresa(p),w)))))
+}
+\tadOperacion{recotizarT\'itulo}{NombreT\'itulo \ nT, Precio \  p, Wolfie \ w }{Wolfie}{nT $\in$ nombresT\'itulos(w)}
+
+
+\tadObservadores
+
+\tadOperacion{nombresT\'itulos}{Wolfie}{Conjunto(NombreT\'itulo)}{}
+\tadOperacion{nombresClientes}{Wolfie}{Conjunto(NombreCliente)}{}
+\tadOperacion{dameT\'itulo}{NombreT\'itulo \  nT, Wolfie \ w}{T\'itulo}{nT $\in$ nombresT\'itulos(w)}
+\tadOperacion{cotizaci\'on}{NombreT\'itulo \ nT, Wolfie \ w}{Precio}{nT $\in$ nombresT\'itulos(w)}
+\tadOperacion{enAlza}{NombreT\'itulo \ nT, Wolfie \ w}{Bool}{nT $\in$ nombresT\'itulos(w)}
+\tadOperacion{promesasSinCumplir}{NombreT\'itulo \ nT, Wolfie \ w}{Conjunto(Promesa)}{nT $\in$ nombresT\'itulos(w)}
+\tadOperacion{accionesPorCliente}{NombreCliente \ nC, NombreT\'itulo \ nT, Wolfie \ w}{Nat}{nT $\in$ nombresT\'itulos(w) $\land$ nC $\in$ nombresClientes(w) }
+
+
+\tadOtrasOperaciones
+\tadOperacion{disponibles}{NombreT\'itulo \ nT, Wolfie \ w}{Nat}{nT $\in$ nombresT\'itulos(w)}
+\tadOperacion{accionesVendidas}{NombreT\'itulo \ nT, Conjunto (NombreCliente) \ c, Wolfie \ w}{Nat}{nT $\in$ nombresT\'itulos(w) $\land$ c $\subseteq$ nombresClientes(w)}
+\tadOperacion{sePuedeEjecutar}{Precio, Nat, Promesa}{Bool}{}
+\tadOperacion{revisarPendientes}{Conjunto (Promesa), Precio, Nat, Conjunto (Promesa)}{Conjunto(Promesa)}{}
+\tadOperacion{sumarCumplidas}{NombreCliente, Conjunto (Promesa), Conjunto (Promesa)}{Nat}{}
+\tadOperacion{yaExiste}{Promesa, Conjunto (Promesa)}{Bool}{}
+
+\tadAxiomas
+( \paratodo{nat}{d},  \paratodo{precio}{m}, \paratodo{nombreCliente}{nC, cl},\paratodo{nombreT\'itulo}{nT, nT'}, \paratodo{T\'itulo}{t},  \paratodo{promesa}{p}, \paratodo{conjunto(nombreCliente)}{cCl}, \paratodo{conjunto(promesa)}{sinCumplir, cP, cViejo, cNuevo}, \paratodo{wolfie}{w}) 
+
+
+
+\tadAlinearAxiomas{pred(suc($n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$,$n$k$n$,$n$,$n$))}
+
+\tadAxioma{nombresT\'itulos(crearW)}{$\emptyset$}
+\tadAxioma{nombresT\'itulos(agregarT\'itulo(t,w))}{Ag(nombre(t), nombresT\'itulos(w))}
+\tadAxioma{nombresT\'itulos(agregarCliente( cl ,w))}{nombresT\'itulos(w)}
+\tadAxioma{nombresT\'itulos(agregarPromesa(p ,w))}{nombresT\'itulos(w)}
+\tadAxioma{nombresT\'itulos(recotizarT\'itulo(nT, p ,w))}{nombresT\'itulos(w)}
+
+\tadAxioma{nombresClientes(crearW)}{$\emptyset$}
+\tadAxioma{nombresClientes(agregarT\'itulo(t,w))}{nombresClientes(w)}
+\tadAxioma{nombresClientes(agregarCliente(cl, w))}{Ag(cl,nombresClientes(w))}
+\tadAxioma{nombresClientes(agregarPromesa(p ,w))}{nombresClientes(w)}
+\tadAxioma{nombresClientes(recotizarT\'itulo(nT, p ,w))}{nombresClientes(w)}
+
+\tadAxioma{dameT\'itulo(nT, agregarT\'itulo(t,w))}{\IF nT== nombre(t) THEN t ELSE dameT\'itulo(nT, w) FI}
+\tadAxioma{dameT\'itulo(nT, agregarCliente(cl, w))}{dameT\'itulo(nT, w)}
+\tadAxioma{dameT\'itulo(nT, agregarPromesa( p ,w))}{dameT\'itulo(nT, w)}
+\tadAxioma{dameT\'itulo(nT, recotizarT\'itulo(nT', p ,w))}{dameT\'itulo(nT, w)}
+
+\tadAxioma{cotizaci\'on(nT, agregarT\'itulo(t,w))}{\IF nT==nombre(t) THEN cotizaci\'onInicial(t) ELSE cotizaci\'on (nT,w) FI}
+\tadAxioma{cotizaci\'on(nT, agregarCliente(cl ,w))}{cotizaci\'on(nT,w)}
+\tadAxioma{cotizaci\'on(nT, agregarPromesa(p ,w))}{cotizaci\'on(nT,w)}
+\tadAxioma{cotizaci\'on(nT, recotizarT\'itulo(nT', m ,w))}{\IF nT==nT' THEN m ELSE cotizaci\'on(nT,w) FI}
+
+
+\tadAxioma{promesasSinCumplir(nT,crearW)}{$\emptyset$}
+\tadAxioma{promesasSinCumplir(nT,agregarT\'itulo(t,w))}{promesasSinCumplir(nT,w)}
+\tadAxioma{promesasSinCumplir(nT,agregarCliente(cl, w))}{promesasSinCumplir(nT,w)}
+\tadAxioma{promesasSinCumplir(nT,agregarPromesa(p ,w))}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} nT== nombreEmpresa(p)  then \newline
+\tab \textbf{if} sePuedeEjecutar (cotizaci\'on(nombreEmpresa(p),w), disponibles(nombreEmpresa(p),w),p) \textbf{then} \newline
+\tab \tab \textbf{if} esDeCompra(p)  then \newline 
+\tab \tab \tab promesasSinCumplir(nT,w) \newline 
+\tab \tab \textbf{else} \newline
+\tab \tab \tab revisarPendientes ($\emptyset$, cotizaci\'on (nT,w), (disponibles (nT,w) + cantidad (p)), promesasSinCumplir (nT,w)) \newline
+\tab \tab \tab \textbf{fi} \newline
+\tab \textbf{else} \newline
+\tab \tab Ag(p, promesasSinCumplir(nT,w)) \newline 
+\tab \textbf{fi} \newline
+\textbf{else} \newline
+\tab promesasSinCumplir(nT,w) \newline
+\textbf{fi}
+
+}
+
+\tadAxioma{promesasSinCumplir(nT,recotizarT\'itulo(nT',m,w))}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} nT== nT' \textbf{then} \newline
+ \tab revisarPendientes($\emptyset$, m, disponibles(nT,w), promesasSinCumplir(nT,w)) \newline
+\noindent \textbf{else} \newline
+\tab promesasSinCumplir(nT,w) \newline
+\textbf{fi}
+
+}
+
+\tadAxioma{enAlza(nT, agregarT\'itulo(t,w))}{\IF nT==nombre(t) THEN true ELSE enAlza(nT,w) FI}
+\tadAxioma{enAlza(nT, agregarCliente(cl, w))}{enAlza(nT,w)}
+\tadAxioma{enAlza(nT, agregarPromesa(p ,w))}{enAlza(nT,w)}
+\tadAxioma{enAlza(nT, recotizarT\'itulo(nT', m ,w))}{\IF nT==nT' THEN (m> cotizaci\'on(n,w)) ELSE enAlza(nT,w) FI}
+
+
+\tadAxioma{accionesPorCliente(nC,nT,agregarT\'itulo(t,w))}{\IF nT==nombre(t) THEN 0 ELSE accionesPorCliente(nC, nT, w) FI}
+\tadAxioma{accionesPorCliente(nC,nT,agregarCliente(c,w))}{\IF nC==c THEN 0 ELSE accionesPorCliente(nC,nT,w) FI}
+\tadAxioma{accionesPorCliente(nC,nT,agregarPromesa(p,w))}{
+}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} nT== nombreEmpresa(p) $\land$ nC== nombreDue\~no(p) $\land$ sePuedeEjecutar(cotizaci\'on(nT,w), disponibles(nT, w),p)  \textbf{then} \newline
+\tab \textbf{if} esDeVenta(p)  \textbf{then} \newline 
+\tab \tab sumarCumplidas(nC, promesasSinCumplir(nT,w), promesasSinCumplir(nT, agregarPromesa(p,w))) - cantidad(p) + accionesPorCliente(nC, nT, w) \newline 
+\tab \textbf{else} \newline
+\tab \tab cantidad(p)+ accionesPorCliente(nC, nT, w) \newline 
+\tab \textbf{fi} \newline
+\textbf{else} \newline
+\tab \tab sumarCumplidas (nC, promesasSinCumplir(nT,w), promesasSinCumplir (nT, agregarPromesa (p, w))) + accionesPorCliente(nC, nT, w) \newline
+\textbf{fi} 
+
+}
+\tadAxioma{accionesPorCliente(nC,nT,recotizarT\'itulo(nT',c,w))}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} nT== nT' \textbf{then} \newline
+ \tab sumarCumplidas (nC, promesasSinCumplir (nT, w), promesasSinCumplir (nT, RecotizarT\'itulo(nT', c, w)) \newline
+\tab + accionesPorCliente (nC,nT,w) \newline
+\noindent \textbf{else} \newline
+\tab accionesPorCliente(nC, nT, w) \newline
+\textbf{fi}
+
+}
+
+\tadAxioma{disponibles(nT, w)}{maxCant(dameT\'itulo(nT,w)) - accionesVendidas(nT, nombresClientes(w), w)}
+
+
+\tadAxioma{accionesVendidas(nT, cCl ,w)}{\IF $\emptyset$?(cCl) THEN 0 ELSE accionesPorCliente(dameUno(cCl), nT, w) + accionesVendidas(nT, sinUno(cCl), w) FI}
+
+\tadAxioma{sePuedeEjecutar(m, d, p)}{\IF esDeCompra(p) THEN (cota(p) $\leq$ m $\land$ cantidad(p) $\leq$ d) ELSE cota(p) > m FI}
+
+\tadAxioma{revisarPendientes(sinCumplir, m, d, cP)}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if}$\neg$($\emptyset$?(cP)) \textbf{then} \newline
+ \tab \textbf{if} sePuedeEjecutar(m, d, dameUno(cP)) \textbf{then} \newline
+\tab \tab \textbf{if} esDeVenta(dameUno(cP)) \textbf{then} \newline 
+\tab \tab \tab  revisarPendientes($\emptyset$, m, d + cantidad(dameUno (cP)), sinUno(cP) $\cup$ sinCumplir) \newline \tab \tab \textbf{else} \newline
+\tab \tab \tab revisarPendientes(sinCumplir, m, d - cantindad(dameUno(cP)), sinUno(cP)) \newline 
+\tab \tab \textbf{fi} \newline
+\tab \textbf{else} \newline
+\tab \tab revisarPendientes(Ag (dameUno(cP),sincumplir), m, d, sinUno(cP)) \newline
+\tab \textbf{fi} \newline 
+\noindent \textbf{else} \newline
+\tab sinCumplir\newline
+\textbf{fi}
+
+}
+
+\tadAxioma{sumarCumplidas(nC, cViejo, cNuevo)}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} $\emptyset$?(cViejo) \textbf{then} \newline
+\tab 0 \newline
+\noindent \textbf{else} \newline
+ \tab \textbf{if} nC==nombreDue\~no(dameUno(cViejo)) $\land$ dameUno(cViejo) $\notin$ cNuevo  \textbf{then}  \newline
+\tab \tab \textbf{if} esDeVenta(dameUno(cViejo))  \textbf{then} \newline
+\tab \tab \tab sumarCumplidas(nC, sinUno(cViejo), cNuevo) - cantidad(dameUno(cViejo)) \newline
+\tab \tab \textbf{else} \newline
+\tab \tab \tab cantidad(dameUno(cViejo)) + sumarCumplidas(nC, sinUno(cViejo), cNuevo) \newline 
+\tab \tab \textbf{fi} \newline
+\tab \textbf{else} \newline
+\tab \tab  sumarCumplidas(nC, sinUno(cViejo), cNuevo) \newline
+\tab \textbf{fi} \newline 
+\noindent \textbf{fi}
+
+}
+
+\tadAxioma{yaExiste(p, cP)}{}
+{\addtolength{\leftskip}{20 mm}
+\noindent \textbf{if} $\emptyset$?(cP) \textbf{then} \newline
+\tab false \newline
+\noindent \textbf{else} \newline
+ \tab \textbf{if} nombreDue\~no(p) ==   nombreDue\~no(dameUno(cP)) AND (esDeVenta?(p) == esDeVenta?(dameUno(c)))\textbf{then}  \newline
+\tab \tab true  \newline
+\tab \textbf{else} \newline
+\tab \tab  yaExiste(p, sinUno(cP)) \newline
+\tab \textbf{fi} \newline 
+\noindent \textbf{fi}
+
+}
+
+\end{tad}
+
+\end{document}

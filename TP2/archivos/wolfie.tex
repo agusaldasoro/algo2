@@ -1,0 +1,330 @@
+\section{M\'odulo Wolfie}
+
+\subsection{Servicios Exportados}
+	
+\begin{tabular}[c]{|c|c|c|}
+	
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		InaugurarWolfie  & No & O(\#$(cs)^2$) \\
+		\hline
+		AgregarT\'itulo & No & O(|nt| + C) \\
+		\hline
+		ActualizarCotizaci\'on & No & O(C $\cdot$ |nt| + C $\cdot$ log(C)) \\
+		\hline
+		AgregarPromesa & No & O(|t\'itulo(p)| + log(c))\\
+		\hline
+		Clientes & S\'i & O(1) \\
+		\hline
+		T\'itulos & S\' i & O(1)\\
+		\hline
+		PromesasDe & S\' i & O(T $\cdot$ C $\cdot$ |max\_nt|) y O(1) para llamados consecutivos con el mismo c \\
+		\hline
+		AccionesPorCliente & No  & O(log(C) + |nt|)\\
+		\hline
+		\end{tabular}\\\\
+
+Cs es el conjunto inicial de clientes\\
+Nt es el nombre de un t\'itulo y |Nt| su longitud\\
+P es la cantidad de promesas pendientes de Wolfie\\
+C es la cantidad de clientes\\
+|max\_nt| es la longitud m\'axima entre todos los nombres de los t\'itulos\\\\
+
+
+\subsection{Interfaz}
+	Interfaz \nombretad{Wolfie}\\
+	Se explica con: wolfie\\
+	G\'{e}neros: wolfie\\
+	Operaciones:\\
+
+	\begin{interfaz}{inaugurarWolfie}{in $cs$:conj(cliente)}{Wolfie}{}
+	\textbf{Pre} $\equiv$ \pre{¬vacio(cs) }
+	\textbf{Post} $\equiv$ \post{resultado \igobs inaugurarWolfie(cs)}
+	\end{interfaz}
+
+	\begin{interfaz}{agregarT\'itulo}{inout $w$: wolfie, in $t$: \ T\'itulo}{}{}
+	\textbf{Pre} $\equiv$ \pre{w \igobs w_0 \wedge (\forall t_2 : titulo) (t_2 \in titulos(w) \rightarrow nombre(t) \ne nombre(t_2))}
+	\textbf{Post} $\equiv$ \post{ w \igobs agregarTitulo(t, w_0)}
+	\end{interfaz}
+
+	\begin{interfaz}{actualizarCotizacion}{in $nt$: nombre, in $cot$: nat, inout $w$: wolfie}{}{}
+	\textbf{Pre} $\equiv$ \pre{ w \igobs w_0 \wedge (\exists t: titulo)(t \in titulos(w) \wedge nombre(t) = nT) }
+	\textbf{Post} $\equiv$ \post{ w \igobs actualizarCotizacion(nt,cot,w)}
+	\end{interfaz}
+
+	\begin{interfaz}{agregarPromesa}{in $c$: cliente, in $p$: promesa, inout $w$: wolfie}{}{}
+	\textbf{Pre} $\equiv$ \pre{ w \igobs w_0 \yluego ((\exists t:titulo)(t \in titulos(w) \wedge nombre(t) = titulo(p)) \wedge c \in clientes(w) \yluego \\ 
+	(\forall p_2: promesa) (p_2 \in promesasDe(c,w) \Rightarrow (titulo(p) \neq titulo(p_2) \vee \\
+	 tipo(p) \neq tipo(p_2)) ) \wedge (tipo(p) = vender \\
+	 \Rightarrow accionesPorCliente(c, titulo(p),w) \geq cantidad(p)))}
+	\textbf{Post} $\equiv$ \post{ w \igobs agregarPromesa(c,p,w_0)}
+	\end{interfaz}
+
+	\begin{interfaz}{clientes}{in $w$:wolfie}{conj(cliente)}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{resultado \igobs clientes(w)}
+	\end{interfaz}
+
+	\begin{interfaz}{titulos}{in $w$:wolfie}{conj(titulo)}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{resultado \igobs titulos(w)}
+	\end{interfaz}
+
+	\begin{interfaz}{promesasDe}{in $c$:cliente, in $w$: wolfie}{conj(promesa)}{}
+	\textbf{Pre} $\equiv$ \pre{c \in clientes(w)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs promesasDe(c,w)}
+	\end{interfaz}
+
+	\begin{interfaz}{accionesPorCliente}{in $c$:cliente, in $nt$: nombre, in $w$: wolfie}{Nat}{}
+	\textbf{Pre} $\equiv$ \pre{ c \in clientes(w) \wedge (\exists t: titulo)(t \in titulos(w) \wedge nombre(t) = nt )}
+	\textbf{Post} $\equiv$ \post{resultado \igobs accionesPorCliente(c, nt, w)}
+	\end{interfaz}
+
+\subsection{Estructura de Representaci\'on}
+	Wolfie se representa con estr\\
+	
+	Donde estr es tupla $<$diccClientesAcciones: $diccionarioInception$ \\
+				     diccPromesas: $diccConMemoria$ \\
+				     conjuntoClientes: $conjunto(cliente)$ \\
+				     conjuntoTitulos: $conjunto(titulo)$$>$\\
+
+
+\subsection{Invariante de Representaci\'on}
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	1) (\neg (vacio?(e.conjuntoClientes) \wedge \\
+	2) clientesDI(e.diccClientesAcciones) \igobs e.conjuntoClientes \yluego \\
+	3) (\forall c:cliente) (c \in e.conjuntoClientes \impluego \\
+ 	 ((\forall nt: nombre)(nt \in titulosDe(c, e.diccClientesAciones) \impluego \\
+	(\exists t : titulo)(t \in e.conjuntoTitulos \wedge nombre(t) = nt))))) \wedge \\
+	4) (\forall nt: nombre) (nt \in titulosDM(e.diccPromesas) \Leftrightarrow  \\
+	 (\exists t:titulo)(t \in e.conjuntoTitulos) (nombre(t) = nt) \wedge \\ t \igobs titulo(obtenerDM(e.diccPromesas, nombre(t)))) \wedge \\
+	5) (\forall t: titulo)(t \in e.conjuntoTitulos) \impluego \\ 
+	(\#maxAcciones(t) \geq \\ 
+	cantidadTotalPorTitulo(e.conjuntoClientes,    e.diccClientesAcciones, nombre(t))) \\
+	6) (\forall nt: nombre) (nt \in titulosDM(e.diccPromesas) \impluego \\
+	((\forall infT: infoTitulo)(infT \igobs obtenerDM(nt, e.diccPromesas)) \impluego \\
+	((\forall infP: infoPromesa)(infP \in compras(infT) \vee infP \in ventas(infT)) \impluego \\
+	(accionesTotales(e.diccClientesAcciones, cliente(infP))==accionesDelCliente(infP)))) \\
+	7) (\forall nt: nombre) (nt \in titulosDM(e.diccPromesas \impluego \\
+	(\#maxAcciones(titulo(obtener(e.diccPromesas, nT)))	- \\
+cantidadTotalPorTitulo(e.conjuntoClientes, e,diccClientesAcciones, nT) = \\
+disponibles(obtener(e.diccPromesas, nT)))
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+donde \\
+	\func{cantidadTotalPorTitulo}{cs: \ conj(cliente), dicc: \ diccionarioInception,nt: \ nombre}{nat}{}
+	\axioma{cantidadTotalPorTitulo(cs,dicc, nt)}{\IF vacio?(cs) THEN 0 \\ELSE \\ \IF nt $\in$ titulosDe(dameUno(cs)) THEN \\cantidad(c, nt, dicc) +  cantidadTotalPorTitulo(sinUno(cs), dicc, nt) \\ELSE \\cantidadTotalPorTitulo(sinUno(cs), dicc, nt) \\FI \\FI
+	}
+	\\\\
+
+\textbf{Explicaci\'on:} \\
+1) El conjunto de clientes no es vac\'io. \\
+2) El conjunto de clientes de Wolfie es igual observacionalmente a las claves de su diccionario de tipo Inception. \\
+3) Todos los nt asociados a cada cliente de Wolfie son nombres de t\'itulos v\'alidos inclu\'idos en el conjunto de t\'itulos de la estructura. \\
+4) Todos los nombres de t\'itulos que figuran como claves en el diccionario Con Memoria de Wolfie son nombres de t\'itulos v\'alidos inclu\'idos en el conjunto de t\'itulos de la estructura. Ademas, el titulo que devuelve infoTitulo para cada clave en el diccionario con memoria sea el mismo titulo que figura en el conjunto de titulos.\\
+5) La sumatoria de la cantidad de acciones de un determinado t\'itulo entre todos los clientes de Wolfie nunca supera el l\'imite de "stock" del mismo. \\
+6) Que las acciones totales de cada cliente que te da el diccionario inception sean las mismas que las que tiene cada infoPromesa ubicada en algun infoTitulo del diccionario con Memoria.\\
+7) Que la cantidad de acciones disponibles sea la cantidad maxima del titulo menos las acciones que tienen los clientes.\\
+
+
+
+
+\subsection{Funci\'on de Abstracci\'on}
+
+	\noindent Abs: $\widehat{estr}$ e \en Wolfie (Rep(e))\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv$w: $\widehat{Wolfie}$ /  \\
+	$\left(
+	\begin{array}{l}
+clientes(w) \igobs e.conjuntoClientes \wedge \\
+titulos(w) \igobs e.conjuntoTitulos \wedge \\
+(\forall c: cliente)(c \in clientes (w)) \impluego promesasDe(c,w) \igobs promesasDeDM(c,e.diccPromesas) \wedge \\
+(\forall c: cliente)(c \in clientes(w)(((\forall nt: nombre)(\exists t:titulo)(t \in titulos(w))) \impluego \\ accionesPorCliente(c,nt,w)) \igobs cantidad(e.diccClientesAcciones,c,nt)
+	\\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+\subsection{Algoritmos}
+
+
+\begin{algorithm}{$i$inaugurarWolfie}{\param{in}{cs}{conj(cliente)}}{\param{}{resultado}{wolfie}}
+			resultado.conjuntoTitulos \leftarrow vacio();  \\ 
+			resultado.conjuntoClientes \leftarrow cs; \\
+			resultado.diccPromesas \leftarrow vacioDM();  \\
+			resultado.diccClientesAcciones \leftarrow vacioDI(); \\
+			\VAR{it : itConj(cliente)}= crearIt(cs);\\
+			\begin{WHILE}{(haySiguiente(it))}
+			agregarClienteDI(resultado.diccClienteAcciones, siguiente(it)); \\ 
+			avanzar(it)
+			\end{WHILE}\\
+			\RETURN resultado
+			\end{algorithm}
+	\textit{Complejidad:}  O(1)\textsubscript{1} + O(1)\textsubscript{2} + O(1)\textsubscript{vacioDM()} + O(1)\textsubscript{vacioDI()} + O(1)\textsubscript{6} + O(C)\textsubscript{7} * (O(C)\textsubscript{agregarClienteDI()} + O(1)\textsubscript{avanzar}) =$O(C^{2})$
+	\\
+
+\begin{algorithm}{$i$agregarTitulo}{\param{inout}{e}{estr}, \param{in}{t}{titulo}}{}
+\VAR{it :itConj(titulo)} \\
+it \leftarrow agregarRapido(e.conjuntoTitulos, t);\\
+agregarTituloDM(e.diccPromesas, it, cardinal(e.conjuntoClientes));
+			\end{algorithm}
+\textit{Complejidad:}  O(1)\textsubscript{agregarRapido} + O(C + |nt|)\textsubscript{agregarTituloDM} = \\
+\textbf{O(C + |nt|)}
+			\\
+		
+\begin{algorithm}{$i$actualizarCotizacion}{\param{in}{nt}{nombre}, \param{in}{cot}{Nat}, \param{inOut}{w}{Wolfie}}{}
+\VAR{info :infoTitulo} \\
+info \leftarrow obtenerDM(w.diccPromesas, nt) \\
+recotizar(titulo(info),cot) \\
+\VAR{it: itConj(infoPromesa)}  // iterador \ a \ conjunto \ de \ ventas \\
+it \= crearIt(ventas(info));\\
+\begin{WHILE}{(haySiguiente(it))}
+	\VAR{sig:infoPromesa} = siguiente(it) \\
+	\begin{IF}{cot < limite(promesa(sig))}		\\
+		restarAcciones(w.diccClienteAcciones, cliente(sig), nombre(promesa(sig)), cantidad(promesa(sig)))\\
+		dispoibles(info) \leftarrow disponibles(info) + cantidad(promesa(sig));\\
+		eliminarSiguiente(it);
+	\end{IF} \\
+	avanzar(it);
+\end{WHILE}\\
+ordenar(compras(info)); \\
+\VAR{i: nat} \= 1 \\
+\begin{WHILE}{(i \leq tama$\~n$o(compras(info)))}
+	\VAR{comp: itConj(infoPromesa)} \= dameIndice(i, compras(info));\\
+	\begin{IF}{(comp\neq NULL$ $\&\&$ $cantidad(promesa(siguiente(comp))) \leq disponibles(info))}\\
+		sumarAcciones(w.diccClienteAcciones, cliente(siguiente(comp)), \\
+		$ $ $ $nombre(promesa(siguiente(comp))), cantidad(promesa(siguiente(comp))) \\
+		disponibles(info) \leftarrow disponibles(info) - cantidad(promesa(siguiente(comp)));\\
+		borrar(i, compras(info));		
+	\end{IF}
+\end{WHILE} \\
+ordenar(compras(info)); \\
+\RETURN 
+\end{algorithm}	
+\textit{Complejidad:}  \\
+O(|nT|)\textsubscript{obtenerDM} + 
+O(1)\textsubscript{recotizar} +
+O(1)\textsubscript{crearIt} + \\
+\#Ventas *(
+O(log C + |nT|)\textsubscript{restarAcciones} +
+O(1)\textsubscript{11} +
+O(1)\textsubscript{eliminarSiguiente} +
+O(1)\textsubscript{avanzar}) + \\
+O(\#compras * log \#compras)\textsubscript{ordenar} + \\
+\#compras *(
+O(1)\textsubscript{dameIndice} +
+O(1)\textsubscript{20} +
+O(log C + |nT|)\textsubscript{sumarAcciones} +
+O(1)\textsubscript{24} +
+O(1)\textsubscript{borrar}) + \\
+O(\#compras * log \#compras)\textsubscript{ordenar} = \\
+\\
+O(|nT|) + \#Ventas *O(log C + |nT|) + O(\#compras * log \#compras) + \#compras *O(log C + |nT|) + O(\#compras * log \#compras) = \\
+\\
+Donde \#compras y \#ventas siempre va a ser menor o igual a la cantidad total de clientes (C) porque a lo sumo tienen una promesa de cada tipo. \\
+$\Rightarrow$ \\
+O(|nT|) + C *O(log C + |nT|) + O(C * log C) + C *O(log C + |nT|) + O(C * log C) = \\
+\textbf{O(C*(log c + |nT|))} \\
+
+\begin{algorithm}{$i$agregarPromesa}{\param{in}{c}{Cliente}, \param{in}{p}{Promesa}, \param{inOut}{w}{Wolfie}}{}
+agregarPromesaDM(e.diccPromesas, p, c, \&accionesTotales(e.diccClientesAcciones, c));
+			\end{algorithm}	
+	\textit{Complejidad:}  \\
+O(|nT|)\textsubscript{agregarPromesaDM} + O(log C)\textsubscript{agregarPromesaDM}	= \\
+\textbf{O(|nT| + log C)} \\
+					
+				
+\begin{algorithm}{$i$clientes}{\param{in}{e}{estr}}{\param{}{resultado}{conj(cliente)}}
+\RETURN crearIt(e.conjuntoClientes)
+			\end{algorithm}
+\textit{Complejidad:}  \\
+\textbf{O(1)}\textsubscript{crearIt}
+				
+\begin{algorithm}{$i$titulos}{\param{in}{e}{estr}}{\param{}{resultado}{conj(titulo)}}
+\RETURN crearIt(e.conjuntoTitulos)
+			\end{algorithm}	
+\textit{Complejidad:}  \\
+\textbf{O(1)}\textsubscript{crearIt}
+
+\begin{algorithm}{$i$promesasDe}{\param{in}{e}{estr}, \param{in}{c}{cliente} }{\param{}{resultado}{conj(promesa)}}
+				\RETURN promesasDeDM(c,e.diccPromesas);
+			\end{algorithm}		
+\textit{Complejidad:}  \\
+\textbf{O(T * C * |max\_nt|)}\textsubscript{promesasDeDM} \\
+			
+\begin{algorithm}{$i$accionesPorCliente}{\param{in}{nt}{nombre}, \param{in}{c}{cliente}, \param{in}{e}{estr}}{\param{}{resultado}{Nat}}
+			\RETURN cantidad(e.diccClientesAcciones,c,nt) \\
+			\end{algorithm}
+\textit{Complejidad:}  \\
+\textbf{O(log C + |nT|)}\textsubscript{cantidad}
+\newpage
+
+\subsection{Servicios usados}
+\begin{LARGE}
+Diccionario Inception
+
+\end{LARGE}
+\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		vacioDI & No &  O(1)\\
+		\hline
+		AgregarClienteDI & No &  O(C)\\
+		\hline
+		Definido?DI & No &  O(log C)\\
+		\hline
+		ClientesDI & No &  O(C)\\
+		\hline
+		obtenerDI & Si &  O(log C)\\
+		\hline
+		AgregarTitulo & No &  O(C + |nT|)\\
+		\hline
+		SumarAcciones & Si &  O(log C + |nT|)\\
+		\hline
+		RestarAcciones & Si &  O(log C + |nT|)\\
+		\hline
+		TitulosDe & Si &  O(C)\\
+		\hline
+		Cantidad & Si &  O(log C + |nT|)\\
+		\hline
+		AccionesTotales & Si &  O(log C)\\
+		\hline
+	\end{tabular}\\\\
+\\
+{\LARGE Diccionario Con Memoria} \\
+
+\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		vacioDM & No &  O(1)\\
+		\hline
+		agregarTituloDM & No &  O(num + |nT|)\\
+		\hline
+		definido?DM & No &  O(|nT|)\\
+		\hline
+		obtenerDM & Si &  O(|nT|)\\
+		\hline
+		titulosDM & Si &  O(\#claves)\\
+		\hline
+		agregarPromesaDM & No &  O(|nT|)\\
+		\hline
+		promesasDeDM & Si &  O(T * C * |max\_nt|)\\
+		\hline
+\end{tabular}\\\\
+\\
+Usa el Modulo {\LARGE Conjunto Lineal} de la Catedra \\
+\\
+
+\

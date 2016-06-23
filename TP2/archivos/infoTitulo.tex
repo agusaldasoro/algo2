@@ -1,0 +1,261 @@
+\section{M\'odulo Informacion de Titulo}
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Informacion de Titulo}}
+	
+	\igualobs{infT1}{infT2}{infoTitulo}{
+	titulo(infT1)\igobs titulo(infT2) \wedge \newline
+	ventas(infT1)\igobs ventas(infT2) \wedge \newline
+	compras(infT1)\igobs compras(infT2) \wedge \newline 
+	disponibles(infT1)\igobs disponibles(infT2)	
+	}
+
+
+\generos{infoTitulo}
+\exporta{generadores y observadores}
+\usa{\nombretad{Promesa, Cliente, Nat, Conj(infoProm), Arreglo\_Ordenable(infoProm)}}
+
+
+\observadores 
+\func{titulo}{infoTitulo}{titulo}{}
+\func{Ventas}{infoTitulo}{conj(infoProm)}{}
+\func{Compras}{infoTitulo}{arreglo\_ordenable(infoProm)}{}
+\func{disponibles}{infoTitulo}{nat}{}
+
+\generadores
+\func{nuevoinfoTitulo}{titulo/t,conj(infoProm)/v,arreglo\textunderscore ordenable(infoProm)/c, nat/n}{infoTit}{}
+
+\axiomas{\paratodo{titulo}{t}, \paratodo{infoProm}{v, c}, \paratodo{nat}{d}}
+\alinearaxiomas{}{}
+
+\axioma{titulo(nuevoInfoTitulo(t, v, c, d))}{t}
+\axioma{ventas(nuevoInfoTitulo(t, v, c, d))}{v}
+\axioma{compras(nuevoInfoTitulo(t, v, c, d))}{c}
+\axioma{disponibles(nuevoInfoTitulo(t, v, c, d))}{d}
+
+\end{tad}
+
+\subsection{Servicios Exportados}
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		nuevoInfoTitulo & No & O(copy(V)+copy(C)) \\
+		\hline
+		titulo & Si & O(1) \\
+		\hline
+		ventas & Si & O(1) \\
+		\hline
+		compras & Si & O(1) \\
+		\hline
+		disponibles & Si & O(1) \\
+		\hline
+	\end{tabular}\\\\
+	Donde V es un conjunto de infoProm y C un arreglo ordenable de infoProm
+
+\subsection{Interfaz}
+	\noindent Interfaz \nombretad{Informacion de Titulo}\\
+	Se explica con: TAD Informacion de Titulo\\
+	G\'{e}neros: infoTit\\
+	Operaciones:
+	
+	
+	\begin{interfaz}{nuevoInfoTitulo}{\param{in}{t}{titulo}, \param{in}{v}{infoProm}, \param{in}{c}{infoProm}, \param{in}{d}{nat}}{infoTit}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs nuevoInfoTitulo(t, v, c, d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{titulo}{\param{in}{iT}{infoTit}}{titulo}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs titulo(iT)}
+	\end{interfaz}
+	
+	\begin{interfaz}{ventas}{\param{in}{iT}{infoTit}}{conj(infoProm)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs ventas(iT)}
+	\end{interfaz}
+	
+	\begin{interfaz}{compras}{\param{in}{iT}{infoTit}}{conj(infoProm)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs compras(iT)}
+	\end{interfaz}
+	
+	\begin{interfaz}{disponibles}{\param{in}{iT}{infoTit}}{nat}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado \igobs disponibles(iT)}
+	\end{interfaz}
+	
+\subsection{Estructura de Representaci\'on}
+
+estr es	tupla< \\
+			elIterador: itConj(titulo), \\
+			Ventas:		conj(infoProm),  \\
+			Compras:	arreglo\_ordenable(infoProm)  \\
+			Disponibles: nat \\
+			> \\
+
+\subsection{Invariante de Representaci\'on}
+
+1)Todas las promesas son del titulo al cual apunta el iterador \\
+2)No existe un cliente que tenga dos promesas en ventas\\
+3)No existe un cliente que tenga dos promesas en compras \\
+4)Ventas solo tiene promesas de ventas \\
+5)Compras solo tiene promesas de compras \\
+
+
+\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Rep(e) $\Leftrightarrow$&
+					
+	$\left(
+	\begin{array}{l}
+	((\forall pr: infoProm) pr \in damePromesas(e.compras) \impluego \\
+	((tipo(promesa(pr))==compra) \wedge (titulo(promesa(pr))==nombre(siguiente(e.elIterador))))) \wedge \\
+	((\forall pr: infoProm) pr \in e.ventas \impluego \\
+	((tipo(promesa(pr))==venta) \wedge (titulo(promesa(pr))==nombre(siguiente(e.elIterador))))) \wedge \\
+	((\forall pr1, pr2: infoProm) pr1, pr2 \in damePromesas(e.compras) \Rightarrow \\
+	(cliente(pr1)==cliente(pr2) \Leftrightarrow pr1\igobs pr2)) \\
+	((\forall pr1, pr2: infoProm) pr1, pr2 \in e.ventas \Rightarrow \\
+	(cliente(pr1)==cliente(pr2) \Leftrightarrow pr1\igobs pr2))
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Funci\'on de Abstracci\'on}
+
+	\noindent Abs: $\widehat{infoTit}$ e \en $\widehat{infoTitulo}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ iT: $\widehat{infoTit}$)
+ \! Abs(iT) $\equiv$ it \!: $\widehat{infoTit}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		titulo(iT)\igobs (siguiente(e.elIterador)) \wedge \\
+		Ventas(iT)\igobs e.Ventas \wedge \\
+		Compras(iT) \igobs e.Compras \wedge \\
+		Disponibles(iT) \igobs e.Disponibles 
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+
+\begin{algorithm}{$i$nuevoInfoTitulo}{\param{in}{pT}{itConj(titulo)}, \param{in}{v}{conj(infoProm)}, \param{in}{c}{arreglo\_ordenable(infoProm)}, \param{in}{d}{nat}}{\param{}{resultado}{infoTit}}
+	\VAR{infoT\!: infoTitulo} \\
+	infoT.titulo \leftarrow pT\\
+	infoT.ventas \leftarrow copiar(v)\\
+	infoT.compras \leftarrow copiar(c)\\
+	infoT.disponibles \leftarrow d\\
+	\RETURN infoT
+	\end{algorithm}
+
+	
+	\begin{algorithm}{$i$titulo}{\param{in}{e}{estr}}{\param{}{resultado}{titulo}}
+		\RETURN siguiente(e.elIterador)
+	\end{algorithm}
+
+
+	\begin{algorithm}{$i$ventas}{\param{in}{e}{estr}}{\param{}{resultado}{conj(infoProm)}}
+		\RETURN e.ventas
+	\end{algorithm}
+
+	
+	\begin{algorithm}{$i$compras}{\param{in}{e}{estr}}{\param{}{resultado}{arreglo\_ordenable(infoProm)}}
+		\RETURN e.compras
+	\end{algorithm}
+
+	
+	\begin{algorithm}{$i$disponibles}{\param{in}{e}{estr}}{\param{}{resultado}{nat}}
+		\RETURN e.disponibles
+	\end{algorithm}
+
+
+\subsection{Servicios usados}
+
+{\Large Arreglo\_ordenable}\\
+
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Crear & No & O(n) \\
+		\hline
+		DameIndice & Si & O(1)\\
+		\hline
+		Ordenar & No & O(n * $\log$ n)\\
+		\hline
+		Insertar & No & O(1)\\
+		\hline
+		Borrar & No & O(1)\\
+		\hline
+		Tama\~no & No & O(1)\\
+		\hline
+		DamePromesas & No & O(1)\\
+		\hline
+	
+	\end{tabular}\\\\
+n es el largo del arreglo\\
+\\
+{\LARGE Informacion de Promesa }
+\\
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		nuevoinfoProm & No & O(|nombre(t)|) \\
+		\hline
+		cliente & No & O(1) \\
+		\hline
+		promesa & No & O(1) \\
+		\hline
+		acccionesDelCliente & No & O(1) \\
+		\hline
+	\end{tabular}\\\\
+
+
+{\LARGE Promesa} \\
+
+\begin{tabular}[c]{|c|c|c|}
+	
+	\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		T\'itulo & Si &  O(1)\\
+		\hline
+		Tipo & No & O(1)\\
+		\hline
+		L\'imite & No & O(1)\\
+		\hline
+		Cantidad& No & O(1)\\
+		\hline
+		CrearPromesa & No & O(1)\\
+		\hline
+		CopiarPromesa & No & O(|nombre(t)|)\\
+		\hline
+	\end{tabular}\\\\
+	
+{\LARGE Titulo} \\
+
+\begin{tabular}[c]{|c|c|c|c|}
+	
+	\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Nombre & Si & O(1)  \\
+		\hline
+		\#maxAcciones & No & O(1) \\
+		\hline
+		Cotizaci\'on & No & O(1)\\
+		\hline
+		EnAlza & No & O(1)\\
+		\hline
+		CrearT\'itulo & No & O(1)\\
+		\hline
+		Recotizar & No & O(1)\\
+		\hline
+		CopiarT\'itulo & No & O(|nombre(t)|)\\
+		\hline
+	\end{tabular}\\\\
+	\\
+Usa el Modulo {\LARGE Conjunto Lineal} de la Catedra \\
+\newpage

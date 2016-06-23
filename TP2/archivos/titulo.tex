@@ -1,0 +1,151 @@
+\section{M\'odulo T\'itulo}
+
+\subsection{Servicios Exportados}
+
+\begin{tabular}[c]{|c|c|c|c|}
+	
+	\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Nombre & Si & O(1)  \\
+		\hline
+		\#maxAcciones & No & O(1) \\
+		\hline
+		Cotizaci\'on & No & O(1)\\
+		\hline
+		EnAlza & No & O(1)\\
+		\hline
+		CrearT\'itulo & No & O(1)\\
+		\hline
+		Recotizar & No & O(1)\\
+		\hline
+		CopiarT\'itulo & No & O(|nombre(t)|)\\
+		\hline
+	\end{tabular}\\\\
+
+
+
+\subsection{Interfaz}
+	Interfaz \nombretad{T\'itulo}\\
+	Se explica con: T\'itulo \\
+	G\'{e}neros: t\'itulo \\
+	Operaciones:\\
+	
+	
+	\begin{interfaz}{Nombre}{\param{in}{t}{Titulo}}{Nombre}{}
+	\textbf{Pre} $\equiv$  \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs Nombre(\hat{t})}
+	\end{interfaz}
+
+	\begin{interfaz}{\#maxAcciones}{\param{in}{t}{Titulo}}{Nat}{}
+	\textbf{Pre} $\equiv$  \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs \#maxAcciones(\hat{t})}
+	\end{interfaz}
+
+	\begin{interfaz}{Cotizacion}{\param{in}{t}{Titulo}}{Dinero}{}
+	\textbf{Pre} $\equiv$  \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs Cotizaci$\'o$n(\hat{t})}
+	\end{interfaz}
+
+	\begin{interfaz}{enAlza}{\param{in}{t}{Titulo}}{Bool}{}
+	\textbf{Pre} $\equiv$  \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs enAlza(\hat{t})}
+	\end{interfaz}
+
+	\begin{interfaz}{CrearT\'itulo}{\param{in}{nT}{Nombre}, \param{in}{d}{Dinero}, \param{in}{n}{Nat}}{T\'itulo}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs CrearT$\'i$tulo(\hat{nT},\hat{d},\hat{n})}
+	\end{interfaz}
+
+	\begin{interfaz}{Recotizar}{\param{in}{d}{Dinero}, \param{inout}{t}{Titulo}}{}{}
+	\textbf{Pre} $\equiv$  \pre{\hat{t} \igobs t_0}
+	\textbf{Post} $\equiv$ \post{nombre(\hat{t}) \igobs nombre(\hat{t_0}) \wedge cotizaci$\'o$n(\hat{t}) \igobs d \wedge 		\endline \#maxAcciones(\hat{t_0}) \igobs \#maxAcciones(\hat{t}) \wedge enAlza(\hat{t}) \igobs cotizaci$\'o$n({t_0}) < d  }
+	\end{interfaz}
+
+	\begin{interfaz}{CopiarTitulo}{\param{in}{t}{Titulo}}{T\'itulo}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{\widehat{resultado} \igobs \widehat{t}}
+	\end{interfaz}
+
+
+\subsection{Estructura de Representaci\'on}
+	T\'itulo se representa con estr\newline
+	donde estr es tupla
+		$<$Nombre$: \ String, \ 
+		$Cotizaci\'on$: \ Nat, \ $enAlza$: Bool, \  $\#maxAcciones$: \ Nat >$ \\
+		
+\subsection{Invariante de Representaci\'on}
+
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	true
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+\subsection{Funci\'on de Abstracci\'on}
+
+	\noindent Abs: $\widehat{estr}$ e \en Titulo (Rep(e))\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv$ t: $\widehat{Titulo}$ /  \\
+	$\left(
+	\begin{array}{l}
+	nombre(t) = e.Nombre \wedge \\
+	cotizaci$\'o$n(t) = e.Cotizaci$\'o$n \wedge \\
+	\#maxAcciones(t) = e.\#maxAcciones \wedge \\
+	enAlza(t) = e.enAlza\\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+\subsection{Algoritmos}
+
+	\begin{algorithm}{$i$Nombre}{\param{in}{t}{estr}}{\param{}{resultado}{nombre}}
+		\RETURN t.Nombre
+	\end{algorithm}
+
+	\begin{algorithm}{$i$\#MaxAcciones}{\param{in}{t}{estr}}{\param{}{resultado}{nat}}
+		\RETURN t.\#maxAcciones
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Cotizacion}{\param{in}{t}{estr}}{\param{}{resultado}{dinero}}
+		\RETURN t.Cotizacion
+	\end{algorithm}	
+
+	\begin{algorithm}{$i$EnAlza}{\param{in}{t}{estr}}{\param{}{resultado}{bool}}
+		\RETURN t.EnAlza
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$CrearTitulo}{\param{in}{nT}{Nombre}, \param{in}{d}{Dinero}, \param{in}{n}{Nat}}{\param{}{resultado}{titulo}}
+		resultado.Nombre \leftarrow nT \\
+		resultado.\#maxAcciones \leftarrow n \\
+		resultado.Cotizacion \leftarrow d \\
+		resultado.EnAlza \leftarrow true \\
+		\RETURN resultado
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Recotizar}{\param{in}{d}{Dinero}, \param{inout}{t}{estr}}{}
+		\begin{IF}{(d > t.Cotizacion)}		\\
+		t.EnAlza \leftarrow true;
+		\ELSE \\
+		t.EnAlza \leftarrow false;
+		\end{IF} \\
+		t.Cotizacion \leftarrow d \\
+	\end{algorithm}	
+	
+
+	\begin{algorithm}{$i$CopiarTitulo}{\param{in}{t}{estr}}{\param{}{resultado}{estr}}
+		resultado.Nombre \leftarrow t.Nombre \\
+		resultado.\#maxAcciones \leftarrow t.\#maxAcciones \\
+		resultado.Cotizacion \leftarrow t.Cotizacion \\
+		resultado.EnAlza \leftarrow t.EnAlza \\
+		\RETURN resultado
+	\end{algorithm}
+
+\newpage

@@ -1,0 +1,227 @@
+\section{Módulo Diccionario Trie}
+
+\subsection{Servicios Exportados}
+
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Crear & No & O(1) \\
+		\hline
+		Definir & No & O(N+$ LC_{max}$)\\
+		\hline
+		Definido? & No & O($ LC_{max}$)\\
+		\hline
+		Obtener & Si & O($ LC_{max}$)\\
+		\hline
+		Copiar & No & O($N+LC_{max}$)\\
+		\hline
+		Claves & Si & O(N) \\
+		\hline
+		DefinirUnico & No & O($ LC_{max}$)\\
+		\hline
+	
+	\end{tabular}\\\\
+
+N es la cantidad de claves\\
+$ LC_{max}$ es la longitud maxima de una claveº
+
+Asumimos:\\
+Hay que asumir que todos los arreglos empiezan en 1\\
+Para los strings asumimos que cada elemento se puede acceder en O(1)\\
+y que se puede obtener la longitud en O(N) y su creacion es proporcional a la longitud.\\
+Asumimos que la posicion i del array corresponde a la letra i del abecedario.\\
+Longitud: long(string)\\
+Acceso: String[nat]\\
+Tambien assumimos que int(char) nos da el numero entre 1 y 27 que le corresponde en el abecedario.
+
+
+\subsection{Interfaz}
+	Interfaz \nombretad{Diccionario Trie(Clave, Significado)}\\
+	Se explica con: Diccionario(Clave, Significado)\\
+	G\'{e}neros: diccionario\\
+	Operaciones:\\
+	\begin{interfaz}{Crear}{}{diccionario}{O(1)}
+	\pre{true}
+	\post{resultado = vacio}
+	\end{interfaz}
+	\begin{interfaz}{Definir}{inout $d$: diccionario, in $c$: clave, in $s$: significado}{}{O($N+LC_{max}$)}
+	\pre{d=d_0}
+	\post{d= definir(c,s,d_0)}
+	\end{interfaz}
+	\begin{interfaz}{DefinirUnico}{inout $d$: diccionario, in $c$: clave, in $s$: significado}{}{O($LC_{max}$)}
+	\pre{d=d_0 \wedge \neg(def?(d,c))}
+	\post{d= definir(c,s,d_0)}
+	\end{interfaz}
+	\begin{interfaz}{Definido?}{in $d$: diccionario, in $c$:clave}{bool}{O($LC_{max}$)}
+	\pre{true}
+	\post{resultado = def?(c,d)}
+	\end{interfaz}
+	\begin{interfaz}{Obtener}{in $d$: diccionario, in $c$: clave}{significado}{O($LC_{max}$)}
+	\pre{def?(c,d)}
+	\post{resultado = obtener(c,d)}
+	\end{interfaz}
+	\begin{interfaz}{Claves}{in $d$: diccionario}{conj(clave)}{O(1)}
+	\pre{true}
+	\post{resultado = claves(d)}
+	\end{interfaz}
+	\begin{interfaz}{Copiar}{in $d$: diccionario}{diccionario}{O($N+LC_{max}$)}
+	\pre{true}
+	\post{resultado = d}
+	\end{interfaz}
+
+
+
+
+
+
+
+\subsection{Estructura de Representación}
+	diccionario se representa con estr\\
+	Donde estr es tupla $<$ definiciones: nodo , claves: conj $>$\\
+	Donde nodo es tupla $<$siguientes: arreglo[27] de puntero a nodo, significado: puntero a significado  $>$
+	
+	
+	
+\subsection{Invariante de Representación}
+	\noindent Rep: $\widehat{estr}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ d: $\widehat{estr}$) Rep(d) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	$d.definiciones no tiene ciclos$\\
+	$Para todo elemento del conjunto claves existe un camino de nodos valido $\\$ que tiene un significado valido$\\
+	$No hay caminos con significados validos que no esten en claves$\\
+	$No hay caminos finales (con todos los siguientes NULL) que no tengan significado valido$\\
+	%$($\forall$ c:clave $\in$ d.claves) existe el camino correspondiente en d.definiciones y $\\$ este llega a un significado valido$\\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\
+
+\subsection{Función de Abstracción}
+	\noindent Abs: $\widehat{estr}$ d \en diccionario (Rep(d))\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv$ d: $\widehat{diccionario}$ /  \\
+	$\left(
+	\begin{array}{l}
+	(\forall c: clave) def?(c,d) \Leftrightarrow $(la clave tiene un significado en el trie) $  \yluego \\ (\forall c: clave) def?(c,d) \impluego obtener(c,d) \igobs $(obtener el significado del trie e.definiciones)$ \\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+	\begin{algorithm}{$i$Crear}{}{\param{}{resultado}{estr}}
+	\VAR{i:nat}\\
+	resultado.claves = Vacio()\\
+	\begin{FOR}{i\=1 \TO 27}
+	resultado.definiciones.siguientes[i] = NULL
+	\end{FOR}
+	resultado.definiciones.significado = NULL\\
+	\RETURN resultado
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Definir}{\param{inout}{d}{estr}, \param{in}{c}{clave}, \param{in}{s}{significado}}{}
+	Agregar(c, d.claves);\\
+	\VAR{actual\!: nodo}\\
+	actual = d.definiciones;\\
+	\begin{FOR}{i=1 \TO Longitud(c)}
+	\begin{IF}{actual.siguientes[c[i]] == NULL}\\
+	\VAR{nuevoNodo\!: nodo}\\
+	nuevoNodo.significado = NULL\\
+	\begin{FOR}{j=1 \TO 27}
+	nuevoNodo.siguientes[j] = NULL
+	\end{FOR}
+	actual.siguientes[c[i]] = \&nuevoNodo
+	\end{IF}\\
+	actual = {}^* actual.siguientes[c[i]];					
+	\end{FOR}
+	actual.significado = \&$i$Copia(s)
+	\end{algorithm}	
+
+	\begin{algorithm}{$i$DefinirUnico}{\param{inout}{d}{estr}, \param{in}{c}{clave}, \param{in}{s}{significado}}{}
+	AgregarUnico(c, d.claves);\\
+	\VAR{actual\!: nodo}\\
+	actual = d.definiciones;\\
+	\begin{FOR}{i=1 \TO Longitud(c)}
+	\begin{IF}{actual.siguientes[c[i]] == NULL}\\
+	\VAR{nuevoNodo\!: nodo}\\
+	nuevoNodo.significado = NULL\\
+	\begin{FOR}{j=1 \TO 27}
+	nuevoNodo.siguientes[j] = NULL
+	\end{FOR}
+	actual.siguientes[c[i]] = \&nuevoNodo
+	\end{IF}\\
+	actual = {}^* actual.siguientes[c[i]];					
+	\end{FOR}
+	actual.significado = \&$i$Copia(s)
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Definido?}{\param{in}{d}{estr}, \param{in}{c}{clave}}{\param{}{resultado}{bool}}
+	\VAR{ def \!: bool}\\
+	\VAR{actual \!: nodo}\\
+	\begin{IF}{(d.definiciones.siguientes[c[1]])!=NULL} \\
+	actual={}^* (d.definiciones.siguientes[c[1]])\\
+	def \leftarrow true \\
+	\begin{FOR}{i=2 \TO Longitud(c)}
+		\begin{IF}{actual.siguientes[c[i]]!=NULL}		\\
+		actual = {}^* (actual.siguientes[c[i]]);
+		\ELSE \\
+		def \leftarrow false
+		\end{IF}
+		\end{FOR}
+	\begin{IF}{actual.significado!=NULL}\\
+	\RETURN{ def}
+	\ELSE \\
+	\RETURN{false}
+	\end{IF}
+	\ELSE \\
+	\RETURN{false}
+	\end{IF}
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Obtener}{\param{in}{d}{estr}, \param{in}{c}{clave}}{\param{}{resultado}{significado}}
+	\comentario{Genera aliasing}\\
+	\VAR{actual\!: nodo}\\
+	actual = d.definiciones\\
+	\begin{FOR}{i=1 \TO Longitud(c)}
+		actual = {}^* (actual.siguientes[c[i]]);
+		\end{FOR}
+	\RETURN actual.significado
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Claves}{\param{in}{d}{estr}}{\param{}{resultado}{conj}}
+	\comentario{Genera aliasing}\\
+	\RETURN d.claves;
+	\end{algorithm}
+
+	\begin{algorithm}{$i$Copiar}{\param{in}{d}{diccionario}}{\param{}{resultado}{diccionario}}
+	resultado.claves= Copiar(d.claves)\\
+	\begin{FOR}{i=1 \TO 27}
+		\begin{IF}{d.siguientes[i]!=NULL}
+			resultado.siguientes[i]={}^*iCopiarNodo(d.siguientes[i])
+		\ELSE
+			resultado.siguientes[i]=NULL
+		\end{IF}
+	\end{FOR}
+	\end{algorithm}
+
+
+	\begin{algorithm}{$i$CopiarNodo}{\param{in}{n}{puntero(nodo)}}{\param{}{resultado}{nodo}}
+	\begin{IF}{\& n.significado!=NULL}
+		resultado.significado \leftarrow Copiar(\& n.significado)
+		\ELSE
+		resultado.significado=NULL
+	\end{IF} \\
+	\begin{FOR}{i=1 \TO 27}
+		\begin{IF}{\& n.siguientes[i]!=NULL}
+			resultado.siguientes[i]={}^*iCopiarNodo(n.siguientes[i])
+		\ELSE
+			resultado.siguientes[i]=NULL
+		\end{IF}\\
+	\end{FOR}
+	\end{algorithm}
+
+
+	
+\newpage

@@ -1,0 +1,360 @@
+
+\section{M\'odulo Diccionario Inception}
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Diccionario Inception}}
+	
+	Extiende al TAD Diccionario Finito. \\
+	TAD Diccionario Finito es: dicc(cliente, diccionarioDS(nombre, nat))\\
+	Donde diccionarioDS es un renombre de diccionario.\\
+	\\
+	Generos: diccIncep\\
+		
+	Donde las siguientes operaciones son renombres de:
+	
+		\begin{tabular}[c]{|c|c|c|}
+		\hline
+		\textbf{DiccIncep} & \textbf{DiccFinito} \\
+		\hline
+		vacioDI() & Vacio() \\
+		\hline
+		Definido?DI(d,c) & Def?(c,d) \\
+		\hline
+		ClientesDI(d) & Claves(d) \\
+		\hline
+		ObtenerDI(d, c) & Obtener(c,d) \\
+		\hline
+		AgregarClienteDI(d, c) & Definir(c, crearDiccString(), d) \\
+		\hline		
+	\end{tabular}\\\\
+	
+	
+EXPORTA:	
+	
+\otrasops
+\func{agregarTitulo}{d/diccIncep, c/cliente, nT/nombre, n/nat}{dicc}{$\lbrace$c $\in$clientesDI(d)$\rbrace$}
+\func{sumarAcciones}{d/diccIncep, c/cliente, nT/nombre, n/nat}{dicc}{$\lbrace$c $\in$ clientesDI(d) \yluego nT $\in$ titulosDe(d, c)$\rbrace$}
+\func{restarAcciones}{d/diccIncep, c/cliente, nT/nombre, n/nat}{dicc}{$\lbrace$c $\leq$ cantidad(d, c, nT) $\wedge$ c $\in$ clientesDI(d) \yluego nT $\in$ titulosDe(d, c)$\rbrace$}
+\func{titulosDe}{d/diccIncep, c/cliente}{conj(nombre)}{$\lbrace$c $\in$clientesDI(d)$\rbrace$}
+\func{cantidad}{d/diccIncep, c/cliente, nT/nombre}{nat}{$\lbrace$c $\in$ clientesDI(d) \yluego nT $\in$ titulosDe(d, c)$\rbrace$}
+\func{accionesTotales}{d/diccIncep, c/cliente}{nat}{$\lbrace$c $\in$ clientesDI(d)$\rbrace$}
+\func{sumatoriaDeAcciones}{d/diccIncep, c/cliente, conj/conj(nombre)}{nat}{$\lbrace$c $\in$ clientesDI(d) \yluego nT $\in$ titulosDe(d, c)$\rbrace$}
+
+\axiomas{\paratodo{diccIncep}{d}, \paratodo{cliente}{c}, \paratodo{nat}{n}, \paratodo{conj}{conj(nombre)}}
+\alinearaxiomas{}{}
+
+\axioma{agregarTitulo(d, c, nT, n)}{definirDS(obtener(d,c), nT, n)} 
+\axioma{sumarAcciones(d, c, nT, n)}{definirDS(obtener(d,c), nT, cantidad(d, c, nT)+n)}
+\axioma{restarAcciones(d, c, nT, n)}{definirDS(obtener(d,c), nT, cantidad(d, c, nT)-n)}
+\axioma{titulosDe(d, c)}{clavesDS(obtener(d,c))}
+\axioma{cantidad(d, c, nT)}{obtenerDS(obtener(d,c))}
+\axioma{accionesTotales(d, c}{sumatoriadeAcciones(d, c, titulosDe(d, c))}
+\axioma{sumatoriaDeAcciones(d, c, $\emptyset$)}{0}
+\axioma{sumatoriaDeAcciones(d, c, Ag(nT, conj))}{cantidad(d, c, nT) + sumatoriaDeAcciones(d, c, conj)}
+
+\end{tad}
+
+\subsection{Servicios Exportados}
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		vacioDI & No &  O(1)\\
+		\hline
+		AgregarClienteDI & No &  O(C)\\
+		\hline
+		Definido?DI & No &  O(log C)\\
+		\hline
+		ClientesDI & No &  O(C)\\
+		\hline
+		obtenerDI & Si &  O(log C)\\
+		\hline
+		AgregarTitulo & No &  O(C + |nT|)\\
+		\hline
+		SumarAcciones & Si &  O(log C + |nT|)\\
+		\hline
+		RestarAcciones & Si &  O(log C + |nT|)\\
+		\hline
+		TitulosDe & Si &  O(C)\\
+		\hline
+		Cantidad & Si &  O(log C + |nT|)\\
+		\hline
+		AccionesTotales & Si &  O(log C)\\
+		\hline
+	\end{tabular}\\\\
+
+	
+\subsection{Interfaz}
+	Interfaz \nombretad{Diccionario Inception}\\
+	Se explica con: TAD Diccionario Inception \\
+	Que es dicc(cliente, diccionarioDS(nombre, nat))\\
+	Donde TAD dicc es Diccionario Finito y diccionarioDS es un renombre de diccionario.\\
+	Se representa extendiendo: dicc(cliente, diccionarioDS(nombre, nat))\\
+	Generos: dIncep\\
+	Operaciones:\\
+	
+	\begin{interfaz}{VacioDI}{}{dIncep}{}
+	\textbf{Pre} $\equiv$ \pre{true}
+	\textbf{Post} $\equiv$ \post{resultado \igobs vacio}
+	\end{interfaz}
+	
+	\begin{interfaz}{AgregarClienteDI}{\param{inout}{dicc}{dIncep}, \param{in}{clave}{cliente}}{dIncep}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge clave \notin claves(dicc_0)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs AgregarClienteDI(dicc_0, clave)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Definido?DI}{\param{in}{dicc}{dIncep}, \param{in}{clave}{cliente}}{bool}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0}
+	\textbf{Post}$\equiv$ \post{resultado \igobs definido?DI(clave, dicc_0)}
+	\end{interfaz}
+		
+	\begin{interfaz}{ClientesDI}{\param{in}{dicc}{dIncep}}{conj(cliente)}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0}
+	\textbf{Post} $\equiv$ \post{resultado \igobs ClientesDI(dicc_0)}
+	\end{interfaz}		
+		
+		\begin{interfaz}{ObtenerDI}{\param{in}{dicc}{dIncep}, \param{in}{clave}{cliente}}{diccionarioDS(nombre, nat)}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge def?(clave, dicc) \equiv true}
+	\textbf{Post} $\equiv$ \post{resultado \igobs obtenerDI(dicc_0, clave)}
+	\end{interfaz}
+
+		\begin{interfaz}{AgregarTitulo}{\param{inout}{dicc}{dIncep}, \param{in}{clave}{cliente}, \param{in}{nT}{nombre}, \param{in}{c}{nat}}{dIncep}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge def?(nT, obtener(clave, dicc).diccionario) \equiv false}
+	\textbf{Post} $\equiv$ \post{resultado \igobs agregarTitulo(dicc_0, clave, nT, c)}
+	\end{interfaz}	
+
+	\begin{interfaz}{SumarAcciones}{\param{inout}{dicc}{dIncep}, \param{in}{clave}{cliente}, \param{in}{nT}{nombre}, \param{in}{c}{nat}}{dIncep}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0  \wedge 
+	\endline def?(clave, dicc) \equiv true  \wedge
+	\endline (nT \in claves(obtener(clave, dicc).diccionario \equiv true)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs sumarAcciones(dicc_0, clave, nT, c)}
+	\end{interfaz}
+	
+	\begin{interfaz}{RestarAcciones}{\param{inout}{dicc}{dIncep}, \param{in}{clave}{cliente}, \param{in}{nT}{nombre}, \param{in}{c}{nat}}{dIncep}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0  \wedge 
+	\endline def?(clave, dicc) \equiv true  \wedge
+	\endline (nT \in claves(obtener(clave, dicc) \equiv true)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs restarAcciones(dicc_0, clave, nT, c)}
+	\end{interfaz}
+	
+	\begin{interfaz}{TitulosDe}{\param{in}{dicc}{dIncep}, \param{in}{clave}{cliente}}{conj(Nombre)}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0 \wedge definido?DI(dicc, clave)}
+	\textbf{Post} $\equiv$ \post{resultado \igobs TitulosDe(dicc_0, clave)}
+	\end{interfaz}	
+	
+	\begin{interfaz}{Cantidad}{\param{in}{dicc}{dIncep}, \param{in}{clave}{cliente}, \param{in}{nT}{nombre}}{nat}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0}
+	\textbf{Post} $\equiv$ \post{resultado \igobs Cantidad(dicc_0, clave, nT)}
+	\end{interfaz}
+	
+		\begin{interfaz}{accionesTotales}{\param{in}{e}{estr}, \param{in}{c}{cliente}}{nat}{}
+	\textbf{Pre} $\equiv$ \pre{dicc \igobs dicc_0}
+	\textbf{Post} $\equiv$ \post{resultado \igobs accionesTotales(dicc_0, c)}
+	\end{interfaz}
+	
+	
+	
+\subsection{Estructura de Representaci\'on}
+	diccIncep($\alpha$) se representa con estr$_-$diccIncep\\
+	Donde estr$_-$diccIncep es dicc\_Finito(cliente, tupla<
+													titulos:	diccionarioDS(nombre, nat),
+													accionesTotales:	nat
+													>)\\
+	
+	
+\subsection{Invariante de Representaci\'on}
+
+Vale el invariante del Tad Diccionario Finito, y ademas: \\
+$\bullet$ Las Acciones Totales de cada cliente es la suma de las acciones de cada titulo. \\
+
+
+\noindent Rep: $\widehat{diccIncep}$ \en bool\\
+	($\forall$ e: $\widehat{diccIncep}$) Rep(dicc) = $ true$ $\Leftrightarrow$ \\
+	Rep(DiccionarioFinito) $\wedge$ \\	
+	($\forall$ c: cliente) definido?DI(e, c) \impluego 
+	($\forall$ nT: nombre) nT $\in$ TitulosDe(e, c) \impluego \\
+	ObtenerDS(Obtener(e, c), nT).accionesTotales == sumatoriaDeAcciones(e, c, titulosDe(e, c)) \\
+	
+
+
+
+\subsection{Funci\'on de Abstracci\'on}
+
+Vale la funcion de Abstraccion del Modulo Diccionario Finito. Ademas\\
+
+
+	\noindent Abs: $\widehat{estr}$ e \en diccIncep (Rep(e))\\
+	\begin{tabular}[t]{@{} l @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr}$) Abs(e) $\equiv$ d: $\widehat{diccIncep}$ /  \\
+	$\left(
+	\begin{array}{l}
+	(( \forall c:cliente) c \in clientesDI(d) \impluego \\
+	titulosDe(d, c) \igobs titulosDe(e, c) \wedge accionesTotales(d, c)==accionesTotales(e, c) \wedge \\
+	( \forall nT:nombre, \forall n:nat)agregarTitulo(d, c, nT, n) \igobs agregarTitulo(e, c, nT, n) \wedge \\
+	( \forall nT:nombre) nT \in clavesDS(obtener(c, d)) \impluego \\
+		sumarAcciones(d, c, nT, c) \igobs sumarAcciones(e, c, nT, c) \wedge \\		
+		restarAcciones(d, c, nT, c) \igobs restarAcciones(e, c, nT, c) \wedge \\
+		cantidad(d, c, nT) = cantidad(e, c, nT)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+
+\subsection{Algoritmos}
+	En la Complejidad: C es la cantidad de clientes en el Wolfie, nT el nombre del titulo \\
+	\\
+\begin{algorithm}{$i$VacioDI}{}{\param{}{resultado}{estr}}
+				\RETURN Vacio()
+			\end{algorithm}
+	\textit{Complejidad:} \textbf{O(1)} \textsubscript{Vacio()}\\
+	\textit{Aliasing:} No \\
+
+\begin{algorithm}{$i$AgregarClienteDI}{\param{inout}{e}{estr}, \param{in}{c}{cliente}}{}
+				definir(c, vacioDS(),e) 			\\	
+				obtener(e, c).accionesTotales \leftarrow 0\\
+			\end{algorithm}
+	\textit{Complejidad:} O(C*copiarInfo)\textsubscript{definir} + O(log C) \textsubscript{obtener}\\
+	 Donde O(copiarInfo)=O(vacioDS)=O(1)\\
+	$\Rightarrow$ O(C * 1 + log C)=\textbf{O(C)}\\
+	\textit{Aliasing:} No \\
+				
+\begin{algorithm}{$i$Definido?DI}{\param{in}{e}{estr}, \param{in}{c}{cliente}}{\param{}{resultado}{bool}}
+				\RETURN definida?(c, e)
+			\end{algorithm}	
+	\textit{Complejidad:} \textbf{O(log C)} \textsubscript{definida?}\\		
+	\textit{Aliasing:} No \\
+			
+\begin{algorithm}{$i$ClientesDI}{\param{in}{e}{estr}}{\param{}{resultado}{conj(cliente)}}
+				\RETURN claves(e)		
+			\end{algorithm}	
+			\textit{Complejidad:} \textbf{\textbf{O(C)}} \textsubscript{claves}\\	
+	\textit{Aliasing:} No \\	
+			
+\begin{algorithm}{$i$ObtenerDI}{\param{in}{e}{estr}, \param{in}{c}{cliente}}{\param{}{resultado}{diccionarioDS(nombre, nat)}}
+				\RETURN obtener(c, e)	
+			\end{algorithm}
+			\textit{Complejidad:} \textbf{O(log C)} \textsubscript{obtener}\\	
+	\textit{Aliasing:} Si \\	
+			
+\begin{algorithm}{$i$agregarTitulo}{\param{inout}{e}{estr}, \param{in}{c}{cliente}, \param{in}{nT}{nombre}, \param{in}{n}{nat}}{}
+				\VAR{punt\!: punteroAdiccionarioDS} \\
+				punt \leftarrow \&obtener(e, c)\\
+				(*punt).definirDS(nT, n)
+			\end{algorithm}
+			\textit{Complejidad:} O(log C)\textsubscript{obtener}+O(|nT|)\textsubscript{definirDS} = \textbf{O(C + |nT|)}\\
+	\textit{Aliasing:} No \\
+			\\
+						
+\begin{algorithm}{$i$SumarAcciones}{\param{inout}{e}{estr}, \param{in}{c}{cliente}, \param{in}{nT}{nombre}, \param{in}{n}{nat}}{}
+				\VAR{tenia\!: nat} \\
+				tenia \leftarrow cantidad(e, c, nT)\\
+				\VAR{punt\!: punteroAdiccionarioDS} \\
+				punt \leftarrow \&obtener(e, c)\\
+				(*punt).definirDS(nT, tenia + n)\\
+				obtener(e, c).accionesTotales \leftarrow obtener(e, c).accionesTotales + n	
+			\end{algorithm}	
+			\textit{Complejidad:} O(|nT| + log C) \textsubscript{cantidad} + O(log C)\textsubscript{obtener}+O(|nT|)\textsubscript{definirDS} + \\ O(log C) \textsubscript{obtener} + O(log C) \textsubscript{obtener}=\\
+			O(|nT| + log C + log C + |nT| + log C + log C) =\textbf{ O(|nT| + log C)}\\
+	\textit{Aliasing:} Si \\
+								
+
+\begin{algorithm}{$i$RestarAcciones}{\param{inout}{e}{estr}, \param{in}{c}{cliente}, \param{in}{nT}{nombre}, \param{in}{n}{nat}}{}
+				\VAR{tenia\!: nat} \\
+				tenia \leftarrow cantidad(e, c, nT)\\
+				\VAR{punt\!: punteroAdiccionarioDS} \\
+				punt \leftarrow \&obtener(e, c)\\
+				(*punt).definirDS(nT, tenia - n)\\
+				obtener(e, c).accionesTotales \leftarrow obtener(e, c).accionesTotales - n	
+			\end{algorithm}	
+			\textit{Complejidad:} O(|nT| + log C) \textsubscript{cantidad} 
+			+ O(log C)\textsubscript{obtener}
+			+O(|nT|)\textsubscript{definirDS}
+			+ \\ O(log C) \textsubscript{obtener} 
+			+ O(log C) \textsubscript{obtener}=\\
+			O(|nT| + log C + log C + |nT| + log C + log C) =\textbf{ O(|nT| + log C)}\\
+	\textit{Aliasing:} Si \\
+			
+\begin{algorithm}{$i$titulosDe}{\param{in}{e}{estr}, \param{in}{c}{cliente}}{\param{}{resultado}{conj(nombre)}}
+			\RETURN clavesDS(obtener(d, c))
+			\end{algorithm}	
+			\textit{Complejidad:} O(C)\textsubscript{clavesDS} + O(log C)\textsubscript{obtener} =\\
+			O(C + log C) = \textbf{O(C)} \\
+	\textit{Aliasing:} Si \\
+			
+\begin{algorithm}{$i$cantidad}{\param{in}{e}{estr}, \param{in}{c}{cliente}, \param{in}{nT}{nombre}}{\param{}{resultado}{nat}}
+			\VAR{cant\!: nat} \\
+			\begin{IF}{definido?DS(obtener(e, c), nT)} \\
+			cant \leftarrow obtenerDS(obtener(e, c), nT)
+		\ELSE \\
+			cant \leftarrow 0
+		\end{IF} \\
+		\RETURN cant
+			\end{algorithm}	
+			\textit{Complejidad:} O(|nT|) \textsubscript{definido?DS}  + O(log C) \textsubscript{obtener} +
+			O(|nT|)\textsubscript{obtenerDS}  + O(log C) \textsubscript{obtener}= \\ \textbf{O(|nT| + log C)}\\
+	\textit{Aliasing:} Si \\
+
+\begin{algorithm}{$i$accionesTotales}{\param{in}{e}{estr}, \param{in}{c}{cliente}}{\param{}{resultado}{nat}}
+		\RETURN obtener(e, c).accionesTotales
+	\end{algorithm}	
+		\textit{Complejidad:} \textbf{O(log C)} \textsubscript{obtener} \\		
+	\textit{Aliasing:} Si \\
+
+	
+\subsection{Servicios usados}
+
+ {\LARGE Diccionario Finito}\\
+
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Vacio & No & O(n) \\
+		\hline
+		Definir & No & O(n * copiar info)\\
+		\hline
+		Definida? & No & O($\log$ n)\\
+		\hline
+		Obtener & Si & O($\log$ n)\\
+		\hline
+		Tama\~no & No & O(1)\\
+		\hline
+		Tama\~noMax & No & O(1)\\
+		\hline
+		Claves & No & O(n)\\
+		\hline
+	
+	\end{tabular}\\\\
+n es la cantidad de claves\\
+
+ {\LARGE Diccionario String}\\
+ \begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		CrearDiccString & No & O(1) \\
+		\hline
+		DefinirDS & No & O(|c|)\\
+		\hline
+		Definido?DS & No & O(|c|)\\
+		\hline
+		ObtenerDS & Si & O(|c|)\\
+		\hline
+		ClavesDS & Si & O(N) \\
+		\hline
+		CopiarDS & No & O(N*(|c\textsubscript{max}|+O(copiarSignificado))) \\
+		\hline
+		
+		
+		
+	\end{tabular}\\\\
+
+N es la cantidad de claves.\\
+c es la clave, |c| es su largo.\\
+\\
+Usa el Modulo{\LARGE  Conjunto Lineal} de La Catedra. \\
+
+
+	
+\newpage

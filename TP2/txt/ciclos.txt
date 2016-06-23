@@ -1,0 +1,11 @@
+	
+					\begin{WHILE}{(i$TieneProximo$(iterador))}
+					valor = i$Proximo$(iterador)\\
+					\begin{IF}{(valor.elemento==n)}\\
+						valor.cantidad++\\
+						agregado = true
+					\end{IF}
+				\end{WHILE}\\
+				\begin{IF}{\neg agregado}\\
+					$Agregar$(M, tupla <n,1>)
+				\end{IF}

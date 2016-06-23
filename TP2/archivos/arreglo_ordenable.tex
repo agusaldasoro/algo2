@@ -1,0 +1,225 @@
+\section{M\'odulo Arreglo Ordenable}
+
+\subsection{Especificaci\'on}
+	\begin{tad}{\nombretad{Arreglo Ordenable(infoProm)}}
+\igualobs{d}{d'}{arreglo\_ordenable(infoProm)}{tam(d)  \igobs tam(d') \newline \wedge ultimo(d)  \igobs ultimo(d') \newline \wedge (\forall i: \mathrm{nat})~(\f{def?}(d, i) \impluego \newline (\f{dameIndice}(i, d) \igobs \f{dameIndice}(i, d')))}
+
+\generos{arreglo\_ordenable(infoProm)}
+\exporta{arreglo\_ordenable(infoProm), generadores, observadores}
+\usa{\nombretad{Bool, Nat, infoProm}}
+
+\alinearfuncs{obtenoesaaf}{dicc(nat, significado) x dicc(nat, significado)xx}
+
+\observadores 
+\func{dameIndice}{nat /i, arreglo\textunderscore ordenable(infoProm /d)}{infoProm}{$def?(d, i)$}
+\func{tam}{arreglo\textunderscore ordenable(infoProm)}{nat}{}
+\func{ultimo}{arreglo\textunderscore ordenable(infoProm)}{nat}{}
+
+\generadores
+\func{crear}{nat}{arreglo\_ordenable(infoProm)}{}
+\func{insertar}{infoProm /x, arreglo \textunderscore ordenable(infoProm) /a}{arreglo\_ordenable(infoProm)}{$ultimo(d) \leq tam(d)$}
+\func{borrar}{nat /i, arreglo \textunderscore ordenable(infoProm) /a}{arreglo\_ordenable(infoProm)}{$def?(d, i)$}
+
+\otrasops
+\func{def?}{arreglo\textunderscore ordenable(infoProm) /d, nat /i}{bool}{}
+\func{ordenar}{arreglo\textunderscore ordenable(infoProm)/d}{arreglo\textunderscore ordenable(infoProm)}{}
+\func{ordenarAux}{arreglo\textunderscore ordenable(infoProm)/d, nat /i}{arreglo\textunderscore ordenable(infoProm)}{}
+\func{dameMin}{arreglo\textunderscore ordenable(infoProm)/d}{arreglo\textunderscore ordenable(infoProm)}{}
+\func{dameMinAux}{arreglo\textunderscore ordenable(infoProm)/d, nat /i}{arreglo\textunderscore ordenable(infoProm)}{}
+\func{damePromesas}{arreglo\textunderscore ordenable(infoProm)/d}{conj(infoProm)}{}
+\func{damePromesasAux}{arreglo\textunderscore ordenable(infoProm)/d, nat /i}{conj(infoProm)}{}
+
+\axiomas{\paratodo{dicc(nat, significado)}{d, e}, \paratodo{nat}{c, k, n}, \paratodo{significado}{s}}
+\alinearaxiomas{obtener(definir (a, b))zzgggggggg}{}
+
+\axioma{dameIndice(i, insertar(x, d))}{\IF ultimo(d) = i THEN x ELSE dameIndice(d, i) FI}
+\axioma{dameIndice(i, borrar(k, d))}{dameIndice(d, i)}
+\axioma{tam(crear(n))}{n}
+\axioma{tam(insertar(x, d))}{tam(d)}
+\axioma{tam(borrar(k, d))}{tam(d)}
+\axioma{ultimo(crear(n))}{1}
+\axioma{ultimo(insertar(x, d))}{1 + ultimo(d)}
+\axioma{ultimo(borrar(k, d))}{ultimo(d)}
+\axioma{def?(d, i)}{i < ultimo(d)}
+\axioma{ordenar(d)}{ordenarAux(d, tam(d))}
+\axioma{ordenarAux(d, o)}{\IF tam(d) = 0 THEN crear(o) \\ ELSE insertar(ordenarAux(borrar(dameMin(d), d), o), dameIndice(d, dameMin(d))) FI}
+\axioma{dameMin(d)}{dameMinAux(d, 1)}
+\axioma{dameMinAux(d, i)}{\IF i = tam(d) THEN tam(d) \\ ELSE \IF totales(dameIndice(i, d)) > totales(dameIndice(dameMinAux(d, i+1), d)) THEN i \\ ELSE dameMinAux(d, i + 1) FI FI}
+\axioma{damePromesas(d)}{damePromesasAux(d, 1)}
+\axioma{damePromesasAux(d, i)}{\IF i > tam(d) THEN $\emptyset$ \\ ELSE \IF def?(d, i) THEN Ag(dameIndice(i, d), damePromesasAux(d, i+1)\\ ELSE damePromesasAux(d, i + 1) FI FI}
+\end{tad}
+
+\subsection{Servicios Exportados}
+\begin{tabular}[c]{|l|l|l|}
+		\hline
+		Operacion & Aliasing & Complejidad \\
+		\hline
+		Crear & No & O(n) \\
+		\hline
+		DameIndice & Si & O(1)\\
+		\hline
+		Ordenar & No & O(n * $\log$ n)\\
+		\hline
+		Insertar & No & O(1)\\
+		\hline
+		Borrar & No & O(1)\\
+		\hline
+		Tama\~no & No & O(1)\\
+		\hline
+		DamePromesas & No & O(1)\\
+		\hline
+	
+	\end{tabular}\\\\
+n es el largo del arreglo\\
+
+\subsection{Interfaz}
+	\noindent Interfaz \nombretad{arreglo\_ ordenable(infoProm}\\
+	Se explica con: TAD Arreglo Ordenable(infoProm)\\
+	G\'{e}neros: arreglo\_ordenable(infoProm)\\
+	Operaciones:\\
+	\begin{interfaz}{Crear}{in $n$:nat}{arreglo$_-$ordenable(infoProm)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = crear(n)}
+	\end{interfaz}
+	
+	\begin{interfaz}{DameIndice}{in $i$: nat, in $d$: arreglo\_ ordenable(infoProm)}{infoProm}{}
+	\textbf{Pre} $\equiv$\pre{def?(d, i)}
+	\textbf{Post} $\equiv$\post{resultado = dameIndice(i, d)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Ordenar}{inout $d$: arreglo\_ ordenable(infoProm)}{}{}
+	\textbf{Pre} $\equiv$\pre{d_0 = d}
+	\textbf{Post} $\equiv$\post{d = ordenar(d_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Insertar}{in $x$: infoProm, in $d$: arreglo\_ ordenable(infoProm)}{}{}
+	\textbf{Pre} $\equiv$\pre{d_0 = d \wedge ultimo(d) \leq tam(d) \wedge x \notin damePromesas(d)}
+	\textbf{Post} $\equiv$\post{d = insertar(x,d_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Borrar}{in $k$: nat, in $d$: arreglo\_ ordenable(infoProm)}{}{}
+	\textbf{Pre} $\equiv$\pre{d_0 = d \wedge def?(d, i)}
+	\textbf{Post} $\equiv$\post{d = borrar(k,d_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Tama\~no}{in $d$: arreglo\_ ordenable(infoProm)}{nat}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = tam(d)}
+	\end{interfaz}
+
+	\begin{interfaz}{DamePromesas}{in $d$: arreglo\_ ordenable(infoProm)}{conj(infoProm)}{}
+	\textbf{Pre} $\equiv$\pre{true}
+	\textbf{Post} $\equiv$\post{resultado = damePromesas(d)}
+	\end{interfaz}
+	
+
+\subsection{Estructura de Representaci\'on}
+arreglo\_ordenable(infoProm) se representa con tupla<datos: conj(infoProm), ult: nat, arr: arreglo\_dimensionable(itConj(infoProm))>
+
+
+\subsection{Invariante de Representaci\'on}
+	Rep informal:\\
+	1 - Todos los naturales mayores que e.ult son NULL\\
+	2 - El cardinal de e.datos es menor o igual a e.ult
+
+	\noindent Rep: $\widehat{arreglo_-ordenable(infoProm)}$ \en bool\\
+	($\forall$ e: $\widehat{arreglo_-ordenable(infoProm)}$) Rep(e) = $ true$ $\Leftrightarrow$ \\
+	e.ult $\geq$ $\#$e.datos $\wedge$ ($\forall$ i: nat)(($i$ > e.ult $\impluego$ $\neg$ e.arr[i] = NULL))\\
+	\\
+\subsection{Funci\'on de Abstracci\'on}
+	\noindent Abs: $\widehat{arrego_-ordenable(infoProm)}$ e \en $\widehat{arreglo_-ordenable(infoProm)}$ (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ arr: $\widehat{arrego_-ordenable(infoProm)}$)\\
+ \! Abs(arr) $\equiv$ d \!: $\widehat{arreglo_-ordenable(infoProm)}$ $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		\left(\begin{array}{l}	e.ult =_{obs} ult(d) \wedge tam(d)=_{obs}tam(e.arr) \\ \end{array}\right) \wedge\\
+		\left(\begin{array}{l}	(\forall i:\! nat)def?(d,i)\impluego siguiente(e.arr[i]) = dameIndice(i, d) \wedge \\ 
+		\left(\begin{array}{l} 	siguiente(e.arr[i]) \in e.datos\end{array}\right)\end{array}\right)
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+\subsection{Algoritmos}
+	\begin{algorithm}{$i$Crear}{\param{in}{n}{nat}}{arreglo\_ ordenable(infoProm)}
+		\VAR{ arr\!:arrego\_dimensionable(itConj(infoProm))};\\
+		arr \= crearArreglo(n); \\
+		\begin{FOR}{(i\=1 \TO e.tam)}
+			arr[i]\=NULL;
+		\end{FOR}
+		\RETURN \langle vacio(), 0, crearArreglo(n)\rangle;
+	\end{algorithm}
+	Complejidad:  O(n)\textsubscript{2} + O(n)\textsubscript{3} * O(1)\textsubscript{4}= O(n)
+	 \\
+
+	\begin{algorithm}{$i$DameIndice}{\param{in}{n}{nat}, \param{in}{e}{arreglo\_ ordenable(infoProm)}}{infoProm}
+		\RETURN siguiente(e.arr[i]);
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1}
+	 \\
+
+	\begin{algorithm}{$i$Ordenar}{\param{inout}{d}{arreglo\_ ordenable(infoProm)}}{}
+	\RETURN MergeSort(d.arr);
+	\end{algorithm}
+	Complejidad:  O(n * log n)\textsubscript{por Merge Sort}
+	\\
+
+
+	\begin{algorithm}{$i$MergeSort}{\param{in/out}{A}{arreglo\_dimensionable(itConj(infoProm))}}{}
+		\begin{IF}{(tam(A) > 1)} \\
+			$nat$ m \leftarrow tam(A)/2; \\
+			arreglo\_dimensionable(itConj(infoProm)) $B$ \leftarrow copiar(subarreglo(A,1,m)) \\
+			arreglo\_dimensionable(itConj(infoProm)) $C$ \leftarrow copiar(subarreglo(A, m + 1, tam(A))); \\
+			MergeSort(B); \\
+			MergeSort(C); \\
+			Merge(A,B,C); \\
+		\end{IF}
+	\end{algorithm}
+	
+	\begin{algorithm}{$i$Merge}{\param{out}{A}{arr\_dimen(itConj(iP))}, \param{in}{B}{arr\_dimen(itConj(iP))}, \param{in}{C}{arr\_dimen(itConj(iP))}}{}
+		$nat$ i_b \leftarrow 1, i_c \leftarrow 1 \\
+		A \leftarrow CrearArreglo(tam(B) + tam(C)) \\
+		\begin{FOR}{(i\=1 \TO tam(A))}
+			\begin{IF}{(i_b \leq tam(B) \wedge (i_c > tam(C) \vee (C[i_c] = NULL \oluego (B[i_b] \neq NULL \yluego B[i_b] > C[i_c]))))}
+				A[i] \leftarrow B[i_b], i_b \leftarrow i_b +1
+			\ELSE
+				A[i] \leftarrow C[i_c], i_c \leftarrow i_c +1
+			\end{IF}
+		\end{FOR}
+	\end{algorithm}
+	OBS: iP es infoProm y arr\_dimen es arreglo\_dimensiobable
+	\\
+
+	
+	\begin{algorithm}{$i$Insertar}{\param{inout}{e}{arreglo\_ ordenable(infoProm)},  \param{in}{k}{infoProm}}{}
+	\VAR{ it\!:itConj(infoProm)};\\
+	it \= AgregarRapido(e.datos, k);\\
+	e.arr[e.ult] \= it;\\
+	e.ult++;
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1} + O(1)\textsubscript{2} + O(1)\textsubscript{3} + O(1)\textsubscript{4}= O(1)
+	 \\	
+
+	\begin{algorithm}{$i$Borrar}{\param{inout}{e}{arreglo\_ ordenable(infoProm)},  \param{in}{i}{nat}}{}
+	EliminarSiguiente(e.arr[i]);\\
+	e.arr[i] \= NULL;
+	\end{algorithm}
+	Complejidad:  O(1)\textsubscript{1} + O(1)\textsubscript{2} + O(1)\textsubscript{3}= O(1)
+	 \\
+	
+	\begin{algorithm}{$i$Tama\~no}{\param{in}{d}{arreglo\_ ordenable(infoProm)}}{\param{}{resultado}{nat}}
+	\RETURN tam(e.arr);
+	\end{algorithm}
+	Complejidad:  O(1)
+
+	\begin{algorithm}{$i$DamePromesas}{\param{in}{d}{arreglo\_ ordenable(infoProm)}}{\param{}{resultado}{conj(infoProm)}}
+	\RETURN e.datos;
+	\end{algorithm}
+	Complejidad:  O(1)
+
+	
+	\subsection{Servicios usados}
+
+Utiliza el Modulo{\LARGE  Arreglo Dimensionable }de la Catedra.\\
+

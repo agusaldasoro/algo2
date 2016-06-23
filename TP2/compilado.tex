@@ -1,0 +1,80 @@
+\documentclass[a4paper,spanish]{article}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{caratula}
+\usepackage{tad}
+\usepackage{algo2symb}
+\usepackage{fixltx2e}
+\usepackage{newalgo}
+%\usepackage{fancyhdr}
+%\usepackage{lastpage}
+%\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{itef}
+%\usepackage{rcs}
+%\usepackage{calc}
+%\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\input{designMacros}
+\hoffset=-2.5cm
+\textwidth=16cm
+\parskip=1ex
+%\parskip=0.7ex %Esto estaba para los TAD
+% Pongo en 0 la distancia extra entre temes.
+%\let\olditemize\itemize
+%\def\itemize{\olditemize\itemsep=0pt}
+
+% Acomodo fancyhdr.
+%\pagestyle{fancy}
+%\thispagestyle{fancy}
+%\addtolength{\headheight}{1pt}
+%\lhead{Algoritmos y Estructuras de Datos II}
+%\rhead{$1^{\mathrm{do}}$ cuatrimestre de 2006}
+%\cfoot{\thepage /\pageref{LastPage}}
+%\renewcommand{\footrulewidth}{0.4pt}
+
+\newcommand{\f}[1]{\text{#1}}
+%\renewcommand{\paratodo}[2]{$\forall~#2$: #1}
+
+\begin{document}
+	%\hypersetup{%
+	 %% Para que el PDF se abra a pgina completa.
+	 %pdfstartview= {FitH \hypercalcbp{\paperheight-\topmargin-1in-\headheight}},
+	 %pdfauthor={Grupp X?},
+	 %pdfkeywords={TP 2: Diseo},
+	 %pdftitle={Trabajo Prctico 2: Wolfie},
+	 %pdfsubject={Diseo}
+	%}
+
+    \materia{Algoritmos y Estructuras de Datos II}
+
+    \titulo{Trabajo Pr\'{a}ctico 2: Dise\~{n}o}
+
+    \subtitulo{\emph{Wolfie}}
+
+    \grupo{Grupo 16}
+
+    \integrante{Agustina Aldasoro}{86/13}{agusaldasoro@hotmail.com}
+
+    \integrante{Nicol\'{a}s Chamo}{282/13}{nicochamo@hotmail.com}
+
+    \integrante{Bel\'{e}n Bouz\'{o}n}{128/13}{belenbouzon@hotmail.com}
+
+    \integrante{Alexander Ledezma}{337/12}{lralexandr@gmail.com}
+
+    \maketitle
+
+  \input{archivos/titulo.tex}
+  \input{archivos/infoTitulo.tex}
+  \input{archivos/promesa.tex}
+  \input{archivos/infoPromesa.tex}
+  \input{archivos/wolfie.tex}
+  \input{archivos/dicc_finito.tex}
+  \input{archivos/dicc_trie.tex}
+  \input{archivos/diccionarioInception.tex}
+  \input{archivos/diccConMemoria.tex}
+  \input{archivos/arreglo_ordenable.tex}
+
+
+
+
+\end{document}

@@ -1,0 +1,288 @@
+\section{Módulo Diccionario Inception}
+
+\subsection{Servicios Exportados}
+	\begin{tabular}[c]{|c|c|c|}
+		\hline
+		Vacio & --- &  O(1)\\
+		\hline
+		Agregar & --- & O(N)\\
+		\hline
+		Vacio? & --- & O(1)\\
+		\hline
+		Pertenece & --- & O(N)\\
+		\hline
+		Sacar & --- & O(N)\\
+		\hline
+		Union & --- & O(Cardinal(M)*Cardinal(N))\\
+		\hline
+		Cantidad & --- & O(N)\\
+		\hline
+		Cardinal & --- & O(1)\\		
+		\hline
+		CrearIterador & --- & O(1)\\
+		\hline
+		TieneProximo & --- & O(1)\\
+		\hline
+		Proximo & S'{i} & O(1)\\
+		\hline
+	\end{tabular}\\\\
+
+\begin{LARGE}
+
+HAY QUE ARMAR EL TAD.
+\end{LARGE}
+	
+\subsection{Interfaz}
+	Interfaz \nombretad{Multiconj($\alpha$)}\\
+	Se explica con: multiconjunto($\alpha$)\\
+	G'{e}neros: multiconj($\alpha$), iter$_-$multiconj($\alpha$)\\
+	Operaciones:\\
+	\begin{interfaz}{Cantidad}{\param{in}{n}{\alpha}, \param{in}{M}{multiconj(\alpha)}}{Nat}{O(N)}
+		\pre{true}
+		\post{resultado \igobs $\#$(n,m)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Vacio}{}{multiconj($\alpha$)}{O(1)}
+		\pre{true}
+		\post{resultado \igobs \emptyset}
+	\end{interfaz}
+	
+	\begin{interfaz}{Agregar}{\param{inout}{M}{multiconj(\alpha)}, \param{in}{n}{\alpha}}{}{O(N)}
+		\pre{M \igobs M_0}
+		\post{M \igobs Ag(n,M_0)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Pertenece}{\param{in}{n}{\alpha}, \param{in}{M}{multiconj(\alpha)}}{bool}{O(N)}
+		\pre{true}
+		\post{resultado \igobs n \in C}
+	\end{interfaz}
+	
+	\begin{interfaz}{Vacio?}{\param{in}{M}{multiconj(\alpha)}}{bool}{O(1)}
+		\pre{true}
+		\post{resultado \igobs \emptyset ?(M)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Cardinal}{\param{in}{M}{multiconj(\alpha)}}{nat}{O(1)}
+		\pre{true}
+		\post{resultado \igobs \#(M)}
+	\end{interfaz}	 
+	
+	\begin{interfaz}{Sacar}{\param{inout}{M}{multiconj(\alpha)}, \param{in}{e}{\alpha}}{}{O(N)}
+		\pre{M=M_0}
+		\post{M \igobs M_0 - \{elem\}}
+	\end{interfaz}
+	
+	\begin{interfaz}{Union}{\param{inout}{M}{multiconj(\alpha)}, \param{inout}{N}{multiconj(\alpha)}}{}{O(Cardinal(M)*Cardinal(N))}
+		\pre{M=M_0}
+		\post{M \igobs M_0 \bigcup N}
+	\end{interfaz}
+	\begin{interfaz}{CrearIterador}{\param{in}{M}{multiconj(\alpha)}}{iter$_-$multiconj($\alpha$)}{O(1)}
+		\pre{true}
+		\post{resultado \igobs crear(transformarEnSecu(M))}
+	\end{interfaz}
+	
+	\begin{interfaz}{TieneProximo}{\param{in}{i}{iter_-multiconj(\alpha)}}{bool}{O(1)}
+		\pre{true}
+		\post{resultado \igobs tieneProximo(i)}
+	\end{interfaz}
+	
+	\begin{interfaz}{Proximo}{\param{inout}{i}{iter_-multiconj(\alpha)}}{tupla$<\alpha,nat>$}{O(1)}
+		\pre{tieneProximo(i) \wedge i\igobs i_0}
+		\post{resultado \igobs proximo(i_0) \wedge i = avanzar(i_0)}
+	\end{interfaz}
+		
+		
+		
+		
+		
+		
+		
+		
+\subsection{Estructura de Representación}
+	multiconj($\alpha$) se representa con estr$_-$multiconj\\
+	Donde estr$_-$multiconj es conj(elem)\\
+	Donde elem es $tupla <elemento: \alpha, apariciones: nat>$ \\ \\
+	
+	iter$_-$multiconj($\alpha$) se representa con estr$_-$iter$_-$multiconj\\
+	Donde estr$_-$iter$_-$multiconj es puntero(nodo)\\
+	Donde nodo es $tupla< valor: elem, proximo: puntero(nodo)>$
+	
+	
+	
+	
+\subsection{Invariante de Representación}
+	\noindent Rep: $\widehat{estr_-multiconj}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr_-multiconj}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		(\forall t, t': tupla<\alpha,nat>)\\(t \in e \wedge t' \in e \wedge t \neq t')\impluego \Pi_1(t) \neq \Pi_1(t') \wedge \Pi_2(t) > 0
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+	Rep: $\widehat{estr_-iter_-multiconj}$ \en bool\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr_-iter_-multiconj}$) Rep(e) $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+	$La lista enlazada no contiene ciclos$\\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+
+
+\subsection{Función de Abstracción}
+	\noindent Abs: $\widehat{estr_-multiconj}$ e \en multiconj($\alpha$) (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr_-multiconj}$) Abs(e) $\equiv$ M $\Leftrightarrow$&($\forall$ elem: $\alpha$)
+	$				
+	\left(
+	\begin{array}{l}
+%		$\textbf{if} $ ((\exists t: tupla <\alpha, nat>) \Pi_1(t) \igobs elem) $ \textbf{then}$\\
+%		\indent \#(elem, M) \igobs \Pi_2(t)\\
+%		$\textbf{else}$\\
+%		\indent \#(elem, M) \igobs 0 \\
+%		$\textbf{end if}$\\
+
+	\textbf{if} (\#(elem,M)>0) \textbf{ then}\\
+	\indent (\exists t: tupla <\alpha, nat>)\\
+	\indent t \in e \wedge \Pi_1(t) \igobs elem \wedge \Pi_2(t) =_{nat} \#(elem, M)\\
+	\textbf{else}\\
+	\indent (\nexists t: tupla <\alpha, nat>)\\
+	\indent t \in e \wedge \Pi_1(t) \igobs elem\\
+	\textbf{end if}\\
+%		\begin{IF}{\alpha \in M}
+%			(\exists t: tupla <\alpha, nat>) t \in e \wedge 
+%		\ELSE
+%		\end{IF}
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\\\
+	
+	\noindent Abs: $\widehat{estr_-iter_-multiconj}$ e \en iter$_-$multiconj($\alpha$) (Rep(e))\\
+	\begin{tabular}[t]{@{} r @{} @{} l @{}}
+	($\forall$ e: $\widehat{estr_-iter_-multiconj}$) Abs(e) $\equiv$ i $\Leftrightarrow$&
+	$				
+	\left(
+	\begin{array}{l}
+		\left(\begin{array}{l}	\neg tieneProximo(i) \wedge e == NULL \\ \end{array}\right) \vee\\
+		\left(\begin{array}{c}	
+			tieneProximo(i) \wedge \\
+			e \neq NULL \wedge \\
+			proximo(i) = {}^*(e).proximo \wedge \\ 
+			\left(\begin{array}{l}	Abs({}^*(e).proximo)=avanzar(i) \\ \end{array}\right)\\
+	\end{array}\right)\\
+	\end{array} 
+	\right)$\\
+	\end{tabular}\\\\
+
+
+
+\subsection{Algoritmos}
+			\begin{algorithm}{$i$Vacio}{}{\param{}{resultado}{estr_-multiconj} }
+				resultado = Vacio\\
+				\RETURN resultado
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Agregar}{\param{inout}{M}{estr_-multiconj}, \param{in}{e}{\alpha}}{}
+				\VAR{iterador: estr_-iter_-multiconj, agregado: bool, valor: elem}\\
+				iterador = i$CrearIterador$(M)\\
+				agregado = false\\
+				\begin{WHILE}{(i$TieneProximo$(iterador))}
+					valor = i$Proximo$(iterador)\\
+					\begin{IF}{(valor.elemento==n)}\\
+						valor.cantidad++\\
+						agregado = true
+					\end{IF}
+				\end{WHILE}\\
+				\begin{IF}{\neg agregado}\\
+					$Agregar$(M, tupla <n,1>)
+				\end{IF}
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Vacio?}{\param{in}{M}{estr_-multiconj}}{\param{}{resultado}{bool}}
+				resultado = $Vacio?$(M)\\
+				\RETURN resultado
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Pertenece}{\param{in}{n}{\alpha}, \param{in}{M}{estr_-multiconj}}{\param{}{resultado}{bool}}
+				\VAR{elemActual\!: elem, iterador\!: estr_-iter_-multiconj}\\
+				iterador = i$CrearIterador$(M)\\
+				resultado = false\\
+				\begin{WHILE}{(i$TieneProximo$(iterador))}
+					elemActual = i$Proximo$(iterador)\\
+					\begin{IF}{(\Pi_1(elemActual) == n)}
+						resultado = true
+					\end{IF}
+				\end{WHILE}\\
+				\RETURN resultado
+			\end{algorithm}
+
+			\begin{algorithm}{$i$Cantidad}{\param{in}{M}{estr_-multiconj}, \param{in}{n}{\alpha}}{\param{}{resultado}{nat}}
+					\VAR{iterador\!:estr_-iter_-multiconj, actual\!:tupla<\alpha,nat>}
+					iterador = i$CrearIterador$(M)\\
+					\begin{WHILE}{(i$TieneProximo$(iterador))}
+						actual = i$Proximo$(M)\\
+						\begin{IF}{(\Pi_1(actual) == n)}\\
+							\RETURN \Pi_2(actual)
+						\end{IF}
+					\end{WHILE}
+			\end{algorithm}
+
+			\begin{algorithm}{$i$Cardinal}{\param{in}{M}{estr_-multiconj}}{\param{}{resultado}{nat}}
+					\RETURN Cardinal(M)
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Union}{\param{inout}{M}{estr_-multiconj}, \param{in}{N}{estr_-multiconj}}{}
+				\VAR{iterador: estr_-iter_-multiconj, X\!:estr_-multiconj, i: nat, actual: tupla<\alpha,nat>}\\
+				X = i$Copia$(N)\\
+				iterador = i$CrearIterador$(X)\\
+				\begin{WHILE}{(i$Tieneproximo$(X))}
+					actual = i$Proximo$(X)\\
+					i = 0\\
+					\begin{WHILE}{(i < \Pi_2(actual))}
+						i$Agregar$(M,Pi_1(actual))\\
+						i++\\
+					\end{WHILE}
+				\end{WHILE}
+			\end{algorithm}
+						
+			\begin{algorithm}{$i$Sacar}{\param{inout}{M}{estr_-multiconj}, \param{in}{n}{\alpha}}{\param{}{resultado}{nat}}
+				\VAR{elemActual\!: elem, iterador\!: estr_-iter_-multiconj}\\
+				iterador = i$CrearIterador$(M)\\
+				\begin{WHILE}{(i$TieneProximo$(iterador))}
+					elemActual = i$Proximo$(iterador)\\
+					\begin{IF}{(\Pi_1(elemActual) == n)}
+						\Pi_2(elemActual)--
+					\end{IF}					
+				\end{WHILE}
+			\end{algorithm}
+
+			
+			\begin{algorithm}{$i$CrearIterador}{\param{in}{M}{estr_-multiconj}}{\param{}{resultado}{estr_-iter_-multiconj}}
+				resultado = $CrearIterador$(M)\\
+				\comentario{Creo un iterador del conjunto sobre el cual represento el multiconjunto}\\
+				\RETURN resultado
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$TieneProximo}{\param{in}{M}{estr_-iter_-multiconj}}{\param{}{resultado}{bool}}
+				\RETURN $TieneProximo$(M)
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Proximo}{\param{inout}{M}{estr_-iter_-multiconj}}{\param{}{resultado}{tupla<\alpha,nat>}}
+				\VAR{elemento\!: elem}\\
+				elemento = $Proximo$(M)\\
+				\RETURN elemento
+			\end{algorithm}
+			
+			\begin{algorithm}{$i$Copia}{\param{inout}{M}{estr_-multiconj}}{\param{}{resultado}{estr_-multiconj}}
+				\RETURN $Copia$(M)\\
+				\comentario{Creo una copia del conjunto sobre el cual esta representado el multiconjunto}\\
+			\end{algorithm}
+\subsection{Servicios usados}
+	
+\newpage
